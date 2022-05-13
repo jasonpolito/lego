@@ -1,9 +1,9 @@
 @php
 $theme_name = env('THEME_NAME');
-$has_image = !Str::contains($block->image('flexible', 'flexible'), 'data:image');
 $rand_title = array_rand(array_flip(config('cms.placeholders')), 1);
 $reversed = $block->input('align') !== 'left';
 $checklist = get_block_children($block->children, 'checklist_item');
+$img = fallback_img($block->image('flexible', 'flexible'));
 @endphp
 @if (View::exists("themes.$theme_name.sidebyside"))
 @include("themes.$theme_name.sidebyside", ['block' => $block])
@@ -12,11 +12,11 @@ $checklist = get_block_children($block->children, 'checklist_item');
     <x-container>
         <x-cols class="{{ $reversed ? 'flex-row-reverse' : '' }}">
             <x-col class="w-full lg:w-1/2">
-                <img src="{{ $block->image('flexible', 'flexible') }}" class="lg:hidden {{ settings('rounded') }}">
+                <img src="{{ $img }}" class="lg:hidden {{ settings('rounded') }}">
                 <div class="hidden lg:block h-full {{ $reversed ? 'lg:pl-8 xl:pl-14' : 'lg:pr-8 xl:pr-14' }}">
                     <div class="h-full overflow-hidden bg-canvas {{ settings('rounded') }}">
                         <div class="fill-parent">
-                            <img src="{{ $block->image('flexible', 'flexible') }}" class="object-cover w-full h-full">
+                            <img src="{{ $img }}" class="object-cover w-full h-full">
                         </div>
                     </div>
                 </div>

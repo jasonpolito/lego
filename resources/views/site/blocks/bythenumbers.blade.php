@@ -1,6 +1,7 @@
 @php
 $theme_name = env('THEME_NAME');
 $cols = $block->children;
+$img = fallback_img($block->image('flexible', 'flexible'));
 $preview_cols = [
 ["10+",
 "Years of experience",
@@ -22,8 +23,7 @@ $preview_cols = [
 <x-section class="text-white bg-primary">
     <div class="fill-parent mix-blend-multiply">
         <div data-jarallax data-speed="0.9" class="w-full h-full jarallax">
-            <img src="{{ $block->image('flexible', 'flexible') }}"
-                class="object-cover w-full h-full opacity-25 jarallax-img filter grayscale">
+            <img src="{{ $img }}" class="object-cover w-full h-full opacity-25 jarallax-img filter grayscale">
         </div>
     </div>
     <x-container>

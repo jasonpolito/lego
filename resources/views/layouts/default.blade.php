@@ -58,6 +58,8 @@ $head_insert_code = app(SettingRepository::class)->byKey('global_head_insert_cod
     @else
     <script src="{{ mix('js/app.js') }}"></script>
     @endif
+    @if (!request()->input('noscroll'))
+
     <style>
         .jarallax {
             position: relative;
@@ -81,6 +83,8 @@ $head_insert_code = app(SettingRepository::class)->byKey('global_head_insert_cod
             disableVideo: /iPad|iPhone|iPod|Android/
         });
     </script>
+    @endif
+
     @stack('scripts')
     <!-- INSERTED FROM BACKEND -->
     {!! $body_insert_code !!}

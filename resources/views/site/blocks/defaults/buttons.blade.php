@@ -15,7 +15,6 @@ text-white',
         <a class="{{ $styles[$btn->input('btn_style') ?? 'default'] }}" href="{{ $btn->input('btn_url') ?? '#' }}"
             @if($btn->input('btn_style') == 'underline')
             style="box-shadow: 0 .125rem;"
-
             @endif
             @if($btn->input('btn_external'))
             target="_blank" @endif>

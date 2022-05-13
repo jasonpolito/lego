@@ -2,6 +2,11 @@
 
 use A17\Twill\Repositories\SettingRepository;
 
+function fallback_img($img)
+{
+    return !Str::contains($img, 'data:image') ? $img : '/img/lego.png';
+}
+
 function get_block_children($children, $type)
 {
     return $children->filter(function ($item) use ($type) {

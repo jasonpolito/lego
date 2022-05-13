@@ -14,17 +14,22 @@ $theme_name = env('THEME_NAME');
 		</div>
 		<x-cols class="justify-center md:-mx-4">
 			@foreach ($block->children as $card)
+			@php
+			$img = fallback_img($card->image('flexible', 'flexible'));
+			@endphp
+
 			<x-col class="flex justify-center w-full md:px-4 lg:w-1/2">
 				<div
 					class="w-full {{ $card->input('card_cover') ? 'text-white' : '' }} bg-white max-w-lg my-4 {{ settings('rounded') }} lg:max-w-none">
 					<div class="overflow-hidden {{ settings('rounded') }}">
-						<div class="h-56 overflow-hidden rounded-t-md xl:h-80">
-							<div class="fill-parent"><img src="{{ $card->image('flexible', 'flexible') }}"
-									class="object-cover w-full h-full" alt=""></div>
+						<div class="h-56 overflow-hidden rounded-t-md xl:h-80 group">
+							<div class="fill-parent"><img src="{{ $img }}"
+									class="object-cover w-full h-full transition duration-300 transform group-hover:scale-110"
+									alt="">
+							</div>
 						</div>
 						@if ($card->input('card_cover'))
-						<div class="bg-center bg-cover fill-parent"
-							style="background-image: url({{ $card->image('flexible', 'flexible') }})"></div>
+						<div class="bg-center bg-cover fill-parent" style="background-image: url({{ $img }})"></div>
 						<div class="opacity-75 fill-parent bg-primary"></div>
 						@endif
 						<div class="px-5 py-4 sm:p-6 md:p-8">
