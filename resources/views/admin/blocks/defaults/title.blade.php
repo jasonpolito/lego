@@ -16,7 +16,7 @@
 'renderForBlocks' => true
 ])
 
-<div style="display: flex; align-items: center">
+<div style="display: flex; align-items: center; margin-top: -24px">
     <div style="width: 50%">
         @formField('select', [
         'name' => 'title_element',

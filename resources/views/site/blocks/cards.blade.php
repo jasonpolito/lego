@@ -22,12 +22,12 @@ $theme_name = env('THEME_NAME');
 				<div
 					class="w-full {{ $card->input('card_cover') ? 'text-white' : '' }} bg-white max-w-lg my-4 {{ settings('rounded') }} lg:max-w-none">
 					<div class="overflow-hidden {{ settings('rounded') }}">
-						<div class="h-56 overflow-hidden rounded-t-md xl:h-80 group">
+						<a href="#" class="block h-56 overflow-hidden rounded-t-md xl:h-80 group">
 							<div class="fill-parent"><img src="{{ $img }}"
 									class="object-cover w-full h-full transition duration-300 transform group-hover:scale-110"
 									alt="">
 							</div>
-						</div>
+						</a>
 						@if ($card->input('card_cover'))
 						<div class="bg-center bg-cover fill-parent" style="background-image: url({{ $img }})"></div>
 						<div class="opacity-75 fill-parent bg-primary"></div>

@@ -19,7 +19,7 @@ $bg_img = fallback_img($block->image('flexible', 'flexible'));
                     {!! $block->input('content') !!}
                 </div>
                 @endif
-                <div class="flex justify-{{ $block->input('align') }}">
+                <div class="sm:flex w-full justify-{{ $block->input('align') }}">
                     @include('site.blocks.defaults.buttons', ['buttons' => $block->children])
                 </div>
             </x-col>

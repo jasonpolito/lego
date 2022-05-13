@@ -1,10 +1,9 @@
 @twillBlockTitle('Hero')
 @twillBlockIcon('hero.png')
 
+@include('admin.blocks.defaults.align')
 
 @include('admin.blocks.defaults.title')
-
-@include('admin.blocks.defaults.align')
 
 
 @formField('wysiwyg', [

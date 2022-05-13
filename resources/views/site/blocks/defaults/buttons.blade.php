@@ -2,8 +2,7 @@
 $styles = [
 'default' => 'block my-2 rounded-md px-6 py-4 text-center sm:inline-block text-white
 bg-primary',
-'outlined' => 'block my-2 rounded-md px-6 py-4 text-center sm:inline-block border border-white
-text-white',
+'outlined' => 'block my-2 rounded-md px-6 py-4 text-center sm:inline-block text-white',
 'underline' => 'text-primary font-bold inline-block mr-4 py-2',
 'link' => 'text-primary inline-block mr-4',
 ];
@@ -18,6 +17,9 @@ text-white',
             @endif
             @if($btn->input('btn_external'))
             target="_blank" @endif>
+            @if($btn->input('btn_style') == 'outlined')
+            <span class="border border-white rounded-md fill-parent"></span>
+            @endif
             {!! $btn->input('btn_text') ?? 'Learn more' !!}
         </a>
     </div>

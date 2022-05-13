@@ -5,6 +5,7 @@ return [
         'default' => [
             'text_content', //
             'hero', //
+            'actionbox', //
             'callout', //
             'cards', //
             'sidebyside', //
