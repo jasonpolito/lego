@@ -1,0 +1,72 @@
+@tailwind base;
+@tailwind components;
+* {
+    box-sizing: border-box;
+    position: relative;
+}
+
+.fill-parent {
+    @apply absolute top-0 left-0 w-full h-full;
+}
+
+.cover {
+    @apply absolute top-0 left-0 flex w-full h-full;
+}
+
+.flex-center {
+    @apply items-center justify-center;
+}
+
+.cover-center {
+    @apply absolute top-0 left-0 flex items-center justify-center w-full h-full;
+}
+
+.content p {
+    @apply mb-8 text-base leading-8;
+}
+
+.content a {
+    --line: 0.125rem;
+    color: inherit;
+    transition: all .2s ease;
+    background-size: 100% calc(100% + var(--line));
+    background-image: linear-gradient(360deg, currentColor, currentColor var(--line), transparent var(--line), transparent);
+    padding: var(--line);
+    margin: 0 calc(var(--line) * -1);
+}
+
+.content a.active,
+.content a:focus,
+.content a:hover {
+    /* padding: var(--line) (var(--line) * 1.5);
+margin: 0 (var(--line) * -1.5); */
+    background-size: 100% 100%;
+}
+
+.hr {
+    @apply block w-full mb-8;
+    box-shadow: 0 -1px;
+    height: 1px;
+    margin-top: -1px;
+}
+
+@tailwind utilities;
+.children-mb-0\! * {
+    margin-bottom: 0 !important;
+}
+
+.mb-0\! {
+    margin-bottom: 0 !important;
+}
+
+.btn-wrap:not(.btn-outline):hover .flash-outline {
+    box-shadow: inset 0 0 0 1px;
+}
+
+.btn-outline .flash-outline {
+    box-shadow: inset 0 0 0 1px;
+}
+
+.side-by-side + .side-by-side {
+    padding-top: 0;
+}
