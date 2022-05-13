@@ -1,4 +1,4 @@
-@twillBlockTitle('Side-by-side')
+@twillBlockTitle('Side By Side')
 @twillBlockIcon('sidebyside.png')
 
 @include('admin.blocks.defaults.align')

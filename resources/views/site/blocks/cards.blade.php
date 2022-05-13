@@ -32,10 +32,10 @@ $theme_name = env('THEME_NAME');
 								<x-title el="h4">{!! $card->input('card_title') !!}</x-title>
 								<div></div>
 							</div>
-							<div class="mb-2 -mt-2 md:-mt-4">
-								<p class="leading-6 sm:leading-8">{!! $card->input('card_content') !!}</p>
+							<div class="mb-4 -mt-2 md:-mt-4">
+								<p class="leading-6 show-rhythm opacity-80">{!! $card->input('card_content') !!}</p>
 							</div>
-							@include('site.blocks.defaults.buttons', ['buttons' => $block->children])
+							@include('site.blocks.defaults.buttons', ['buttons' => $card->children])
 						</div>
 					</div>
 				</div>

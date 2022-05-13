@@ -41,6 +41,10 @@
 'value' => 'outlined',
 ],
 [
+'label' => 'Underline',
+'value' => 'underline',
+],
+[
 'label' => 'Link',
 'value' => 'link',
 ],

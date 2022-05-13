@@ -3,19 +3,18 @@
 'label' => 'Title text',
 'placeholder' => 'Masthead title'
 ])
-
-@formField('checkbox', [
-'name' => 'customize_title',
-'label' => 'Customize title',
-])
+<div style="margin-top: -26px">
+    @formField('checkbox', [
+    'name' => 'customize_title',
+    'label' => 'Customize title',
+    ])
+</div>
 
 @formConnectedFields([
 'fieldName' => 'customize_title',
 'fieldValues' => true,
 'renderForBlocks' => true
 ])
-
-
 
 <div style="display: flex; align-items: center">
     <div style="width: 50%">

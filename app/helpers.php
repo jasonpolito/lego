@@ -2,6 +2,13 @@
 
 use A17\Twill\Repositories\SettingRepository;
 
+function get_block_children($children, $type)
+{
+    return $children->filter(function ($item) use ($type) {
+        return $item->input('child_type') == $type;
+    });
+}
+
 function settings($name)
 {
     return app(SettingRepository::class)->byKey($name);

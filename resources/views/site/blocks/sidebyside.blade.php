@@ -3,6 +3,7 @@ $theme_name = env('THEME_NAME');
 $has_image = !Str::contains($block->image('flexible', 'flexible'), 'data:image');
 $rand_title = array_rand(array_flip(config('cms.placeholders')), 1);
 $reversed = $block->input('align') !== 'left';
+$checklist = get_block_children($block->children, 'checklist_item');
 @endphp
 @if (View::exists("themes.$theme_name.sidebyside"))
 @include("themes.$theme_name.sidebyside", ['block' => $block])
@@ -33,9 +34,8 @@ $reversed = $block->input('align') !== 'left';
                 @endif
 
                 @if ($block->input('checklist_show'))
-                <x-cols class="mb-2 -mt-2 text-sm leading-6 sm:-mt-0">
-                    @foreach ($block->children as $item)
-                    @if ($item->input('child_type') == 'checklist_item')
+                <x-cols class="-mt-2 text-sm leading-6 sm:-mt-0">
+                    @foreach ($checklist as $item)
                     @php
                     $rand = array_rand(array_flip(config('cms.placeholders')), 1);
                     @endphp
@@ -49,7 +49,6 @@ $reversed = $block->input('align') !== 'left';
                             <div>{!! $item->input('check_text') ?? $rand !!}</div>
                         </div>
                     </x-col>
-                    @endif
                     @endforeach
                 </x-cols>
                 @endif
