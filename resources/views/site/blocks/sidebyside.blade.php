@@ -12,11 +12,15 @@ $img = fallback_img($block->image('flexible', 'flexible'));
     <x-container>
         <x-cols class="{{ $reversed ? 'flex-row-reverse' : '' }}">
             <x-col class="w-full lg:w-1/2">
-                <img src="{{ $img }}" class="lg:hidden {{ settings('rounded') }}">
+                <div class="lg:hidden group overflow-hidden bg-canvas {{ settings('rounded') }}">
+
+                    <img src="{{ $img }}" class="transition duration-300 transform group-hover:scale-110">
+                </div>
                 <div class="hidden lg:block h-full {{ $reversed ? 'lg:pl-8 xl:pl-14' : 'lg:pr-8 xl:pr-14' }}">
-                    <div class="h-full overflow-hidden bg-canvas {{ settings('rounded') }}">
+                    <div class="h-full group overflow-hidden bg-canvas {{ settings('rounded') }}">
                         <div class="fill-parent">
-                            <img src="{{ $img }}" class="object-cover w-full h-full">
+                            <img src="{{ $img }}"
+                                class="object-cover w-full h-full transition duration-300 transform group-hover:scale-110">
                         </div>
                     </div>
                 </div>
