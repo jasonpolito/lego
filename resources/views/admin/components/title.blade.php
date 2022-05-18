@@ -1,0 +1,1 @@
+<div style="margin-top: 35px; margin-bottom: -8px;">{!! $text ?? 'Title text' !!}</div>

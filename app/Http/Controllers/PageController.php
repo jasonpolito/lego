@@ -52,7 +52,7 @@ class PageController extends Controller
         ];
         foreach ($els as $el) {
             $css = config('styles.typography')[$el] . ' show-rhythm';
-            $content = \Str::replace('<' . $el . '>', '<' . $el . ' class="' . $css . '">', $content);
+            $content = \Str::replace('<' . $el . '', '<' . $el . ' class="' . $css . '" ', $content);
         }
         return $content;
     }
