@@ -70,3 +70,11 @@ margin: 0 (var(--line) * -1.5); */
 .side-by-side + .side-by-side {
     padding-top: 0;
 }
+
+.actionbox + .side-by-side {
+    @apply -mt-16;
+}
+
+.side-by-side + .actionbox {
+    padding-top: 0;
+}

@@ -8,7 +8,7 @@ $bg_img = fallback_img($block->image('flexible', 'flexible'));
 <x-section data-jarallax data-speed="0.8"
     class="jarallax {{ $block->input('fullscreen') ? 'min-h-screen flex flex-col justify-center' : '' }} bg-cover bg-center text-white text-{{ $block->input('align') }}"
     style="background-image: url({{ $bg_img }})">
-    <div class="rounded-md opacity-50 fill-parent bg-canvas"></div>
+    <div class="opacity-50 fill-parent bg-canvas"></div>
     <x-container>
         <x-cols class="justify-{{ $block->input('align') }} py-8">
             <x-col class="w-full lg:w-3/5">

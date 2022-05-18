@@ -18,7 +18,7 @@ $theme_name = env('THEME_NAME');
 			$img = fallback_img($card->image('flexible', 'flexible'));
 			@endphp
 
-			<x-col class="flex justify-center w-full md:px-4 lg:w-1/2">
+			<x-col class="flex justify-center w-full md:px-4 lg:w-1/2 xl:w-1/{{ $block->children->count() }}">
 				<div
 					class="w-full {{ $card->input('card_cover') ? 'text-white' : '' }} bg-white max-w-lg my-4 {{ settings('rounded') }} lg:max-w-none">
 					<div class="overflow-hidden {{ settings('rounded') }}">

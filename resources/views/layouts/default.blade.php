@@ -89,7 +89,9 @@ $head_insert_code = app(SettingRepository::class)->byKey('global_head_insert_cod
     <!-- INSERTED FROM BACKEND -->
     {!! $body_insert_code !!}
     <!-- END INSERTED FROM BACKEND -->
-
+    <div
+        class="w-1/2 w-1/3 w-1/4 sm:w-1/2 sm:w-1/3 sm:w-1/4 md:w-1/2 md:w-1/3 md:w-1/4 lg:w-1/2 lg:w-1/3 lg:w-1/4 xl:w-1/2 xl:w-1/3 xl:w-1/4">
+    </div>
 </body>
 
 </html>

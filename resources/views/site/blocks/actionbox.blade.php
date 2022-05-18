@@ -1,12 +1,13 @@
 @php
 $theme_name = env('THEME_NAME');
-$btn = count($block->children) ? $block->children[0] : false;
+$btns = get_block_children($block->children, 'button');
+$btn = $btns->count() ? $btns->first() : false;
 $img = fallback_img($block->image('flexible', 'flexible'));
 @endphp
 @if (View::exists("themes.$theme_name.actionbox"))
 @include("themes.$theme_name.actionbox", ['block' => $block])
 @else
-<div>
+<div class="py-16 actionbox">
     <x-container>
         <div class="px-5 pb-8 pt-10 sm:p-12 overflow-hidden bg-primary {{ settings('rounded') }}">
             <div class="fill-parent mix-blend-multiply">

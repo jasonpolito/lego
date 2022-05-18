@@ -47,7 +47,7 @@ return [
         'h1' => $title_base . 'text-3xl leading-12 sm:text-4xl sm:leading-12 md:text-5xl md:leading-14',
         'h2' => $title_base . 'text-2xl leading-10 sm:text-3xl sm:leading-12 md:text-4xl md:leading-12',
         'h3' => $title_base . 'text-xl leading-8 sm:text-2xl sm:leading-10 md:text-3xl md:leading-12',
-        'h4' => $title_base . 'text-lg leading-8 sm:text-xl sm:leading-8 md:text-2xl md:leading-12',
+        'h4' => $title_base . 'text-lg leading-8 sm:text-xl sm:leading-8 md:text-2xl xl:leading-10',
         'h5' => $title_base . 'text-lg leading-8 sm:text-lg sm:leading-8 md:text-xl md:leading-10',
         'h6' => $title_base . 'text-base leading-8',
     ],

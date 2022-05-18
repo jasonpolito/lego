@@ -1,5 +1,5 @@
 @twillBlockTitle('Footer')
-@twillBlockIcon('expand')
+@twillBlockIcon('footer.png')
 
 @include('admin.components.title', ['text' => 'Columns'])
 @formField('repeater', ['type' => 'footer_column'])
