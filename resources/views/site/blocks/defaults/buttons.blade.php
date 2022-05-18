@@ -3,7 +3,7 @@ $styles = [
 'default' => 'block my-2 rounded-md px-6 py-4 text-center sm:inline-block text-white
 bg-primary',
 'outlined' => 'block my-2 rounded-md px-6 py-4 text-center sm:inline-block text-white',
-'underline' => 'text-primary font-bold inline-block mr-4 py-2',
+'underline' => 'hover:text-primary-600 transition text-primary font-bold inline-block mr-4 py-2',
 'link' => 'text-primary inline-block mr-4',
 ];
 @endphp

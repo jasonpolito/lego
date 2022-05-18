@@ -74,23 +74,9 @@ class SystemRepository
         $primary = self::generateColorVarsArray(self::primaryColor());
         $css = "";
         foreach ($primary as $name => $value) {
-            foreach (self::CLASS_MAP as $class => $declaration) {
-                foreach (self::STATE_MAP as $state_class => $state) {
+            foreach (self::STATE_MAP as $state_class => $state) {
+                foreach (self::CLASS_MAP as $class => $declaration) {
                     $css .= ".$state_class\:$class-$name:$state { $declaration: var(--color-$name); }\r\n";
-                }
-            }
-        }
-        $css .= "}";
-        return $css;
-    }
-
-    public static function generateColorGroupStateClassesCSS()
-    {
-        $primary = self::generateColorVarsArray(self::primaryColor());
-        $css = "";
-        foreach ($primary as $name => $value) {
-            foreach (self::CLASS_MAP as $class => $declaration) {
-                foreach (self::STATE_MAP as $state_class => $state) {
                     $css .= ".group:$state .group-$state_class\:$class-$name { $declaration: var(--color-$name); }\r\n";
                 }
             }
