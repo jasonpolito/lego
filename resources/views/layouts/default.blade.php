@@ -41,15 +41,17 @@ $head_insert_code = app(SettingRepository::class)->byKey('global_head_insert_cod
     @include('layouts.includes.overlay')
     @endif
     @if (!Str::contains(request()->url(), 'admin/'))
-    {{-- <div class="fixed top-0 left-0 w-full h-full pointer-events-none text-canvas shadow-box" style="z-index: 9999"></div>
-        <div class="fixed left-0 items-center justify-center w-full h-full overflow-hidden pointer-events-none page-cover bg-canvas" style="z-index: 9999; clip: rect(0, auto, auto, 0);">
-            <div class="bg-black fill-parent opacity-20"></div>
-            <div class="fixed top-0 left-0 flex flex-col items-center justify-center w-full h-full icon-wrap">
-                <div class="text-white" style="width: 3.5rem">
-                    @include('svg.logo_icon')
-                </div>
+    <div class="fixed top-0 left-0 w-full h-full pointer-events-none text-canvas shadow-box" style="z-index: 9999">
+    </div>
+    <div class="fixed left-0 items-center justify-center w-full h-full overflow-hidden pointer-events-none page-cover bg-canvas"
+        style="z-index: 9999; clip: rect(0, auto, auto, 0);">
+        <div class="bg-black fill-parent opacity-20"></div>
+        <div class="fixed top-0 left-0 flex flex-col items-center justify-center w-full h-full icon-wrap">
+            <div class="text-white" style="width: 3.5rem">
+                {{-- @include('svg.logo_icon') --}}
             </div>
-        </div> --}}
+        </div>
+    </div>
     @endif
     @if (isset($is_pagespeed))
     @if (!$is_pagespeed)

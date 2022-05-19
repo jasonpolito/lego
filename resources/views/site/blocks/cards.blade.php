@@ -33,10 +33,12 @@ $theme_name = env('THEME_NAME');
 						<div class="opacity-75 fill-parent bg-primary"></div>
 						@endif
 						<div class="px-5 py-4 sm:p-6 md:p-8">
+							@if (!empty($card->input('title')))
 							<div class="pt-2">
 								<x-title el="h4">{!! $card->input('card_title') !!}</x-title>
 								<div></div>
 							</div>
+							@endif
 							<div class="mb-4 -mt-2 md:-mt-4">
 								<p class="leading-6 show-rhythm opacity-80">{!! $card->input('card_content') !!}</p>
 							</div>

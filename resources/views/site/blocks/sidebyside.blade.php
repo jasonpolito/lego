@@ -25,7 +25,6 @@ $img = fallback_img($block->image('flexible', 'flexible'));
                 </div>
             </x-col>
             <x-col class="w-full py-12 lg:w-1/2">
-                <div class="lg:pt-8"></div>
                 <x-title display="{{ $block->input('title_display_element') ?? 'h2' }}"
                     el="{{ $block->input('title_element') ?? 'h3' }}">
                     {!! $block->input('title_text') ?? $rand_title !!}

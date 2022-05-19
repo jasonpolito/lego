@@ -29,12 +29,12 @@ $img = fallback_img($block->image('flexible', 'flexible'));
     <x-container>
         <x-cols class="lg:-my-12">
             @foreach ($block->children as $col)
-            <x-col class="my-6 md:w-1/2 lg:w-1/4">
+            <x-col class="my-6 sm:w-1/2 lg:w-1/4">
                 <x-title el="h6">
                     <span class="block text-5xl">{{ $col->input('amount') }}</span>
                     {{ $col->input('title') }}
                 </x-title>
-                <div class="-mt-2 text-sm leading-6 mix-blend-screen opacity-80 sm:-mt-6">{{ $col->input('text') }}
+                <div class="-mt-2 text-sm leading-6 mix-blend-screen opacity-80 md:-mt-6">{{ $col->input('text') }}
                 </div>
             </x-col>
             @endforeach

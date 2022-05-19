@@ -690,10 +690,6 @@ margin: 0 (var(--line) * -1.5); */
   width: 1.75rem;
 }
 
-.w-12 {
-  width: 3rem;
-}
-
 .max-w-lg {
   max-width: 32rem;
 }
@@ -1021,11 +1017,6 @@ margin: 0 (var(--line) * -1.5); */
   color: rgb(153 169 191 / var(--tw-text-opacity));
 }
 
-.text-primary-200 {
-  --tw-text-opacity: 1;
-  color: rgb(253 167 185 / var(--tw-text-opacity));
-}
-
 .underline {
   -webkit-text-decoration-line: underline;
           text-decoration-line: underline;
@@ -1053,6 +1044,10 @@ margin: 0 (var(--line) * -1.5); */
 
 .opacity-5 {
   opacity: 0.05;
+}
+
+.opacity-0 {
+  opacity: 0;
 }
 
 .mix-blend-multiply {
@@ -1137,6 +1132,32 @@ margin: 0 (var(--line) * -1.5); */
   margin-top: -4rem;
 }
 
+.callout + .side-by-side {
+  margin-top: -3rem;
+}
+
+@media (min-width: 640px) {
+
+  .callout + .side-by-side {
+    margin-top: -4rem;
+  }
+}
+
+@media (min-width: 768px) {
+
+  .callout + .side-by-side {
+    margin-top: -6rem;
+  }
+}
+
+@media (min-width: 1280px) {
+
+  .callout + .side-by-side {
+    margin-top: -8rem;
+  }
+}
+
+.side-by-side + .callout,
 .side-by-side + .actionbox {
     padding-top: 0;
 }
@@ -1149,9 +1170,19 @@ margin: 0 (var(--line) * -1.5); */
   margin-right: 0px;
 }
 
+.hover\:bg-primary-600:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(201 27 64 / var(--tw-bg-opacity));
+}
+
 .hover\:text-white:hover {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+.hover\:text-primary-600:hover {
+  --tw-text-opacity: 1;
+  color: rgb(201 27 64 / var(--tw-text-opacity));
 }
 
 .hover\:opacity-90:hover {
@@ -1179,6 +1210,10 @@ margin: 0 (var(--line) * -1.5); */
   --tw-scale-x: 1.1;
   --tw-scale-y: 1.1;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.group:hover .group-hover\:opacity-5 {
+  opacity: 0.05;
 }
 
 @media (min-width: 640px) {
@@ -1519,10 +1554,6 @@ margin: 0 (var(--line) * -1.5); */
 
   .lg\:pr-8 {
     padding-right: 2rem;
-  }
-
-  .lg\:pt-8 {
-    padding-top: 2rem;
   }
 
   .lg\:text-left {

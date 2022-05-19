@@ -6,7 +6,7 @@ $cols = get_block_children($block->children, 'footer_column');
 @include("themes.$theme_name.footer", ['block' => $block])
 @else
 <footer>
-    <x-section class="flex-1 text-sm font-light text-white bg-canvas">
+    <x-section class="flex-1 text-sm text-white font-content bg-canvas">
         <x-container>
             <x-cols class="justify-between">
                 @foreach ($cols as $col)
@@ -17,7 +17,7 @@ $cols = get_block_children($block->children, 'footer_column');
                     </div>
                     <ul class="leading-6 content show-rhythm">
                         @foreach ($col->children as $link)
-                        <li><span class="text-canvas-100 hover:text-white focus:text-white"><a
+                        <li><span class="text-canvas-content hover:text-white focus:text-white"><a
                                     href="{!! $link->input('url') ?? '#' !!}">{!!
                                     $link->input('text') !!}</a></span></li>
                         @endforeach
@@ -27,7 +27,7 @@ $cols = get_block_children($block->children, 'footer_column');
             </x-cols>
         </x-container>
     </x-section>
-    <div class="pt-8 pb-16 -mt-20 text-xs bg-canvas text-canvas-100">
+    <div class="pt-8 pb-16 -mt-20 text-xs bg-canvas text-canvas-mid">
         <x-container>
             <x-cols class="">
                 <x-col class="w-full lg:w-1/3">
