@@ -8,6 +8,9 @@ $cols = get_block_children($block->children, 'footer_column');
 <footer>
     <x-section class="flex-1 text-sm text-white font-content bg-canvas">
         <x-container>
+            <div class="w-full md:pb-8 md:-mt-8">
+                <div class="border-t fill-parent border-canvas-mid"></div>
+            </div>
             <x-cols class="justify-between">
                 @foreach ($cols as $col)
                 <x-col class="w-1/2 md:w-1/{{ $cols->count() / 2 }} xl:w-auto my-8">

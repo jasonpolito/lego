@@ -27,13 +27,9 @@ $img = fallback_img($block->image('flexible', 'flexible'));
                     <div class="mb-8 leading-6 sm:leading-8">
                         {!! $block->input('content') !!}
                     </div>
-                    @if ($block->input('btn_show'))
-                    <a class="block px-6 py-4 text-center text-white rounded-md bg-primary sm:inline-block"
-                        href="{{ $block->input('btn_url') }}" @if ($block->input('btn_external')) target="_blank"
-                        @endif>
-                        {!! $block->input('btn_text') !!}
-                    </a>
-                    @endif
+                    <div class="sm:flex w-full -mb-4 justify-{{ $block->input('align') }}">
+                        @include('site.blocks.defaults.buttons', ['buttons' => $block->children])
+                    </div>
                 </x-col>
             </x-cols>
         </div>

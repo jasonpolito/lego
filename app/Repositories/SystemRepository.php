@@ -11,6 +11,7 @@ class SystemRepository
 
     public const CLASS_MAP = [
         'text' => 'color',
+        'border' => 'border-color',
         'bg' => 'background-color',
     ];
 

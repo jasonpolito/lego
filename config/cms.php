@@ -3,13 +3,13 @@
 return [
     'blocks' => [
         'default' => [
-            'text_content', //
             'hero', //
             'sidebyside', //
             'bythenumbers', //
             'cards', //
             'callout', //
             'actionbox', //
+            'text_content', //
             // 'footer', //
             'html', //
         ],

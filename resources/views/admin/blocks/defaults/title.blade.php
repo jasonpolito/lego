@@ -1,7 +1,7 @@
 @formField('input', [
 'name' => 'title_text',
 'label' => 'Title text',
-'placeholder' => 'Masthead title'
+'placeholder' => 'This is the title text'
 ])
 <div style="margin-top: -26px">
     @formField('checkbox', [
