@@ -1,0 +1,26 @@
+{
+    "name": "jasonpolito/twill-blocks",
+    "description": "Set of Twill block editor blocks.",
+    "type": "library",
+    "require": {},
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jason Polito",
+            "email": "jason@placementlabs.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-4": {
+            "Placement\\TwillBlocks\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "\\Placement\\TwillBlocks\\TwillBlocksServiceProvider"
+            ]
+        }
+    }
+}

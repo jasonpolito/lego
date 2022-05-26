@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use Illuminate\Support\Facades\Route;
 use A17\Twill\Repositories\Behaviors\HandleBlocks;
 use A17\Twill\Repositories\Behaviors\HandleSlugs;
 use A17\Twill\Repositories\Behaviors\HandleMedias;
@@ -9,6 +10,8 @@ use A17\Twill\Repositories\Behaviors\HandleRevisions;
 use A17\Twill\Repositories\Behaviors\HandleNesting;
 use A17\Twill\Repositories\ModuleRepository;
 use App\Models\Page;
+use App\Http\Controllers\PageController;
+use A17\Twill\Repositories\SettingRepository;
 
 class PageRepository extends ModuleRepository
 {
@@ -19,30 +22,24 @@ class PageRepository extends ModuleRepository
         $this->model = $model;
     }
 
-
-    // implement the filter method
-    public function filter($query, array $scopes = [])
+    public static function setupRoutes()
     {
+        Route::name('sitemap')->get('sitemap.xml', function () {
+            $content = app(SettingRepository::class)->byKey('sitemap_content');
+            if (empty($content)) {
+                $pages = Page::where('published', true)->where('noindex', false)->get();
+                $content = view('sitemap', compact('pages'));
+            }
+            return response($content, 200)
+                ->header('Content-Type', 'text/xml');
+        });
 
-        // and use the following helpers
+        Route::name('robots')->get('robots.txt', function () {
+            $content = app(SettingRepository::class)->byKey('robots_content');
+            return response($content, 200)
+                ->header('Content-Type', 'text/plain');
+        });
 
-        // add a where like clause
-        $this->addLikeFilterScope($query, $scopes, 'field_in_scope');
-
-        // add orWhereHas clauses
-        $this->searchIn($query, $scopes, 'field_in_scope', ['field1', 'field2', 'field3']);
-
-        // add a whereHas clause
-        $this->addRelationFilterScope($query, $scopes, 'field_in_scope', 'relationName');
-
-        // or just go manually with the $query object
-        if (isset($scopes['field_in_scope'])) {
-            $query->orWhereHas('relationName', function ($query) use ($scopes) {
-                $query->where('field', 'like', '%' . $scopes['field_in_scope'] . '%');
-            });
-        }
-
-        // don't forget to call the parent filter function
-        return parent::filter($query, $scopes);
+        Route::name('page.show')->get('{slug?}', [PageController::class, 'show'])->where('slug', '.*');
     }
 }

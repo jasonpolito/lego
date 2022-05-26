@@ -1,3 +1,5 @@
-<div style="margin-top: 35px">Buttons</div>
+@include('admin.components.title', ['text' => 'Buttons'])
 
-@formField('repeater', ['type' => 'button'])
+@formField('repeater', [
+'type' => 'button'
+])

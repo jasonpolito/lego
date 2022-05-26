@@ -1,4 +1,5 @@
 @twillBlockTitle('Cards')
+@twillRepeaterTitleField('title_text', ['hidePrefix' => true])
 @twillBlockIcon('cards.png')
 
 @include('admin.blocks.defaults.title')

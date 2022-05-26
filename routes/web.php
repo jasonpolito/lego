@@ -1,9 +1,8 @@
 <?php
 
-use App\Http\Controllers\PageController;
+use App\Repositories\PageRepository;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Route;
-use GuzzleHttp\Client;
-use A17\Twill\Repositories\SettingRepository;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,22 +15,8 @@ use A17\Twill\Repositories\SettingRepository;
 |
 */
 
-Route::view('/test', 'pages.test')->name('test');
-
-Route::name('sitemap')->get('sitemap.xml', function () {
-    $content = app(SettingRepository::class)->byKey('sitemap_content');
-    if (empty($content)) {
-        $pages = App\Models\Page::where('published', true)->where('noindex', false)->get();
-        $content = view('sitemap', compact('pages'));
-    }
-    return response($content, 200)
-        ->header('Content-Type', 'text/xml');
-});
-
-Route::name('robots')->get('robots.txt', function () {
-    $content = app(SettingRepository::class)->byKey('robots_content');
-    return response($content, 200)
-        ->header('Content-Type', 'text/plain');
-});
-
-Route::name('page.show')->get('{slug?}', [PageController::class, 'show'])->where('slug', '.*');
+// Route::get('/testing', function () {
+//     // return base_path("twill-blocks/admin/blocks");
+//     File::copyDirectory(base_path("twill-blocks/admin"), resource_path("views/admin"));
+// });
+app(PageRepository::class)->setupRoutes();

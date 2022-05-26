@@ -21,7 +21,7 @@
 
 @formField('checkbox', [
 'name' => 'fullscreen',
-'label' => 'Fullscreen',
+'label' => 'Fill viewport',
 ])
 
 @include('admin.blocks.defaults.buttons')

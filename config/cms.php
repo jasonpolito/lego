@@ -10,6 +10,7 @@ return [
             'callout', //
             'actionbox', //
             'text_content', //
+            'carousel', //
             // 'footer', //
             'html', //
         ],

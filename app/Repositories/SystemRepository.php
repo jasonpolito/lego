@@ -58,6 +58,7 @@ class SystemRepository
         $arr['canvas-content'] = (string) $canvas->lighten(55)->desaturate(10);
         $arr['canvas-mid'] = (string) $canvas->lighten(25)->desaturate(10);
         $arr['canvas-500'] = (string) $canvas;
+        $arr['canvas-canvas'] = (string) $canvas->lighten(5)->desaturate(5);
         $arr['canvas'] = (string) $canvas;
         return $arr;
     }
