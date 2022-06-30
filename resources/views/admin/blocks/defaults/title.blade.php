@@ -1,12 +1,17 @@
+@php
+$defaults = $defaults ?? [];
+@endphp
 @formField('input', [
 'name' => 'title_text',
 'label' => 'Title text',
+'default' => $defaults['title_text'] ?? '',
 'placeholder' => 'This is the title text'
 ])
 <div style="margin-top: -26px">
     @formField('checkbox', [
     'name' => 'customize_title',
     'label' => 'Customize title',
+    'default' => $defaults['customize_title'] ?? false,
     ])
 </div>
 
@@ -21,7 +26,7 @@
         @formField('select', [
         'name' => 'title_element',
         'label' => 'HTML element',
-        'default' => 'h3',
+        'default' => $defaults['title_element'] ?? 'h3',
         'options' => config('cms.blocks.options.titles')
         ])
     </div>
@@ -30,7 +35,7 @@
         @formField('select', [
         'name' => 'title_display_element',
         'label' => 'Display element',
-        'default' => 'h2',
+        'default' => $defaults['title_display_element'] ?? 'h2',
         'options' => config('cms.blocks.options.titles'),
         ])
     </div>

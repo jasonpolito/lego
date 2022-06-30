@@ -40,6 +40,22 @@ class PageController extends Controller
         return $content;
     }
 
+    static function parsePHP($content)
+    {
+        $content = htmlspecialchars_decode($content);
+        $pattern = "/<\?\=(.*?)\?>/i";
+        if (preg_match_all($pattern, $content, $matches)) {
+            foreach ($matches as $match) {
+                $search = $match[0];
+                $code = \Str::replace('<?=', '', $search);
+                $code = \Str::replace('?>', '', $code);
+                eval('$value = ' . $code);
+                $content = \Str::replace($search, $value, $content);
+            }
+        }
+        return $content;
+    }
+
     static function parseElements($content)
     {
         $els = [
@@ -59,8 +75,12 @@ class PageController extends Controller
 
     static function parseLists($content, $types = ['ol', 'ul'])
     {
+        $class = [
+            'ul' => 'disc',
+            'ol' => 'decimal',
+        ];
         foreach ($types as $type) {
-            $content = \Str::replace("<$type>", "<$type class='pl-8 mb-8 leading-8 list-decimal show-rhythm'>", $content);
+            $content = \Str::replace("<$type>", "<$type class='pl-8 mb-8 leading-8 list-$class[$type] show-rhythm'>", $content);
         }
         return $content;
     }
@@ -74,11 +94,13 @@ class PageController extends Controller
 
     static function parseTextContent($content)
     {
-        $content = self::parseElements($content);
-        $content = self::parseLists($content);
-        $content = self::parseLinks($content);
-        $content = self::parseVariables($content);
-        $content = self::parseUrlParams($content);
+        if (!\Str::contains(request()->url(), 'admin/')) {
+            $content = self::parseElements($content);
+            $content = self::parseLists($content);
+            $content = self::parseLinks($content);
+            $content = self::parseVariables($content);
+            $content = self::parseUrlParams($content);
+        }
         return $content;
     }
 

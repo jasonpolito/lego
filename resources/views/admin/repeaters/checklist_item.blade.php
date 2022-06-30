@@ -10,9 +10,15 @@
     ])
 </div>
 
-@formField('input', [
+@formField('wysiwyg', [
 'name' => 'checklist_text',
 'required' => true,
 'label' => 'Text',
 'placeholder' => 'Almost before we knew it, we had left the ground.',
+])
+
+@formField('input', [
+'name' => 'custom_icon',
+'label' => 'Custom Icon',
+'placeholder' => 'map',
 ])

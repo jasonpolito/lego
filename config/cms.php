@@ -9,8 +9,14 @@ return [
             'cards', //
             'callout', //
             'actionbox', //
+            'faqs', //
+            'partial', //
+            'form', //
+            'gallery', //
+            'quote', //
+            'sponsors', //
             'text_content', //
-            'carousel', //
+            'link_columns', //
             // 'footer', //
             'html', //
         ],
@@ -49,6 +55,7 @@ return [
         'link',
         'bold',
         'italic',
+        'image',
         'list-ordered',
         'list-unordered',
         'clean'

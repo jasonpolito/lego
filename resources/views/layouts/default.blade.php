@@ -3,7 +3,6 @@
 
 use App\Models\Partial;
 use A17\Twill\Repositories\SettingRepository;
-
 $header = Partial::where('title', 'Header')->first();
 $footer = Partial::where('title', 'Footer')->first();
 $body_insert_code = app(SettingRepository::class)->byKey('global_body_insert_code');
@@ -17,10 +16,15 @@ $head_insert_code = app(SettingRepository::class)->byKey('global_head_insert_cod
     @include('layouts.includes.meta.base', ['page_data' => $page_data ?? []])
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
     @stack('meta')
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
     <!-- INSERTED FROM BACKEND -->
     {!! $head_insert_code !!}
     <!-- END INSERTED FROM BACKEND -->
-
+    <livewire:styles />
 </head>
 
 <body class="font-body text-canvas" data-barba="wrapper">
@@ -31,6 +35,10 @@ $head_insert_code = app(SettingRepository::class)->byKey('global_head_insert_cod
             {!! $header->renderBlocks() !!}
             @endif
             @yield('content')
+            @if (false)
+            @include('partials.benefits')
+            @include('partials.sponsors')
+            @endif
             @if ($footer)
             {!! $footer->renderBlocks() !!}
             @endif
@@ -53,39 +61,9 @@ $head_insert_code = app(SettingRepository::class)->byKey('global_head_insert_cod
         </div>
     </div>
     @endif
-    @if (isset($is_pagespeed))
-    @if (!$is_pagespeed)
     <script src="{{ mix('js/app.js') }}"></script>
-    @endif
-    @else
-    <script src="{{ mix('js/app.js') }}"></script>
-    @endif
-    @if (!request()->input('noscroll'))
 
-    <style>
-        .jarallax {
-            position: relative;
-            z-index: 0;
-        }
-
-        .jarallax>.jarallax-img {
-            position: absolute;
-            object-fit: cover;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-        }
-    </style>
-    <script src="https://unpkg.com/jarallax@2.0"></script>
-    <script>
-        jarallax(document.querySelectorAll('.jarallax'), {
-            disableParallax: /iPad|iPhone|iPod|Android/,
-            disableVideo: /iPad|iPhone|iPod|Android/
-        });
-    </script>
-    @endif
+    <livewire:scripts />
 
     @stack('scripts')
     <!-- INSERTED FROM BACKEND -->

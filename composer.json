@@ -7,12 +7,6 @@
         "laravel"
     ],
     "license": "MIT",
-    "repositories": [
-        {
-            "type": "path",
-            "url": "./twill-blocks"
-        }
-    ],
     "require": {
         "php": "^7.3|^8.0",
         "area17/twill": "2.8.2",
@@ -23,6 +17,7 @@
         "laravel/sanctum": "^2.11",
         "laravel/telescope": "^4.9",
         "laravel/tinker": "^2.5",
+        "livewire/livewire": "^2.10",
         "ozdemirburak/iris": "^3.0"
     },
     "require-dev": {
@@ -31,15 +26,13 @@
         "laravel/sail": "^1.0.1",
         "mockery/mockery": "^1.4.2",
         "nunomaduro/collision": "^5.0",
-        "phpunit/phpunit": "^9.3.3",
-        "jasonpolito/twill-blocks": "*"
+        "phpunit/phpunit": "^9.3.3"
     },
     "autoload": {
         "psr-4": {
             "App\\": "app/",
             "Database\\Factories\\": "database/factories/",
-            "Database\\Seeders\\": "database/seeders/",
-            "Placement\\TwillBlocks\\": "src/"
+            "Database\\Seeders\\": "database/seeders/"
         },
         "files": [
             "app/helpers.php"

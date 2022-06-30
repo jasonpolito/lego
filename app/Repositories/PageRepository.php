@@ -27,7 +27,7 @@ class PageRepository extends ModuleRepository
         Route::name('sitemap')->get('sitemap.xml', function () {
             $content = app(SettingRepository::class)->byKey('sitemap_content');
             if (empty($content)) {
-                $pages = Page::where('published', true)->where('noindex', false)->get();
+                $pages = Page::where('published', true)->where('meta_noindex', false)->get();
                 $content = view('sitemap', compact('pages'));
             }
             return response($content, 200)

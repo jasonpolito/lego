@@ -13,7 +13,21 @@
 @formField('input', [
 'name' => 'text',
 'label' => 'Text',
-'placeholder' => 'Years of experience'
+'placeholder' => 'Link Text'
+])
+
+<div style="margin-top: -26px">
+    @formField('checkbox', [
+    'name' => 'is_title',
+    'label' => 'Is subtitle',
+    ])
+</div>
+
+
+@formConnectedFields([
+'fieldName' => 'is_title',
+'fieldValues' => false,
+'renderForBlocks' => true
 ])
 
 @formField('input', [
@@ -22,7 +36,29 @@
 'placeholder' => 'https://google.com'
 ])
 
-@formField('checkbox', [
-'name' => 'external',
-'label' => 'Open in new tab',
+<div style="margin-top: -26px">
+    @formField('checkbox', [
+    'name' => 'external',
+    'label' => 'Open in new tab',
+    ])
+</div>
+
+<div style="margin-top: -26px">
+    @formField('checkbox', [
+    'name' => 'has_submenu',
+    'label' => 'Has submenu',
+    ])
+</div>
+
+@endformConnectedFields
+
+
+@formConnectedFields([
+'fieldName' => 'has_submenu',
+'fieldValues' => true,
+'renderForBlocks' => true
 ])
+
+@include('admin.blocks.defaults.links')
+
+@endformConnectedFields

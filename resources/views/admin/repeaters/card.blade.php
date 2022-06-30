@@ -1,11 +1,57 @@
 @twillRepeaterTitle('Card')
-@twillRepeaterTitleField('card_title', ['hidePrefix' => true])
+@twillRepeaterTitleField('title_text', ['hidePrefix' => true])
 @twillRepeaterTrigger('Add card')
 
-@formField('input', [
-'name' => 'card_title',
-'label' => 'Card Text',
-'placeholder' => 'Learn more'
+<div style="display: none">
+    @formField('input', [
+    'name' => 'child_type',
+    'label' => 'type',
+    'default' => 'card'
+    ])
+</div>
+
+@formField('medias', [
+'name' => 'flexible',
+'label' => 'Card Image',
+])
+
+@include('admin.blocks.defaults.title', ['defaults' => [
+'customize_title' => true,
+'title_text' => 'Card Title',
+'title_element' => 'h4',
+'title_display_element' => 'h4',
+]])
+
+<div style="margin-top: -26px">
+    @formField('checkbox', [
+    'name' => 'is_img_card',
+    'label' => 'Image card (no content)',
+    'default' => true
+    ])
+</div>
+
+<div style="margin-top: -26px">
+    @formField('checkbox', [
+    'name' => 'link_card',
+    'label' => 'Link card',
+    'default' => true
+    ])
+</div>
+
+@formConnectedFields([
+'fieldName' => 'link_card',
+'fieldValues' => true,
+'renderForBlocks' => true
+])
+
+@include('admin.blocks.defaults.link')
+
+@endformConnectedFields
+
+@formConnectedFields([
+'fieldName' => 'is_img_card',
+'fieldValues' => false,
+'renderForBlocks' => true
 ])
 
 @formField('input', [
@@ -15,14 +61,7 @@
 'placeholder' => 'Almost before we knew it, we had left the ground.',
 ])
 
-@formField('medias', [
-'name' => 'flexible',
-'label' => 'Card Image',
-])
-
 @include('admin.blocks.defaults.buttons')
 
-@formField('checkbox', [
-'name' => 'card_cover',
-'label' => 'Card Cover',
-])
+
+@endformConnectedFields

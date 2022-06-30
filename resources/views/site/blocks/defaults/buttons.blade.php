@@ -1,11 +1,5 @@
 @php
-$styles = [
-'default' => 'block my-2 rounded-md px-6 py-4 text-center sm:inline-block text-white
-bg-primary hover:bg-primary-600 transition',
-'outlined' => 'block my-2 rounded-md px-6 py-4 text-center sm:inline-block text-white',
-'underline' => 'hover:text-primary-600 transition text-primary font-bold inline-block mr-4 py-2',
-'link' => 'text-primary inline-block mr-4',
-];
+$styles = config('styles.btns');
 @endphp
 <div class="flex flex-wrap items-center -mx-3">
     @foreach ($buttons as $btn)

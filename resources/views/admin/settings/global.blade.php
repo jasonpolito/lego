@@ -14,6 +14,7 @@ array_push($font_options, [
 
 @section('fieldsets')
 @formFieldset(['id' => 'colors', 'title' => 'Colors', 'open' => true])
+
 <div style="display: flex; align-items-center">
     <div style="width: 9rem;">
         @formField('color', [
@@ -31,8 +32,15 @@ array_push($font_options, [
     <div style="width: 1rem"></div>
     <div style="width: 9rem;">
         @formField('color', [
+        'name' => 'canvas_color_sdgagasdag2',
+        'label' => 'Main BG'
+        ])
+    </div>
+    <div style="width: 1rem"></div>
+    <div style="width: 9rem;">
+        @formField('color', [
         'name' => 'canvas_color_sdgagasdag',
-        'label' => 'Canvas'
+        'label' => 'Alternate BG'
         ])
     </div>
 </div>

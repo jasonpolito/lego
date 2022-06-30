@@ -1,5 +1,5 @@
 @twillBlockTitle('Text Content')
-@twillBlockIcon('text_content.png')
+@twillBlockIcon('website')
 
 @formField('select', [
 'name' => 'align',
@@ -24,7 +24,7 @@
 @formField('wysiwyg', [
 'name' => 'content',
 'label' => 'Content',
-'toolbarOptions' => config('block_options.toolbar_options'),
+'toolbarOptions' => config('cms.toolbar_options'),
 'placeholder' => 'Almost before we knew it, we had left the ground.',
 'editSource' => true,
 ])

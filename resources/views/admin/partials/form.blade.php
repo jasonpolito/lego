@@ -9,8 +9,8 @@
 
 @formField('block_editor', [
 'blocks' => array_merge(config('cms.blocks.default'), [
-'header', //
-'footer', //
+'header',
+'footer',
 ])
 ])
 @stop

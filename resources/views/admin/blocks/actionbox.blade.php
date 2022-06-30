@@ -1,5 +1,5 @@
 @twillBlockTitle('Action Box')
-@twillBlockIcon('actionbox.png')
+@twillBlockIcon('revision-single')
 
 @include('admin.blocks.defaults.title')
 
@@ -9,3 +9,8 @@
 ])
 
 @include('admin.blocks.defaults.buttons')
+
+@formField('checkbox', [
+'name' => 'divide_sections',
+'label' => 'Section divider',
+])

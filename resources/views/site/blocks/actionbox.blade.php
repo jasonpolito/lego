@@ -7,7 +7,7 @@ $img = fallback_img($block->image('flexible', 'flexible'));
 @if (View::exists("themes.$theme_name.actionbox"))
 @include("themes.$theme_name.actionbox", ['block' => $block])
 @else
-<div class="py-16 actionbox">
+<div class="actionbox {{ $block->input('divide_sections') ? '-mb-32 z-10 -translate-y-1/2' : 'py-16' }}">
     <x-container>
         <div class="px-5 pb-8 pt-10 sm:p-12 overflow-hidden bg-primary {{ settings('rounded') }}">
             <div class="fill-parent mix-blend-multiply">
@@ -18,7 +18,7 @@ $img = fallback_img($block->image('flexible', 'flexible'));
             <div class="flex flex-wrap items-center lg:flex-nowrap">
                 <div class="w-full text-white">
                     @include('site.blocks.defaults.title')
-                    <div class="leading-6 md:-mt-6">{!! $block->input('content') !!}</div>
+                    <div class="leading-6 md:-mt-6 xl:w-3/4">{!! $block->input('content') !!}</div>
                 </div>
                 @if ($btn)
                 <div class="w-full pt-8 lg:pt-0 whitespace-nowrap lg:pl-12 sm:w-auto">

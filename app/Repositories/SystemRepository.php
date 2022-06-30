@@ -34,7 +34,7 @@ class SystemRepository
     {
         $arr = [];
         $primary = new Hex($target);
-        $arr['primary-50'] = (string) $primary->lighten(5 * self::STEP_AMT);
+        $arr['primary-50'] = (string) $primary->lighten(6.125 * self::STEP_AMT);
         for ($i = 4; $i > 0; $i--) {
             $color = $primary->lighten($i * self::STEP_AMT);
             $amount = 500 - ($i * 100);

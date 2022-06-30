@@ -6,5 +6,6 @@ use Illuminate\Support\Facades\Route;
 // Route::module('posts');
 
 Route::module('pages');
+Route::module('forms');
 Route::module('partials');
 Route::module('variables');

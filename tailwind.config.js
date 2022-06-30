@@ -1,24 +1,4 @@
-const themeColors = require('./theme');
 const colors = require('tailwindcss/colors');
-
-
-process.argv.forEach(function(val, index, array) {
-    console.log(index + ': ' + val);
-});
-
-const pink = {
-    100: "#fed3dc",
-    200: "#fda7b9",
-    300: "#fd7a96",
-    400: "#fc4e73",
-    500: "#fb2250",
-    DEFAULT: "#fb2250",
-    600: "#c91b40",
-    700: "#971430",
-    800: "#640e20",
-    900: "#320710"
-};
-
 
 module.exports = {
     content: [
@@ -28,9 +8,6 @@ module.exports = {
         "./resources/**/*.vue",
     ],
     theme: {
-        // customColorPalette: {
-        //     colors: { primary: themeColors.primary },
-        // },
         screens: {
 
             'sm': '640px',
@@ -50,11 +27,6 @@ module.exports = {
             current: 'currentColor',
             black: colors.black,
             white: colors.white,
-            primary: {...pink },
-            canvas: {
-                100: '#99a9bf',
-                DEFAULT: '#0F1825'
-            },
         },
         extend: {
             transitionDuration: {
@@ -83,17 +55,6 @@ module.exports = {
             width: {
                 '1/8': 1 / 8 * 100 + '%',
                 '1/8': 1 / 8 * 100 + '%',
-                '40': '10rem',
-                '48': '12rem',
-                '105': '105%',
-                '150': '150%'
-            },
-            heigth: {
-                '1/8': 1 / 8 * 100 + '%',
-                '150': '150%'
-            },
-            minWidth: {
-                'base': '200px',
             }
         },
         variants: {
@@ -110,7 +71,4 @@ module.exports = {
             }
         }
     },
-    plugins: [
-        require("@markusantonwolf/tailwind-css-plugin-custom-color-palette"),
-    ],
 }

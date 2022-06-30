@@ -22,6 +22,7 @@ return [
     ],
     'font_options' => [
         'Open Sans',
+        'Jost',
         'Merriweather',
         'Inter',
         'Barlow Condensed',
@@ -43,13 +44,22 @@ return [
         // 'title' => 'Roboto Mono',
     ],
     'typography' => [
-        'p' => 'mb-8 text-base leading-8 last:mb-0',
+        'p' => 'mb-8 text-base leading-6 last:mb-0',
         'h1' => $title_base . 'text-3xl leading-12 sm:text-4xl sm:leading-12 md:text-5xl md:leading-14',
         'h2' => $title_base . 'text-2xl leading-10 sm:text-3xl sm:leading-12 md:text-4xl md:leading-12',
         'h3' => $title_base . 'text-xl leading-8 sm:text-2xl sm:leading-10 md:text-3xl md:leading-12',
         'h4' => $title_base . 'text-lg leading-8 sm:text-xl sm:leading-8 md:text-2xl xl:leading-10',
         'h5' => $title_base . 'text-lg leading-8 sm:text-lg sm:leading-8 md:text-xl md:leading-10',
         'h6' => $title_base . 'text-base leading-8',
+    ],
+    'btns' => [
+        'default' => 'block my-2 rounded-md px-6 py-4 text-center sm:inline-block text-white
+        bg-primary hover:bg-primary-600 transition',
+        'white' => 'block my-2 rounded-md px-6 py-4 text-center sm:inline-block text-primary-600
+        bg-white hover:bg-primary-50 transition',
+        'outlined' => 'block my-2 rounded-md px-6 py-4 text-center sm:inline-block text-white',
+        'underline' => 'hover:text-primary-600 transition text-primary font-bold my-2 sm:my-0 inline-block mr-4 py-2',
+        'link' => 'text-primary inline-block mr-4',
     ],
     'btn' => [
         'base' => 'text-center whitespace-nowrap text-center justify-center last:mb-0 mb-8 leading-8 align-top mr-2 last:mr-0 sm:mr-4',

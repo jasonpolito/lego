@@ -73,8 +73,6 @@ class Page extends Model implements Sortable
         return $template['label'] ?? '';
     }
 
-    public $mediasParams = [];
-
     public function getTemplateBlockSelectionAttribute()
     {
         $template = collect(static::AVAILABLE_TEMPLATES)->firstWhere('value', $this->template);
@@ -96,4 +94,15 @@ class Page extends Model implements Sortable
             ]);
         }
     }
+
+    public $mediasParams = [
+        'flexible' => [
+            'flexible' => [
+                [
+                    'name' => 'flexible',
+                    'ratio' => 0
+                ]
+            ],
+        ],
+    ];
 }

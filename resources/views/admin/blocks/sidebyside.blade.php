@@ -1,5 +1,5 @@
 @twillBlockTitle('Side By Side')
-@twillBlockIcon('sidebyside.png')
+@twillBlockIcon('image-text')
 
 @include('admin.blocks.defaults.align')
 
@@ -8,7 +8,7 @@
 @formField('wysiwyg', [
 'name' => 'content',
 'label' => 'Content',
-'toolbarOptions' => config('block_options.toolbar_options'),
+'toolbarOptions' => config('cms.toolbar_options'),
 'placeholder' => 'Almost before we knew it, we had left the ground.',
 'editSource' => true,
 ])
@@ -18,6 +18,36 @@
 'label' => 'Image',
 ])
 
+<div style="margin-top: -26px">
+    @formField('checkbox', [
+    'name' => 'link_image',
+    'label' => 'Link image',
+    ])
+</div>
+
+@formConnectedFields([
+'fieldName' => 'link_image',
+'fieldValues' => true,
+'renderForBlocks' => true
+])
+
+@formField('input', [
+'name' => 'img_url',
+'label' => 'Link URL',
+'placeholder' => 'https://google.com'
+])
+
+<div style="margin-top: -26px">
+    @formField('checkbox', [
+    'name' => 'img_external',
+    'label' => 'Open in new tab',
+    ])
+</div>
+
+@endformConnectedFields
+
 @include('admin.blocks.defaults.checklist')
 
 @include('admin.blocks.defaults.buttons')
+
+@include('admin.blocks.defaults.block_id')

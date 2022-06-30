@@ -1,9 +1,8 @@
 @twillBlockTitle('Cards')
-@twillRepeaterTitleField('title_text', ['hidePrefix' => true])
-@twillBlockIcon('cards.png')
+@twillBlockIcon('fix-grid')
 
-@include('admin.blocks.defaults.title')
+<label style="margin-top: 35px; display: block">Card Sections</label>
 
-<label style="margin-top: 35px; display: block">Cards</label>
+@formField('repeater', ['type' => 'card_section'])
 
-@formField('repeater', ['type' => 'card'])
+@include('admin.blocks.defaults.block_id')

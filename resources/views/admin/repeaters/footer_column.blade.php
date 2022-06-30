@@ -16,5 +16,5 @@
 'placeholder' => 'Years of experience'
 ])
 
-@include('admin.components.title', ['text' => 'Links'])
-@formField('repeater', ['type' => 'link_item'])
+@include('admin.blocks.defaults.links')
+@include('admin.blocks.defaults.buttons')

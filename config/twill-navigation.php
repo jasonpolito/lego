@@ -5,6 +5,10 @@ return [
         'title' => 'Pages',
         'module' => true,
     ],
+    'forms' => [
+        'title' => 'Forms',
+        'module' => true,
+    ],
     'partials' => [
         'title' => 'Partials',
         'module' => true,

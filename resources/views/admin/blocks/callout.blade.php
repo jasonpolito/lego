@@ -1,5 +1,5 @@
 @twillBlockTitle('Callout')
-@twillBlockIcon('callout.png')
+@twillBlockIcon('revision-single')
 
 @include('admin.blocks.defaults.align')
 
@@ -8,7 +8,7 @@
 @formField('wysiwyg', [
 'name' => 'content',
 'label' => 'Content',
-'toolbarOptions' => config('block_options.toolbar_options'),
+'toolbarOptions' => config('cms.toolbar_options'),
 'placeholder' => 'Almost before we knew it, we had left the ground.',
 'editSource' => true,
 ])
@@ -19,3 +19,5 @@
 ])
 
 @include('admin.blocks.defaults.buttons')
+
+@include('admin.blocks.defaults.block_id')
