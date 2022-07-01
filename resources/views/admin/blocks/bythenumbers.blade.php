@@ -17,3 +17,5 @@
 'name' => 'flexible',
 'label' => 'Background Image',
 ])
+
+@include('admin.blocks.defaults.block_id')

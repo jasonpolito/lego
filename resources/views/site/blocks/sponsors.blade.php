@@ -1,8 +1,9 @@
 @php
 // dd($block->children);
 $sections = get_block_children($block->children()->orderBy('position')->get(), 'sponsor_section');
+$id = $block->input('block_id') ?? uniqid();
 @endphp
-<x-section>
+<x-section id="{{ $id }}">
     <div class="border-t opacity-50 fill-parent border-canvas-content"></div>
     <x-container>
         @include('site.blocks.defaults.title', ['block' => $block])

@@ -1,7 +1,7 @@
 @php
 $theme_name = env('THEME_NAME');
 $padding = "sm:px-6 sm:py-6 md:px-8 px-4 py-4 lg:px-12";
-$id = $block->input('section_id') ?? uniqid();
+$id = $block->input('block_id') ?? uniqid();
 @endphp
 @if (View::exists("themes.$theme_name.faqs"))
 @include("themes.$theme_name.faqs", ['block' => $block])

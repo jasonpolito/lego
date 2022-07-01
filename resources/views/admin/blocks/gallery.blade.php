@@ -8,3 +8,5 @@
 'label' => 'Gallery Images',
 'max' => 99
 ])
+
+@include('admin.blocks.defaults.block_id')

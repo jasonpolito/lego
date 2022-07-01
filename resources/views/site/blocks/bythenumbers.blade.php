@@ -2,11 +2,12 @@
 use App\Http\Controllers\PageController;
 $theme_name = env('THEME_NAME');
 $img = fallback_img($block->image('flexible', 'flexible'));
+$id = $block->input('block_id') ?? uniqid();
 @endphp
 @if (View::exists("themes.$theme_name.bythenumbers"))
 @include("themes.$theme_name.bythenumbers", ['block' => $block])
 @else
-<x-section class="text-white bg-primary">
+<x-section class="text-white bg-primary" id="{{ $id }}">
     <div class="fill-parent mix-blend-multiply">
         <div class="w-full h-full">
             <img src="{{ $img }}" class="object-cover w-full h-full opacity-25 filter grayscale">

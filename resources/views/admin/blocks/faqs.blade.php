@@ -7,8 +7,4 @@
 
 @formField('repeater', ['type' => 'faq_item'])
 
-
-@formField('input', [
-'name' => 'section_id',
-'label' => 'Section ID',
-])
+@include('admin.blocks.defaults.block_id')

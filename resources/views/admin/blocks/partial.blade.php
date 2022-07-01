@@ -1,3 +1,4 @@
+{{-- {{ ddd(get_defined_vars()) }} --}}
 @twillBlockTitle('Partial')
 @twillBlockIcon('more-dots')
 

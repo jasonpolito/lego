@@ -2,6 +2,7 @@
 
 namespace App\Mail;
 
+use App\Http\Controllers\PageController;
 use App\Models\Form;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -32,10 +33,15 @@ class FormSubmissionAutoresponder extends Mailable
      */
     public function build()
     {
+        $subject = PageController::parseMustaches($this->form->autoresponder_subject, $this->data);
+        $content = PageController::parseMustaches($this->form->autoresponder_content, $this->data);
+
         return $this->view('mail.form.autoresponder')
-            ->subject($this->form->autoresponder_subject)
+            ->subject($subject)
             ->with([
                 'form' => $this->form,
+                'content' => $content,
+                'subject' => $subject,
                 'data' => $this->data,
             ]);
     }

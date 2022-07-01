@@ -3,11 +3,12 @@ $theme_name = env('THEME_NAME');
 $btns = get_block_children($block->children, 'button');
 $btn = $btns->count() ? $btns->first() : false;
 $img = fallback_img($block->image('flexible', 'flexible'));
+$id = $block->input('block_id') ?? uniqid();
 @endphp
 @if (View::exists("themes.$theme_name.actionbox"))
 @include("themes.$theme_name.actionbox", ['block' => $block])
 @else
-<div class="actionbox {{ $block->input('divide_sections') ? '-mb-32 z-10 -translate-y-1/2' : 'py-16' }}">
+<div id="{{ $id }}" class="actionbox {{ $block->input('divide_sections') ? '-mb-32 z-10 -translate-y-1/2' : 'py-16' }}">
     <x-container>
         <div class="px-5 pb-8 pt-10 sm:p-12 overflow-hidden bg-primary {{ settings('rounded') }}">
             <div class="fill-parent mix-blend-multiply">

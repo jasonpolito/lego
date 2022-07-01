@@ -11,7 +11,7 @@
 </div>
 
 <div style="display: flex; align-items: center; margin-top: -24px">
-    <div style="width: 33%">
+    <div style="width: 50%">
         @formField('input', [
         'name' => 'name',
         'placeholder' => 'Full name',
@@ -19,15 +19,26 @@
         ])
     </div>
     <div style="width: 1rem"></div>
-    <div style="width: 33%">
+    <div style="width: 50%">
         @formField('input', [
         'name' => 'placeholder',
         'placeholder' => 'John Doe',
         'label' => 'Placeholder'
         ])
     </div>
-    <div style="width: 1rem"></div>
-    <div style="width: 33%">
+</div>
+
+<div style="margin-top: -26px">
+    @formField('checkbox', [
+    'name' => 'required',
+    'label' => 'Required',
+    'default' => false
+    ])
+</div>
+
+
+<div style="display: flex;">
+    <div style="width: 50%">
         @formField('select', [
         'name' => 'type',
         'label' => 'Input type',
@@ -48,23 +59,8 @@
         ]
         ])
     </div>
-</div>
-
-
-
-<div style="display: flex;">
-    <div style="width: 50%">
-        <div style="margin-top: -26px">
-            @formField('checkbox', [
-            'name' => 'required',
-            'label' => 'Required',
-            'default' => false
-            ])
-        </div>
-    </div>
     <div style="width: 1rem"></div>
     <div style="width: 50%">
-
         @formConnectedFields([
         'fieldName' => 'type',
         'fieldValues' => 'options',
@@ -93,6 +89,42 @@
             ])
         </div>
         @formField('repeater', ['type' => 'select_option'])
+
+        @endformConnectedFields
+
+        @formConnectedFields([
+        'fieldName' => 'type',
+        'fieldValues' => 'text',
+        'renderForBlocks' => true
+        ])
+
+        @formField('select', [
+        'name' => 'text_type',
+        'label' => 'Text type',
+        'default' => 'text',
+        'options' => [
+        [
+        'label' => 'Basic',
+        'value' => 'text'
+        ],
+        [
+        'label' => 'Email',
+        'value' => 'email'
+        ],
+        [
+        'label' => 'Phone',
+        'value' => 'tel'
+        ],
+        [
+        'label' => 'Date',
+        'value' => 'date'
+        ],
+        [
+        'label' => 'Number',
+        'value' => 'number'
+        ]
+        ]
+        ])
         @endformConnectedFields
 
     </div>

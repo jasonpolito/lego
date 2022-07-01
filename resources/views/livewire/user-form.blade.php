@@ -8,12 +8,13 @@
         $input_id = $name . ($multi ? '[]' : '');
         @endphp
         <label for="{{ $input_id }}" class="block mb-4">
-            <div class="leading-8">{{ $block->input('name') }}</div>
+            <div class="text-sm leading-8">{{ $block->input('name') }}</div>
             @if ($block->input('type') == 'text')
             <div class="-my-px">
                 <input id="{{ $input_id }}" wire:model.defer="{{ $name }}" name="{{ $name }}"
                     class="block w-full py-2 px-4 text-base leading-10 group border border-canvas-content focus:border-primary {{ settings('rounded') }}"
-                    type="text" placeholder="{{ $block->input('placeholder') ?? $block->input('name') }}">
+                    type="{{ $block->input('text_type') ?? 'text' }}"
+                    placeholder="{{ $block->input('placeholder') ?? $block->input('name') }}">
             </div>
             @endif
             @if ($block->input('type') == 'textarea')
@@ -75,8 +76,8 @@
         <div class="flex md:justify-center">
             <div class="w-full lg:w-auto">
                 <button wire:loading.class="opacity-50" class="w-full group {{ config('styles.btns')['default'] }}">
-                    <span wire:loading.class="hidden">Send message</span>
-                    <span wire:loading style="display: none">Sending message...</span>
+                    <span wire:loading.class="hidden">{{ $form->submit_text ?? 'Send message' }}</span>
+                    <span wire:loading style="display: none">Submitting...</span>
                 </button>
             </div>
         </div>

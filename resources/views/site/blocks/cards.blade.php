@@ -1,12 +1,13 @@
 @php
 $theme_name = env('THEME_NAME');
 $sections = get_block_children($block->children, 'card_section');
+$id = $block->input('block_id') ?? uniqid();
 @endphp
 @if (View::exists("themes.$theme_name.cards"))
 @include("themes.$theme_name.cards", ['block' => $block])
 @else
 <div class="md:w-1/2"></div>
-<x-section>
+<x-section id="{{ $id }}">
 	<div class="fill-parent bg-canvas opacity-5"></div>
 	<x-container>
 		@foreach ($sections as $section)

@@ -27,6 +27,7 @@ class Form extends Model
         'email_title',
         'redirect_after_submit',
         'subject',
+        'submit_text',
         'autoresponder_subject',
     ];
 
@@ -60,6 +61,9 @@ class Form extends Model
             if ($input->input('required')) {
                 $name = \Str::slug($input->input('name'), '_');
                 $rules[$name] = 'bail|required';
+                if ($input->input('text_type') == 'email') {
+                    $rules[$name] = $rules[$name] . '|email';
+                }
             }
         }
         return $rules;

@@ -26,6 +26,24 @@ class PageController extends Controller
         return $content;
     }
 
+    static function parseMustaches($content, $data = [])
+    {
+        $content = self::parseVariables($content);
+        $pattern = "/{{\s*(.*?)\s*}}/i";
+        if (preg_match_all($pattern, $content, $matches)) {
+            foreach ($matches[0] as $match) {
+                $search = $match;
+                $key = \Str::replace('{{', '', $search);
+                $key = trim(\Str::replace('}}', '', $key));
+                $value = $data[$key] ?? false;
+                if ($value) {
+                    $content = \Str::replace($search, $value, $content);
+                }
+            }
+        }
+        return $content;
+    }
+
     static function parseUrlParams($content)
     {
         $params = request()->all();

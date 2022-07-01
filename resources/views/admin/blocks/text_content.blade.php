@@ -28,3 +28,5 @@
 'placeholder' => 'Almost before we knew it, we had left the ground.',
 'editSource' => true,
 ])
+
+@include('admin.blocks.defaults.block_id')

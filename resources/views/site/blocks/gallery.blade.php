@@ -1,6 +1,7 @@
 @php
+$id = $block->input("block_id") ?? uniqid();
 @endphp
-<x-section>
+<x-section id="{{ $id }}">
     <div class="border-t opacity-50 fill-parent border-canvas-content"></div>
     <x-container>
         @if (!empty($block->input('title_text')))

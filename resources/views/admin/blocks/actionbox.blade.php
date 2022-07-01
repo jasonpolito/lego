@@ -10,7 +10,4 @@
 
 @include('admin.blocks.defaults.buttons')
 
-@formField('checkbox', [
-'name' => 'divide_sections',
-'label' => 'Section divider',
-])
+@include('admin.blocks.defaults.block_id')
