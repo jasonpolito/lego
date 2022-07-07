@@ -41,7 +41,7 @@
     ])
 </div>
 
-@formConnectedFields([
+@formConnectedFields(['keepAlive' => true,
 'fieldName' => 'video_background',
 'fieldValues' => true,
 'renderForBlocks' => true

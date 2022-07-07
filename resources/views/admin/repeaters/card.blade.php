@@ -38,7 +38,7 @@
     ])
 </div>
 
-@formConnectedFields([
+@formConnectedFields(['keepAlive' => true,
 'fieldName' => 'link_card',
 'fieldValues' => true,
 'renderForBlocks' => true
@@ -48,7 +48,7 @@
 
 @endformConnectedFields
 
-@formConnectedFields([
+@formConnectedFields(['keepAlive' => true,
 'fieldName' => 'is_img_card',
 'fieldValues' => false,
 'renderForBlocks' => true

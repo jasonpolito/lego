@@ -1,5 +1,6 @@
 @twillBlockTitle('Side By Side')
 @twillBlockIcon('image-text')
+@twillBlockGroup('another')
 
 @include('admin.blocks.defaults.align')
 
@@ -25,7 +26,7 @@
     ])
 </div>
 
-@formConnectedFields([
+@formConnectedFields(['keepAlive' => true,
 'fieldName' => 'link_image',
 'fieldValues' => true,
 'renderForBlocks' => true

@@ -8,7 +8,7 @@
     ])
 </div>
 
-@formConnectedFields([
+@formConnectedFields(['keepAlive' => true,
 'fieldName' => 'show_topbar',
 'fieldValues' => true,
 'renderForBlocks' => true
@@ -34,7 +34,7 @@
     ])
 </div>
 
-@formConnectedFields([
+@formConnectedFields(['keepAlive' => true,
 'fieldName' => 'customize_logo',
 'fieldValues' => true,
 'renderForBlocks' => true

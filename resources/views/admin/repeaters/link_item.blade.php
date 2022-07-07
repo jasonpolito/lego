@@ -29,7 +29,7 @@ $partials = Partial::all()->pluck('title', 'id');
 </div>
 
 
-@formConnectedFields([
+@formConnectedFields(['keepAlive' => true,
 'fieldName' => 'is_title',
 'fieldValues' => false,
 'renderForBlocks' => true
@@ -65,7 +65,7 @@ $partials = Partial::all()->pluck('title', 'id');
 @endformConnectedFields
 
 
-@formConnectedFields([
+@formConnectedFields(['keepAlive' => true,
 'fieldName' => 'has_submenu',
 'fieldValues' => true,
 'renderForBlocks' => true
@@ -75,7 +75,7 @@ $partials = Partial::all()->pluck('title', 'id');
 
 @endformConnectedFields
 
-@formConnectedFields([
+@formConnectedFields(['keepAlive' => true,
 'fieldName' => 'has_megamenu',
 'fieldValues' => true,
 'renderForBlocks' => true

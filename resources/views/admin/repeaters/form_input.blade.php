@@ -61,7 +61,7 @@
     </div>
     <div style="width: 1rem"></div>
     <div style="width: 50%">
-        @formConnectedFields([
+        @formConnectedFields(['keepAlive' => true,
         'fieldName' => 'type',
         'fieldValues' => 'options',
         'renderForBlocks' => true
@@ -92,7 +92,7 @@
 
         @endformConnectedFields
 
-        @formConnectedFields([
+        @formConnectedFields(['keepAlive' => true,
         'fieldName' => 'type',
         'fieldValues' => 'text',
         'renderForBlocks' => true

@@ -3,7 +3,7 @@
 'label' => 'Show checklist',
 ])
 
-@formConnectedFields([
+@formConnectedFields(['keepAlive' => true,
 'fieldName' => 'checklist_show',
 'fieldValues' => true,
 'renderForBlocks' => true

@@ -39,20 +39,10 @@ class Page extends Model implements Sortable
             'value' => 'landing_page',
             'label' => 'Langing Page',
             'block_selection' => [
-                'hero',
-                'sidebyside',
-                'cards',
-                'callout',
-            ],
-        ],
-        [
-            'value' => 'test',
-            'label' => 'Test',
-            'block_selection' => [
-                'sidebyside',
-                'sidebyside',
-                'sidebyside',
-                'sidebyside',
+                'hero' => [],
+                'sidebyside' => [],
+                'cards' => [],
+                'callout' => [],
             ],
         ],
         [
@@ -84,13 +74,13 @@ class Page extends Model implements Sortable
     {
         $i = 1;
 
-        foreach ($this->template_block_selection as $blockType) {
-            app(BlockRepository::class)->create([
+        foreach ($this->template_block_selection as $type => $content) {
+            app(\A17\Twill\Repositories\BlockRepository::class)->create([
                 'blockable_id' => $this->id,
                 'blockable_type' => static::class,
                 'position' => $i++,
-                'content' => '{}',
-                'type' => $blockType,
+                'content' => $content,
+                'type' => $type,
             ]);
         }
     }

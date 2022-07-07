@@ -22,6 +22,15 @@ class PageRepository extends ModuleRepository
         $this->model = $model;
     }
 
+    public function afterSave($page, $fields)
+    {
+        parent::afterSave($page, $fields);
+
+        if ($page->wasRecentlyCreated) {
+            $page->prefillBlockSelection();
+        }
+    }
+
     public static function setupRoutes()
     {
         Route::name('sitemap')->get('sitemap.xml', function () {

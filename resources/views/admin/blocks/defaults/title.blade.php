@@ -15,7 +15,7 @@ $defaults = $defaults ?? [];
     ])
 </div>
 
-@formConnectedFields([
+@formConnectedFields(['keepAlive' => true,
 'fieldName' => 'customize_title',
 'fieldValues' => true,
 'renderForBlocks' => true
