@@ -110,5 +110,21 @@ array_push($font_options, [
 </div>
 @endformFieldset
 
+@formFieldset(['id' => 'global_code', 'title' => 'Global code', 'open' => true])
+
+@formField('input', [
+'type' => 'textarea',
+'name' => 'global_head_insert_code',
+'placeholder' => 'Code to insert into <head>',
+'label' => 'Head code'
+])
+
+@formField('input', [
+'type' => 'textarea',
+'placeholder' => 'Code to insert into <body>',
+'name' => 'global_body_insert_code',
+'label' => 'Body code'
+])
+@endformFieldset
 
 @endsection

@@ -34,14 +34,15 @@ class FormSubmission extends Mailable
     public function build()
     {
         $subject = PageController::parseMustaches($this->form->subject, $this->data);
+        $subject = \Str::replace('&nbsp;', ' ', $subject);
         $content = PageController::parseMustaches($this->form->email_content, $this->data);
 
         return $this->view('mail.form.submission')
             ->subject($subject)
             ->with([
                 'form' => $this->form,
-                'content' => $content,
                 'subject' => $subject,
+                'content' => $content,
                 'data' => $this->data,
             ]);
     }

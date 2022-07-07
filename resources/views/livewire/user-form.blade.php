@@ -30,7 +30,7 @@
                 <select id="{{ $id }}" multiple wire:model.defer="{{ $name }}" name="{{ $name }}"
                     class="block w-full appearance-none py-2 px-4 text-base leading-10 group border border-canvas-content focus:border-primary {{ settings('rounded') }}"
                     placeholder="{{ $block->input('placeholder') ?? $block->input('name') }}">
-                    @foreach ($block->children as $opt)
+                    @foreach ($block->children()->orderBy('position')->get() as $opt)
                     <option value="{{ $opt->input('text') }}">{{ $opt->input('text') }}</option>
                     @endforeach
                 </select>
@@ -43,7 +43,7 @@
             </div>
             @endif
             @if ($block->input('options_type') == 'checkbox')
-            @foreach ($block->children as $opt)
+            @foreach ($block->children()->orderBy('position')->get() as $opt)
             @php
             $opt_id = Str::slug($opt->input('text'), '_');
             @endphp

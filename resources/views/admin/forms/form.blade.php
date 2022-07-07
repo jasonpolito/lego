@@ -36,7 +36,7 @@
 'toolbarOptions' => config('cms.toolbar_options'),
 'editSource' => true,
 'note' => 'Customers will recieve this email',
-'name' => 'autoresponder',
+'name' => 'autoresponder_content',
 'label' => 'Autoresponder content',
 'placeholder' => 'Email content',
 ])

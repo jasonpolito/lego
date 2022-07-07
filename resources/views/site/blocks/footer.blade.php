@@ -38,20 +38,6 @@ $has_social = true;
                     @if (!empty($footer_copy))
                     {!! $footer_copy !!}
                     @endif
-                    @if ($has_social)
-                    <ul class="flex -mx-2">
-                        @foreach ($social_links as $link)
-                        @if (!empty($block->input($link . '_link')))
-                        <li class="px-2">
-                            <a target="_blank" class="block mb-2 transition text-canvas-content hover:text-white"
-                                href="{{ $block->input($link . '_link') }}">
-                                @include('partials.socialicons.' . $link)
-                            </a>
-                        </li>
-                        @endif
-                        @endforeach
-                    </ul>
-                    @endif
                 </x-col>
                 @endif
                 @foreach ($cols as $col)
@@ -72,10 +58,7 @@ $has_social = true;
                                 $link->input('text') !!}</span>
                             @else
                             <span class=" hover:text-white focus:text-white">
-                                <a @if ($link->input('external'))
-                                    target="_blank"
-
-                                    @endif href="{!! $link->input('url') ?? '#' !!}">{!!
+                                <a href="{!! $link->input('url') ?? '#' !!}">{!!
                                     $link->input('text') !!}</a>
                             </span>
                             @endif
@@ -87,6 +70,21 @@ $has_social = true;
                     @endif
                 </x-col>
                 @endforeach
+                @if ($has_social)
+                <x-col class="w-full my-8 md:w-1/3 text-canvas-content">
+                    <ul class="flex -mx-2">
+                        @foreach ($social_links as $link)
+                        @if (!empty($block->input($link . '_link')))
+                        <li class="px-2">
+                            <a class="block mb-2" target="_blank" href="{{ $block->input($link . '_link') }}">
+                                @include('partials.socialicons.' . $link)
+                            </a>
+                        </li>
+                        @endif
+                        @endforeach
+                    </ul>
+                </x-col>
+                @endif
             </x-cols>
         </x-container>
     </x-section>

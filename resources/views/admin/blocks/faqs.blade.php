@@ -1,9 +1,9 @@
-@twillBlockTitle('FAQs')
+@twillBlockTitle('Accordion')
 @twillBlockIcon('editor')
 
 @include('admin.blocks.defaults.title')
 
-<label style="margin-top: 35px; display: block">FAQs</label>
+<label style="margin-top: 35px; display: block">Accordion Items</label>
 
 @formField('repeater', ['type' => 'faq_item'])
 

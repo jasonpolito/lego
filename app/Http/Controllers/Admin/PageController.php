@@ -9,7 +9,7 @@ class PageController extends BaseModuleController
 {
     protected $moduleName = 'pages';
     protected $permalinkBase = '';
-    protected $nestedItemsDepth = 1;
+    protected $nestedItemsDepth = 2;
 
     protected $indexOptions = [
         'reorder' => true,

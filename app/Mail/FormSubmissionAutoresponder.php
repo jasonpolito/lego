@@ -34,14 +34,15 @@ class FormSubmissionAutoresponder extends Mailable
     public function build()
     {
         $subject = PageController::parseMustaches($this->form->autoresponder_subject, $this->data);
+        $subject = \Str::replace('&nbsp;', ' ', $subject);
         $content = PageController::parseMustaches($this->form->autoresponder_content, $this->data);
 
         return $this->view('mail.form.autoresponder')
             ->subject($subject)
             ->with([
-                'form' => $this->form,
-                'content' => $content,
                 'subject' => $subject,
+                'content' => $content,
+                'form' => $this->form,
                 'data' => $this->data,
             ]);
     }

@@ -14,7 +14,7 @@ $id = $block->input('block_id') ?? uniqid();
             <x-cols class="justify-center">
                 <x-col class="w-full lg:w-2/3">
                     <ul class="-mx-4 leading-6 sm:mx-0">
-                        @foreach ($block->children as $faq)
+                        @foreach ($block->children()->orderBy('position')->get() as $faq)
                         <li class="overflow-hidden sm:mb-4 group">
                             <div class="border-t opacity-25 sm:border sm:rounded fill-parent border-canvas-100"></div>
                             <button class="block w-full text-lg text-left transition appearance-none {{ $padding }}"

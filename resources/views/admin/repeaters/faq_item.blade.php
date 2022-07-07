@@ -1,6 +1,6 @@
-@twillRepeaterTitle('FAQ Item')
+@twillRepeaterTitle('Accordion Item')
 @twillRepeaterTitleField('faq_title', ['hidePrefix' => true])
-@twillRepeaterTrigger('Add faq item')
+@twillRepeaterTrigger('Add accordion item')
 
 <div style="display: none">
     @formField('input', [
@@ -12,14 +12,14 @@
 
 @formField('input', [
 'name' => 'faq_title',
-'label' => 'FAQ Title',
-'placeholder' => 'FAQ question content',
+'label' => 'Accordion Title',
+'placeholder' => 'Accordion title text',
 ])
 
 @formField('wysiwyg', [
 'name' => 'faq_content',
-'label' => 'FAQ Content',
-'placeholder' => 'FAQ content / answer',
+'label' => 'Accordion Content',
+'placeholder' => 'Accordion content',
 ])
 
 @include('admin.blocks.defaults.buttons')

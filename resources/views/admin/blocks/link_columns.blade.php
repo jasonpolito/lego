@@ -5,4 +5,11 @@
 
 @formField('repeater', ['type' => 'link_column'])
 
+<div style="margin-top: -26px">
+    @formField('checkbox', [
+    'name' => 'is_narrow',
+    'label' => 'Narrow (less vertical padding)',
+    ])
+</div>
+
 @include('admin.blocks.defaults.block_id')

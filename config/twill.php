@@ -6,6 +6,7 @@ return [
         'settings' => true,
     ],
     'block_editor' => [
+        'files' => ['bg_video'],
         'crops' => [
             'sidebyside' => [
                 'desktop' => [

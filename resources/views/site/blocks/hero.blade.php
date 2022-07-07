@@ -4,22 +4,31 @@ use App\Http\Controllers\PageController;
 $theme_name = env('THEME_NAME');
 $bg_img = !Str::contains($block->image('flexible', 'flexible'), 'data:image') ? $block->image('flexible', 'flexible') :
 false;
+$id = $block->input('block_id') ?? uniqid();
 @endphp
 @if (View::exists("themes.$theme_name.hero"))
 @include("themes.$theme_name.hero", ['block' => $block])
 @else
-<x-section
+<x-section id="{{ $id }}"
     class="{{ $block->input('fullscreen') ? 'md:min-h-screen flex flex-col justify-center' : '' }} bg-cover bg-center text-white text-{{ $block->input('align') }}">
-    <div class="bg-center bg-cover fill-parent" style="background-image: url({{ $bg_img }})">
+    <div class="bg-center bg-cover fill-parent"
+        style="background-image: url({{ $block->image('flexible', 'flexible') }})">
     </div>
     @if ($block->input('video_background'))
-    <div style="position: absolute; width: 100%; height: 100%; top: 0; left: 0;" class="jarallax" data-jarallax
-        data-speed="0.5">
-        <video playsinline autoplay muted loop style="width: 100%; height: 100%; object-fit: cover"
-            class="jarallax-img">
-            <source src="{{ $block->input('video_background_url') ?? '/img/videos/hero.mp4' }}" type="video/mp4">
-        </video>
+    <div class="transition duration-1000 opacity-0 fill-parent" id="video_bg_{{ $id }}">
+        <div style="position: absolute; width: 100%; height: 100%; top: 0; left: 0;" class="jarallax" data-jarallax
+            data-speed="0.5">
+            <video playsinline autoplay muted loop style="width: 100%; height: 100%; object-fit: cover"
+                class="jarallax-img">
+                <source src="{{ $block->file('bg_video') }}" type="video/mp4">
+            </video>
+        </div>
     </div>
+    <script>
+        setTimeout(() => {
+            document.querySelector('#video_bg_{{ $id }}').classList.remove('opacity-0')
+        }, 250);
+    </script>
     @endif
     @if ($bg_img || $block->input('video_background'))
     <div class="opacity-50 fill-parent bg-canvas"></div>

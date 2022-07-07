@@ -8,6 +8,6 @@ class VariablePresenter extends Presenter
 {
     public function searchWithBrackets()
     {
-        return "<code style='font-family: monospace'>{{&nbsp;$this->search&nbsp;}}</code>";
+        return "<code style='font-family: monospace'>{{ $this->search }}</code>";
     }
 }

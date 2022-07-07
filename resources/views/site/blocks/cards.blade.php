@@ -19,7 +19,7 @@ $id = $block->input('block_id') ?? uniqid();
 			@include('site.blocks.defaults.title', ['block' => $section])
 			<div></div>
 		</div>
-		<x-cols class="md:-mx-4">
+		<x-cols class="justify-center md:-mx-4">
 			@php
 			$cards = get_block_children($section->children, 'card');
 			@endphp
@@ -27,7 +27,7 @@ $id = $block->input('block_id') ?? uniqid();
 			@php
 			$img = $card->image('flexible', 'flexible');
 			@endphp
-			<x-col class="flex w-full md:px-4 lg:w-1/2 xl:w-1/3">
+			<x-col class="flex justify-center w-full md:px-4 lg:w-1/2 xl:w-1/3">
 				@if ($card->input('is_img_card'))
 				<a class="flex flex-col text-white py-8 md:py-16 justify-center items-center w-full shadow hover:shadow-2xl my-4 transition-all px-6 text-center bg-cover bg-center group {{ settings('rounded') }}"
 					href="{{ $card->input('url') }}" style="background-image: url({{ $img }})"
