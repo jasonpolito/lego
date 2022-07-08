@@ -10,27 +10,27 @@ class PageController extends BaseModuleController
     protected $moduleName = 'pages';
     protected $permalinkBase = '';
     protected $nestedItemsDepth = 3;
+    protected $perPage = -1;
 
     protected $indexOptions = [
         'reorder' => true,
         'duplicate' => true,
-        'sort' => true,
         'reorder' => true,
     ];
 
-    protected $indexColumns = [
-        'title' => [ // field column
-            'title' => 'Title',
-            'field' => 'title',
-            'sort' => true,
-        ],
-        'page_type' => [ // field column
-            'title' => 'Type',
-            'sort' => true,
-            'field' => 'pageType',
-            'present' => true
-        ],
-    ];
+    // protected $indexColumns = [
+    //     'title' => [ // field column
+    //         'title' => 'Title',
+    //         'field' => 'title',
+    //         'sort' => true,
+    //     ],
+    //     'page_type' => [ // field column
+    //         'title' => 'Type',
+    //         'sort' => true,
+    //         'field' => 'pageType',
+    //         'present' => true
+    //     ],
+    // ];
 
     protected function formData($request)
     {

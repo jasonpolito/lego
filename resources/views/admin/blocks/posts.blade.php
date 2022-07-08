@@ -1,11 +1,27 @@
+@php
+$options = \A17\Twill\Models\Tag::all()->map(function ($tag) {
+return [
+'label' => $tag->name,
+'value' => $tag->slug,
+];
+})->toArray();
+@endphp
+
 @twillBlockTitle('Posts')
 @twillBlockIcon('quote')
 
 @include('admin.blocks.defaults.title')
 
 @formField('select', [
+'name' => 'tags',
+'label' => 'Post type',
+'options' => $options
+])
+
+@formField('select', [
 'name' => 'limit',
 'label' => 'Number of posts',
+'default' => 'all',
 'options' => [
 [
 'label' => 1,

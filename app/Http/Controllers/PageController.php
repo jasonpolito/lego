@@ -143,7 +143,6 @@ class PageController extends Controller
         }
 
         if ($page) {
-
             $view = view('public.page', compact('page'));
             $content = self::parseVariables($view);
             $content = self::parseUrlParams($content);

@@ -1,14 +1,7 @@
 @php
 $theme_name = env('THEME_NAME');
-$query = \App\Models\Page::posts();
-if ($block->input('limit')) {
-$query->limit($block->input("limit"));
-}
-$current_slug = request()->path();
-$posts = $query->get();
-$posts = $posts->filter(function($post) use ($current_slug) {
-return ($post->getNestedSlug() != $current_slug);
-})->all();
+$limit = $block->input('limit') !== 'all' ? $block->input('limit') : -1;
+$posts = App\Models\Page::withTag([$block->input('tags')])->limit($limit)->get();
 $id = $block->input('block_id') ?? uniqid();
 @endphp
 @if (View::exists("themes.$theme_name.posts"))

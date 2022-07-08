@@ -1,4 +1,4 @@
-@twillRepeaterTitle('Inputs')
+@twillRepeaterTitle('Input')
 @twillRepeaterTitleField('name', ['hidePrefix' => true])
 @twillRepeaterTrigger('Add input')
 

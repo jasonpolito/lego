@@ -11,6 +11,7 @@ use A17\Twill\Models\Behaviors\HasPosition;
 use A17\Twill\Models\Behaviors\HasNesting;
 use A17\Twill\Models\Behaviors\Sortable;
 use A17\Twill\Models\Model;
+use A17\Twill\Models\Tag;
 use App\Models\Presenters\PagePresenter;
 
 class Page extends Model implements Sortable
@@ -86,10 +87,23 @@ class Page extends Model implements Sortable
         return $query->where('page_type', 'post');
     }
 
-    public function scopeExcludeSlug($query, $slug)
+    public function taxonomy()
     {
-        $this->posts()->get()->filter(function ($post) use ($slug) {
-            return ($post->getNestedSlug() != $slug);
-        });
+        $tags = $this->tags()->get()->map(function ($item) {
+            return $item->name;
+        })->toArray();
+        return Taxonomy::whereIn('title', $tags)->first();
+    }
+
+    public function taxonomyInputs()
+    {
+        return $this->taxonomy()->blocks()->get()->filter(function ($block) {
+            return $block->type == 'taxonomy_input';
+        })->map(function ($block) {
+            $content = $block->content;
+            $content['label'] = $content['name'];
+            $content['name'] = \Str::slug($content['name'], '_');
+            return $content;
+        })->toArray();
     }
 }

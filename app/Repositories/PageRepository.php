@@ -8,6 +8,7 @@ use A17\Twill\Repositories\Behaviors\HandleSlugs;
 use A17\Twill\Repositories\Behaviors\HandleMedias;
 use A17\Twill\Repositories\Behaviors\HandleRevisions;
 use A17\Twill\Repositories\Behaviors\HandleNesting;
+use A17\Twill\Repositories\Behaviors\HandleTags;
 use A17\Twill\Repositories\ModuleRepository;
 use App\Models\Page;
 use App\Http\Controllers\PageController;
@@ -15,7 +16,7 @@ use A17\Twill\Repositories\SettingRepository;
 
 class PageRepository extends ModuleRepository
 {
-    use HandleBlocks, HandleSlugs, HandleMedias, HandleRevisions, HandleNesting;
+    use HandleBlocks, HandleSlugs, HandleMedias, HandleRevisions, HandleNesting, HandleTags;
 
     public function __construct(Page $model)
     {
