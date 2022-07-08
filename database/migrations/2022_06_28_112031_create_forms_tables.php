@@ -25,6 +25,7 @@ class CreateFormsTables extends Migration
     public function down()
     {
         Schema::dropIfExists('form_revisions');
+        Schema::dropIfExists('form_slugs');
         Schema::dropIfExists('forms');
     }
 }

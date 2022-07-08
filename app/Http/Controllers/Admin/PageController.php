@@ -9,7 +9,7 @@ class PageController extends BaseModuleController
 {
     protected $moduleName = 'pages';
     protected $permalinkBase = '';
-    protected $nestedItemsDepth = 2;
+    protected $nestedItemsDepth = 3;
 
     protected $indexOptions = [
         'reorder' => true,
@@ -37,10 +37,12 @@ class PageController extends BaseModuleController
         $page = Page::find($request->route('page'));
         if ($page) {
             $data = [
+                'page' => $page,
                 'customPermalink' => route('page.show', ['slug' => $page->getNestedSlug()]),
             ];
         } else {
             $data = [
+                'page' => $page,
                 'customPermalink' => '',
             ];
         }

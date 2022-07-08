@@ -1,6 +1,8 @@
 @twillBlockTitle('Posts')
 @twillBlockIcon('quote')
 
+@include('admin.blocks.defaults.title')
+
 @formField('select', [
 'name' => 'limit',
 'label' => 'Number of posts',

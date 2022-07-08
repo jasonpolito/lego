@@ -1,6 +1,15 @@
 <?php
 
 use A17\Twill\Repositories\SettingRepository;
+use App\Models\Page;
+
+function get_post()
+{
+    $post = Page::posts()->get()->filter(function ($post) {
+        return $post->getNestedSlug() == request()->path();
+    })->first();
+    return $post ?? false;
+}
 
 function fallback_img($img)
 {

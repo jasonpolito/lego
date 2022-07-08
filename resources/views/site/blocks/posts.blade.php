@@ -5,20 +5,19 @@ if ($block->input('limit')) {
 $query->limit($block->input("limit"));
 }
 $current_slug = request()->path();
-$query->whereHas('slugs', function ($q) use($current_slug) {
-$q->where('slug', '!=', $current_slug);
-});
 $posts = $query->get();
+$posts = $posts->filter(function($post) use ($current_slug) {
+return ($post->getNestedSlug() != $current_slug);
+})->all();
 $id = $block->input('block_id') ?? uniqid();
 @endphp
-@if (View::exists("themes.$theme_name.cards"))
-@include("themes.$theme_name.cards", ['block' => $block])
+@if (View::exists("themes.$theme_name.posts"))
+@include("themes.$theme_name.posts", ['block' => $block])
 @else
-<div class="md:w-1/2"></div>
 <x-section id="{{ $id }}">
     <div class="fill-parent bg-canvas opacity-5"></div>
     <x-container>
-        <div class="text-center lg:text-left">
+        <div class="text-center">
             @include('site.blocks.defaults.title', ['block' => $block])
             <div></div>
         </div>
@@ -31,21 +30,22 @@ $id = $block->input('block_id') ?? uniqid();
                 <div class="w-full bg-white max-w-lg my-4 {{ settings('rounded') }} lg:max-w-none">
                     <div class="overflow-hidden {{ settings('rounded') }}">
                         <a href="{{ $url }}" class="block h-56 overflow-hidden rounded-t-md xl:h-80 group">
-                            <div class="fill-parent"><img src=""
+                            <div class="fill-parent"><img src="{{ $post->image('flexible', 'flexible') }}"
                                     class="object-cover w-full h-full transition duration-300 transform group-hover:scale-110"
                                     alt="">
                             </div>
                         </a>
                         <div class="px-5 py-4 sm:p-6 md:p-8">
                             <div class="pt-2">
-                                <a href="{{ $url }}">@include('site.blocks.defaults.title',
+                                <a class="hover:underline" href="{{ $url }}">@include('site.blocks.defaults.title',
                                     ['block' => $post])
                                     <span></span>
                                 </a>
                                 <div></div>
                             </div>
                             <div class="mb-4 -mt-2 md:-mt-4">
-                                <p class="leading-6 show-rhythm opacity-80">{!! $post->title !!}</p>
+                                <p class="leading-6 show-rhythm opacity-80">{!! $post->excerpt ??
+                                    \Str::limit($post->content, 100, '(...)') !!}</p>
                             </div>
                             {{-- @include('site.blocks.defaults.buttons', ['buttons' => $card->children]) --}}
                         </div>

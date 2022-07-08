@@ -21,8 +21,31 @@
 @endsection
 
 @section('fieldsets')
-@formFieldset(['id' => 'seo', 'title' => 'SEO', 'open' => true])
 
+@if ($page->page_type == 'post')
+@formFieldset(['id' => 'post', 'title' => 'Post', 'open' => true])
+
+@formField('medias', [
+'name' => 'flexible',
+'label' => 'Main Image',
+])
+
+@formField('wysiwyg', [
+'name' => 'excerpt',
+'label' => 'Post Excerpt',
+'toolbarOptions' => config('cms.toolbar_options'),
+])
+
+@formField('wysiwyg', [
+'name' => 'content',
+'label' => 'Post Content',
+'toolbarOptions' => config('cms.toolbar_options'),
+])
+
+@endformFieldset
+@endif
+
+@formFieldset(['id' => 'seo', 'title' => 'SEO', 'open' => true])
 
 @formField('input', [
 'name' => 'meta_title',
@@ -60,5 +83,27 @@
 @formField('block_editor', [
 'blocks' => config('cms.blocks.default')
 ])
+
+<div style="padding-top: 24px">
+
+@formFieldset(['id' => 'advanced', 'title' => 'Advanced', 'open' => false])
+
+    @formField('input', [
+    'type' => 'textarea',
+    'name' => 'head_code',
+    'placeholder' => 'Code to insert into <head>',
+    'label' => 'Head code'
+    ])
+    
+    @formField('input', [
+    'type' => 'textarea',
+    'placeholder' => 'Code to insert into <body>',
+    'name' => 'body_code',
+    'label' => 'Body code'
+    ])
+
+@endformFieldset
+
+</div>
 
 @endsection

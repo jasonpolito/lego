@@ -18,6 +18,7 @@ $page_data = [
 @if ($page->meta_noindex)
 <meta name="robots" content="noindex">
 @endif
+{!! $page->head_code !!}
 @endpush
 
 @extends('layouts.default', ['page_data' => $page_data])
@@ -25,3 +26,9 @@ $page_data = [
 @section('content')
 {!! $page->renderBlocks(false) !!}
 @endsection
+
+@push('body_end')
+
+{!! $page->body_code !!}
+
+@endpush

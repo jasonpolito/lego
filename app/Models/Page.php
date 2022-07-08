@@ -30,6 +30,10 @@ class Page extends Model implements Sortable
         'og_title',
         'og_description',
         'template',
+        'content',
+        'excerpt',
+        'head_code',
+        'body_code',
         'page_type',
     ];
 
@@ -80,5 +84,12 @@ class Page extends Model implements Sortable
     public function scopePosts($query)
     {
         return $query->where('page_type', 'post');
+    }
+
+    public function scopeExcludeSlug($query, $slug)
+    {
+        $this->posts()->get()->filter(function ($post) use ($slug) {
+            return ($post->getNestedSlug() != $slug);
+        });
     }
 }
