@@ -27,20 +27,25 @@ class PageController extends Controller
         return $content;
     }
 
-    static function parseMustaches($content, $data = [])
+    static function parseMustaches($content, $data = [], $include_vars = true)
     {
-        $content = self::parseVariables($content);
         $pattern = "/{{\s*(.*?)\s*}}/i";
         if (preg_match_all($pattern, $content, $matches)) {
             foreach ($matches[0] as $match) {
                 $search = $match;
                 $key = \Str::replace('{{', '', $search);
                 $key = trim(\Str::replace('}}', '', $key));
+                if (\Str::contains($key, '.')) {
+                    $key = explode('.', $key)[1];
+                }
                 $value = $data[$key] ?? false;
                 if ($value) {
                     $content = \Str::replace($search, $value, $content);
                 }
             }
+        }
+        if ($include_vars) {
+            $content = self::parseVariables($content);
         }
         return $content;
     }
@@ -140,8 +145,12 @@ class PageController extends Controller
         if ($page) {
 
             $view = view('public.page', compact('page'));
-            $response = self::parseVariables($view);
-            $response = self::parseUrlParams($response);
+            $content = self::parseVariables($view);
+            $content = self::parseUrlParams($content);
+            if ($page->page_type == 'post') {
+                $content = self::parseMustaches($content, $page->toArray(), false);
+            }
+            $response = Response::make($content, 200);
 
             return $response;
         } else {
