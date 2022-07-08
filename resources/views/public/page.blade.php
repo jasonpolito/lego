@@ -4,7 +4,6 @@ $page_data = [
 'meta_description' => $page->meta_description,
 'meta_noindex' => $page->noindex,
 ];
-
 @endphp
 
 @push('meta')

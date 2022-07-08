@@ -3,7 +3,17 @@
 return [
     'pages' => [
         'title' => 'Pages',
-        'module' => true,
+        'route' => 'admin.pages.pages.index',
+        'primary_navigation' => [
+            'pages' => [
+                'title' => 'Pages',
+                'route' => 'admin.pages.pages.index',
+            ],
+            'templates' => [
+                'title' => 'Templates',
+                'route' => 'admin.pages.templates.index',
+            ],
+        ],
     ],
     'forms' => [
         'title' => 'Forms',

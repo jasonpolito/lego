@@ -51,4 +51,11 @@ class PageRepository extends ModuleRepository
 
         Route::name('page.show')->get('{slug?}', [PageController::class, 'show'])->where('slug', '.*');
     }
+
+
+    public function order($query, array $orders = [])
+    {
+
+        return parent::order($query, $orders);
+    }
 }

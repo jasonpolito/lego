@@ -10,4 +10,9 @@ class PagePresenter extends Presenter
     {
         return $this->permalinkBase;
     }
+
+    public function pageType()
+    {
+        return \Str::title($this->page_type);
+    }
 }

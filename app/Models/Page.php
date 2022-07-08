@@ -30,58 +30,39 @@ class Page extends Model implements Sortable
         'og_title',
         'og_description',
         'template',
+        'page_type',
     ];
 
-    public const DEFAULT_TEMPLATE = 'landing_page';
-
-    public const AVAILABLE_TEMPLATES = [
+    public const AVAILABLE_PAGE_TYPES = [
         [
-            'value' => 'landing_page',
-            'label' => 'Langing Page',
-            'block_selection' => [
-                'hero' => [],
-                'sidebyside' => [],
-                'cards' => [],
-                'callout' => [],
-            ],
+            'value' => 'page',
+            'label' => 'Page'
         ],
         [
-            'value' => 'empty',
-            'label' => 'No Template',
-            'block_selection' => [],
-        ],
+            'value' => 'post',
+            'label' => 'Post'
+        ]
     ];
 
     public $slugAttributes = [
         'title',
     ];
 
-    public function getTemplateLabelAttribute()
-    {
-        $template = collect(static::AVAILABLE_TEMPLATES)->firstWhere('value', $this->template);
-
-        return $template['label'] ?? '';
-    }
-
-    public function getTemplateBlockSelectionAttribute()
-    {
-        $template = collect(static::AVAILABLE_TEMPLATES)->firstWhere('value', $this->template);
-
-        return $template['block_selection'] ?? [];
-    }
-
     public function prefillBlockSelection()
     {
-        $i = 1;
+        if ($this->template) {
+            $blocks = Template::find($this->template)->blocks;
+            $i = 1;
 
-        foreach ($this->template_block_selection as $type => $content) {
-            app(\A17\Twill\Repositories\BlockRepository::class)->create([
-                'blockable_id' => $this->id,
-                'blockable_type' => static::class,
-                'position' => $i++,
-                'content' => $content,
-                'type' => $type,
-            ]);
+            foreach ($blocks as $block) {
+                app(\A17\Twill\Repositories\BlockRepository::class)->create([
+                    'blockable_id' => $this->id,
+                    'blockable_type' => static::class,
+                    'position' => $i++,
+                    'content' => $block->content,
+                    'type' => $block->type,
+                ]);
+            }
         }
     }
 
@@ -95,4 +76,9 @@ class Page extends Model implements Sortable
             ],
         ],
     ];
+
+    public function scopePosts($query)
+    {
+        return $query->where('page_type', 'post');
+    }
 }

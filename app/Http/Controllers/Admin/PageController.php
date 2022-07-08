@@ -14,16 +14,20 @@ class PageController extends BaseModuleController
     protected $indexOptions = [
         'reorder' => true,
         'duplicate' => true,
+        'sort' => true,
+        'reorder' => true,
     ];
 
     protected $indexColumns = [
         'title' => [ // field column
             'title' => 'Title',
             'field' => 'title',
+            'sort' => true,
         ],
-        'fullSlugAsString' => [ // field column
-            'title' => 'URL',
-            'field' => 'fullSlugAsString',
+        'page_type' => [ // field column
+            'title' => 'Type',
+            'sort' => true,
+            'field' => 'pageType',
             'present' => true
         ],
     ];

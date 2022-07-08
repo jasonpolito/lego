@@ -7,6 +7,7 @@ return [
             'sidebyside', //
             'bythenumbers', //
             'cards', //
+            'posts', //
             'callout', //
             'actionbox', //
             'faqs', //

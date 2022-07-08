@@ -3,6 +3,7 @@
 use App\Repositories\PageRepository;
 use Illuminate\Support\Facades\Route;
 use App\Models\Form;
+use App\Models\Template;
 use Illuminate\Http\Request;
 
 /*
@@ -26,5 +27,9 @@ Route::view('/styleguide', 'pages.styleguide')->name('stylguide');
 //         $form->submit($data);
 //     }
 // })->name('form.submit');
+
+Route::get('/test', function (Request $request) {
+    ddd(Template::options());
+});
 
 app(PageRepository::class)->setupRoutes();

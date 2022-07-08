@@ -59,6 +59,11 @@ class PageController extends Controller
         return $content;
     }
 
+    static function parsePostVariables($content)
+    {
+        return $content;
+    }
+
     static function parsePHP($content)
     {
         $content = htmlspecialchars_decode($content);
