@@ -36,6 +36,12 @@ class Page extends Model implements Sortable
         'head_code',
         'body_code',
         'page_type',
+        'taxonomy',
+    ];
+
+
+    public $casts = [
+        'taxonomy' => 'array',
     ];
 
     public const AVAILABLE_PAGE_TYPES = [
@@ -93,6 +99,14 @@ class Page extends Model implements Sortable
             return $item->name;
         })->toArray();
         return Taxonomy::whereIn('title', $tags)->first();
+    }
+
+    public function taxonomyFieldGroups()
+    {
+        $names = array_map(function ($item) {
+            return $item['name'];
+        }, $this->taxonomyInputs());
+        return $names;
     }
 
     public function taxonomyInputs()

@@ -4,7 +4,10 @@ $post = get_post();
 $theme_name = env('THEME_NAME');
 $bg_img = !Str::contains($block->image('flexible', 'flexible'), 'data:image') ? $block->image('flexible', 'flexible') :
 false;
-$bg_img = $post ? $post->image('flexible', 'flexible') : false;
+if ($post) {
+$bg_img = !Str::contains($post->image('flexible', 'flexible'), 'data:image') ? $post->image('flexible', 'flexible') :
+false;
+}
 $id = $block->input('block_id') ?? uniqid();
 @endphp
 @if (View::exists("themes.$theme_name.hero"))
@@ -12,7 +15,7 @@ $id = $block->input('block_id') ?? uniqid();
 @else
 <x-section id="{{ $id }}"
     class="{{ $block->input('fullscreen') ? 'md:min-h-screen flex flex-col justify-center' : '' }} bg-cover bg-center text-white text-{{ $block->input('align') }}">
-    <div class="bg-center bg-cover fill-parent" style="background-image: url({{ $bg_img }})">
+    <div class="bg-center bg-cover fill-parent bg-primary" style="background-image: url({{ $bg_img }})">
     </div>
     @if ($block->input('video_background'))
     <div class="transition duration-1000 opacity-0 fill-parent" id="video_bg_{{ $id }}">

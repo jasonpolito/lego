@@ -10,20 +10,29 @@
     'label' => 'Discourage search engines from indexing this page',
     ])
 
-    @formField('tags')
-    {{-- 
-    @formField('select', [
-    'name' => 'page_type',
-    'label' => 'Page Type',
-    'default' => 'page',
-    'options' => \App\Models\Page::AVAILABLE_PAGE_TYPES
-    ]) --}}
 
 </a17-fieldset>
 
 @endsection
 
 @section('fieldsets')
+
+<div style="display: flex; align-items: center; margin-top: -24px">
+    <div style="width: 33%">
+        @formField('select', [
+        'name' => 'page_type',
+        'label' => 'Page Type',
+        'default' => 'page',
+        'options' => \App\Models\Page::AVAILABLE_PAGE_TYPES
+        ])
+    </div>
+    <div style="width: 1rem"></div>
+    <div style="width: 66%">
+        @formField('tags')
+
+    </div>
+</div>
+
 
 <div style="margin-bottom: 24px">
     @formField('medias', [
@@ -77,7 +86,7 @@
 @if ($input['type'] == 'textarea')
 
 @formField('wysiwyg', [
-'name' => $input['name'],
+'name' => 'taxonomy.' . $input['name'],
 'label' => $input['label'],
 'placeholder' => $input['label'],
 'toolbarOptions' => config('cms.toolbar_options'),
@@ -86,7 +95,7 @@
 @else
 
 @formField('input', [
-'name' => $input['name'],
+'name' => 'taxonomy.' . $input['name'],
 'label' => $input['label'],
 'placeholder' => $input['label'],
 ])

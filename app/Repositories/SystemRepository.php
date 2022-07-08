@@ -32,6 +32,7 @@ class SystemRepository
 
     public static function generatePrimaryColorVarsArray($target)
     {
+        if (!$target) return [];
         $arr = [];
         $primary = new Hex($target);
         $arr['primary-50'] = (string) $primary->lighten(6.125 * self::STEP_AMT);
@@ -53,6 +54,7 @@ class SystemRepository
 
     public static function generateCanvasColorVarsArray($target)
     {
+        if (!$target) return [];
         $arr = [];
         $canvas = new Hex($target);
         $arr['canvas-content'] = (string) $canvas->lighten(55)->desaturate(10);

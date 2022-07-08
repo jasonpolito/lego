@@ -13,9 +13,9 @@ class CreateFormsTables extends Migration
             $table->string('title', 200)->nullable();
         });
 
-        Schema::create('form_slugs', function (Blueprint $table) {
-            createDefaultSlugsTableFields($table, 'form');
-        });
+        // Schema::create('form_slugs', function (Blueprint $table) {
+        //     createDefaultSlugsTableFields($table, 'form');
+        // });
 
         Schema::create('form_revisions', function (Blueprint $table) {
             createDefaultRevisionsTableFields($table, 'form');
@@ -25,7 +25,7 @@ class CreateFormsTables extends Migration
     public function down()
     {
         Schema::dropIfExists('form_revisions');
-        Schema::dropIfExists('form_slugs');
+        // Schema::dropIfExists('form_slugs');
         Schema::dropIfExists('forms');
     }
 }

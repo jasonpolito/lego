@@ -13,13 +13,32 @@ use A17\Twill\Repositories\ModuleRepository;
 use App\Models\Page;
 use App\Http\Controllers\PageController;
 use A17\Twill\Repositories\SettingRepository;
+use App\Models\Taxonomy;
 
 class PageRepository extends ModuleRepository
 {
     use HandleBlocks, HandleSlugs, HandleMedias, HandleRevisions, HandleNesting, HandleTags;
 
+    protected $fieldsGroups = [
+        'taxonomy' => [
+            'description',
+        ],
+    ];
+    public $fieldsGroupsFormFieldNamesAutoPrefix = true;
+    public $fieldsGroupsFormFieldNameSeparator = '.';
+
     public function __construct(Page $model)
     {
+        $fields = Taxonomy::all()->map(function ($item) {
+            return $item->blocks()->get()->filter(function ($block) {
+                return $block->type == 'taxonomy_input';
+            })->map(function ($block) {
+                return \Str::slug($block->content['name'], '_');
+            });
+        })->flatten()->toArray();
+        $this->fieldsGroups = [
+            'taxonomy' => $fields,
+        ];
         $this->model = $model;
     }
 

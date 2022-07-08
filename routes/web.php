@@ -5,6 +5,7 @@ use App\Repositories\PageRepository;
 use Illuminate\Support\Facades\Route;
 use App\Models\Form;
 use App\Models\Page;
+use App\Models\Taxonomy;
 use App\Models\Template;
 use Illuminate\Http\Request;
 
@@ -27,7 +28,14 @@ Route::post('/save-template/{id}', function (Request $request, $id) {
 })->name('admin.template.create');
 
 Route::get('/test', function (Request $request) {
-    $page = Page::find(2)->taxonomyInputs();
+    $page =  Taxonomy::all()->map(function ($item) {
+        return $item->blocks()->get()->filter(function ($block) {
+            return $block->type == 'taxonomy_input';
+        })->map(function ($block) {
+            return \Str::slug($block->content['name'], '_');
+        });
+    })->flatten()->toArray();
+    // $page = Page::find(2)->taxonomyFieldGroups();
     ddd($page);
 });
 

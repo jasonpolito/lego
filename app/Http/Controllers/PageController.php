@@ -33,12 +33,19 @@ class PageController extends Controller
         if (preg_match_all($pattern, $content, $matches)) {
             foreach ($matches[0] as $match) {
                 $search = $match;
+                $key2 = false;
                 $key = \Str::replace('{{', '', $search);
                 $key = trim(\Str::replace('}}', '', $key));
                 if (\Str::contains($key, '.')) {
-                    $key = explode('.', $key)[1];
+                    $key = explode('page.', $key)[1];
+                    if (\Str::contains($key, '.')) {
+                        $key1 = explode('.', $key)[0];
+                        $key2 = explode('.', $key)[1];
+                        $value = $data[$key1][$key2] ?? false;
+                    } else {
+                        $value = $data[$key] ?? false;
+                    }
                 }
-                $value = $data[$key] ?? false;
                 if ($value) {
                     $content = \Str::replace($search, $value, $content);
                 }
