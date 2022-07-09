@@ -42,6 +42,45 @@
 </div>
 
 
+@if ($page->taxonomy())
+
+@formFieldset(['id' => 'taxonomy', 'title' => 'Page Fields', 'open' => true])
+
+@foreach ($page->taxonomyInputs() as $input)
+
+@if ($input['type'] == 'textarea')
+
+@formField('wysiwyg', [
+'name' => 'taxonomy.' . $input['name'],
+'label' => $input['label'],
+'placeholder' => $input['label'],
+'note' => "Use in templates with @{{ page." . $input['name'] . " }}",
+'toolbarOptions' => config('cms.toolbar_options'),
+])
+
+@else
+
+@formField('input', [
+'name' => "taxonomy." . $input['name'],
+'note' => "Use in templates with @{{ page." . $input['name'] . " }}",
+'label' => $input['label'],
+'placeholder' => $input['label'],
+])
+
+@endif
+
+@endforeach
+
+@endformFieldset
+
+@endif
+
+@formField('block_editor', [
+'blocks' => config('cms.blocks.default')
+])
+
+<div style="padding-top: 24px"></div>
+
 @formFieldset(['id' => 'seo', 'title' => 'SEO', 'open' => true])
 
 @formField('input', [
@@ -77,83 +116,24 @@
 
 @endformFieldset
 
-@if ($page->taxonomy())
 
-@formFieldset(['id' => 'taxonomy', 'title' => 'Taxonomy', 'open' => false])
-
-@foreach ($page->taxonomyInputs() as $input)
-
-@if ($input['type'] == 'textarea')
-
-@formField('wysiwyg', [
-'name' => 'taxonomy.' . $input['name'],
-'label' => $input['label'],
-'placeholder' => $input['label'],
-'toolbarOptions' => config('cms.toolbar_options'),
-])
-
-@else
+@formFieldset(['id' => 'advanced', 'title' => 'Advanced', 'open' => false])
 
 @formField('input', [
-'name' => 'taxonomy.' . $input['name'],
-'label' => $input['label'],
-'placeholder' => $input['label'],
+'type' => 'textarea',
+'name' => 'head_code',
+'placeholder' => 'Code to insert into <head>',
+'label' => 'Head code'
 ])
 
-@endif
-
-@endforeach
+@formField('input', [
+'type' => 'textarea',
+'placeholder' => 'Code to insert into <body>',
+'name' => 'body_code',
+'label' => 'Body code'
+])
 
 @endformFieldset
 
-@endif
-
-@formFieldset(['id' => 'page', 'title' => 'Page Content', 'open' => false])
-
-@formField('wysiwyg', [
-'name' => 'excerpt',
-'label' => 'Excerpt',
-'toolbarOptions' => config('cms.toolbar_options'),
-])
-
-@formField('wysiwyg', [
-'name' => 'content',
-'label' => 'Content',
-'toolbarOptions' => config('cms.toolbar_options'),
-])
-
-
-@endformFieldset
-
-
-@formField('block_editor', [
-'blocks' => config('cms.blocks.default')
-])
-
-<div style="padding-top: 24px">
-
-    @formFieldset(['id' => 'advanced', 'title' => 'Advanced', 'open' => false])
-
-    @formField('input', [
-    'type' => 'textarea',
-    'name' => 'head_code',
-    'placeholder' => 'Code to insert into
-
-    <head>',
-        'label' => 'Head code'
-        ])
-
-        @formField('input', [
-        'type' => 'textarea',
-        'placeholder' => 'Code to insert into
-
-    <body>',
-        'name' => 'body_code',
-        'label' => 'Body code'
-        ])
-
-        @endformFieldset
-
-</div>
 
 @endsection

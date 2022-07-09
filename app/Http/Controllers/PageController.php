@@ -36,15 +36,9 @@ class PageController extends Controller
                 $key2 = false;
                 $key = \Str::replace('{{', '', $search);
                 $key = trim(\Str::replace('}}', '', $key));
-                if (\Str::contains($key, '.')) {
+                if (\Str::contains($key, 'page.')) {
                     $key = explode('page.', $key)[1];
-                    if (\Str::contains($key, '.')) {
-                        $key1 = explode('.', $key)[0];
-                        $key2 = explode('.', $key)[1];
-                        $value = $data[$key1][$key2] ?? false;
-                    } else {
-                        $value = $data[$key] ?? false;
-                    }
+                    $value = $data[$key] ?? ($data['taxonomy'][$key] ?? false);
                 }
                 if ($value) {
                     $content = \Str::replace($search, $value, $content);
