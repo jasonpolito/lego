@@ -13,10 +13,10 @@ return [
                 'title' => 'Templates',
                 'route' => 'admin.pages.templates.index',
             ],
-            'taxonomies' => [
-                'title' => 'Taxonomies',
-                'route' => 'admin.pages.taxonomies.index',
-            ],
+            // 'taxonomies' => [
+            //     'title' => 'Taxonomies',
+            //     'route' => 'admin.pages.taxonomies.index',
+            // ],
         ],
     ],
     'forms' => [

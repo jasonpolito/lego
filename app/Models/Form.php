@@ -5,7 +5,6 @@ namespace App\Models;
 use A17\Twill\Models\Behaviors\HasBlocks;
 use A17\Twill\Models\Behaviors\HasMedias;
 use A17\Twill\Models\Behaviors\HasFiles;
-use A17\Twill\Models\Behaviors\HasSlug;
 use A17\Twill\Models\Behaviors\HasRevisions;
 use A17\Twill\Models\Model;
 use Illuminate\Support\Facades\Mail;
@@ -15,7 +14,7 @@ use Illuminate\Http\Request;
 
 class Form extends Model
 {
-    use HasBlocks, HasMedias, HasFiles, HasRevisions, HasSlug;
+    use HasBlocks, HasMedias, HasFiles, HasRevisions;
 
     protected $fillable = [
         'published',

@@ -15,7 +15,7 @@ use A17\Twill\Repositories\SettingRepository;
 
 class FormRepository extends ModuleRepository
 {
-    use HandleBlocks, HandleSlugs, HandleMedias, HandleRevisions, HandleNesting;
+    use HandleBlocks, HandleMedias, HandleRevisions, HandleNesting;
 
     public function __construct(Form $model)
     {
