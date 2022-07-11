@@ -14,6 +14,8 @@ $head_insert_code = app(SettingRepository::class)->byKey('global_head_insert_cod
 
 <head>
     @include('layouts.includes.meta.base', ['page_data' => $page_data ?? []])
+    <!-- Alpine Plugins -->
+    <script defer src="https://unpkg.com/@alpinejs/mask@3.x.x/dist/cdn.min.js"></script>
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
     @stack('meta')
     <style>

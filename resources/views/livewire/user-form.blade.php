@@ -1,4 +1,4 @@
-<div>
+<div x-data>
     <form wire:submit.prevent="submit(Object.fromEntries(new FormData($event.target)))">
         @csrf
         @foreach ($form->blocks as $block)
@@ -13,8 +13,11 @@
             <div class="-my-px">
                 <input id="{{ $input_id }}" wire:model.defer="{{ $name }}" name="{{ $name }}"
                     class="block w-full py-2 px-4 text-base leading-10 group border border-canvas-content focus:border-primary {{ settings('rounded') }}"
-                    type="{{ $block->input('text_type') ?? 'text' }}"
-                    placeholder="{{ $block->input('placeholder') ?? $block->input('name') }}">
+                    type="{{ $block->input('text_type') ?? 'text' }}" @if ($block->input('text_type') == 'tel')
+                x-mask="(999) 999-9999"
+
+                @endif
+                placeholder="{{ $block->input('placeholder') ?? $block->input('name') }}">
             </div>
             @endif
             @if ($block->input('type') == 'textarea')
