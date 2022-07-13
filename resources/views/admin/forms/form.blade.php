@@ -3,17 +3,6 @@
 @section('contentFields')
 
 
-@formField('checkbox', [
-'name' => 'send_mail',
-'label' => 'Send email',
-])
-
-@formConnectedFields([
-'fieldName' => 'send_mail',
-'keepAlive' => true,
-'fieldValues' => true,
-'renderForBlocks' => true
-])
 
 @formField('input', [
 'name' => 'recipients',
@@ -54,10 +43,9 @@
 'placeholder' => 'Email content',
 ])
 
-@endformConnectedFields
 
 
-<div style="display: flex; align-items: center; margin-top: -24px">
+<div style="display: flex; align-items: center;">
     <div style="width: 50%">
         @formField('input', [
         'name' => 'submit_text',
@@ -81,4 +69,13 @@
 'form_inputs'
 ]
 ])
+
+
+@formField('checkbox', [
+'name' => 'send_mail',
+'default' => true,
+'label' => 'Send email',
+])
+
+
 @stop

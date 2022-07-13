@@ -76,8 +76,8 @@
         @enderror
         @endforeach
 
-        <div class="flex md:justify-center">
-            <div class="w-full lg:w-auto">
+        <div class="flex justify-center">
+            <div class="w-full sm:w-auto">
                 <button wire:loading.class="opacity-50" class="w-full group {{ config('styles.btns')['default'] }}">
                     <span wire:loading.class="hidden">{{ $form->submit_text ?? 'Send message' }}</span>
                     <span wire:loading style="display: none">Submitting...</span>

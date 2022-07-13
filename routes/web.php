@@ -28,14 +28,7 @@ Route::post('/save-template/{id}', function (Request $request, $id) {
 })->name('admin.template.create');
 
 Route::get('/test', function (Request $request) {
-    $page =  Taxonomy::all()->map(function ($item) {
-        return $item->blocks()->get()->filter(function ($block) {
-            return $block->type == 'taxonomy_input';
-        })->map(function ($block) {
-            return \Str::slug($block->content['name'], '_');
-        });
-    })->flatten()->toArray();
-    // $page = Page::find(2)->taxonomyFieldGroups();
+    $privacy_content = \File::get(storage_path('stubs/privacypolicy.txt'));
     ddd($page);
 });
 

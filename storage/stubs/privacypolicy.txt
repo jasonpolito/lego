@@ -1,0 +1,37 @@
+<h1>Privacy Policy</h1>
+<p>This privacy policy (referred to herein as “Privacy Policy” or “Policy”) discloses the privacy practices for
+	{{ company_name }}
+	and its affiliates (referred to herein as
+	{{ company_abbr }},” “we,” “us,” or “our”). This Privacy Policy applies solely to information collected by our website located at
+	{{ company_url }}, any webpage that
+	{{ company_abbr }}
+	maintains that links to this Privacy Policy, any current or future mobile applications associated with
+	{{ company_abbr }}
+	or the website, and any other online or wireless offerings that link back to this Privacy Policy (collectively, our “Services”). This Policy will notify you of :</p>
+<ul>
+	<li>What personal information do we collect</li>
+	<li>How it may be used, and with whom it may be shared;</li>
+	<li>Your options regarding the use of your information;</li>
+	<li>Our security procedures that protect your information from misuse; and<br></li>
+	<li>How you can correct any inaccuracies in the information you have provided us.</li>
+</ul>
+<h3>Information Collection, Use, and Sharing</h3>
+<p>
+	<strong>Information You Provide.&nbsp;</strong>We are the sole owners of the information collected on this website. While using our Services, we collect information that you voluntarily give us via email or other direct contact from you, including phone calls. Phone call recordings are collected as a means of quality assurance and for reference when we are addressing your legal needs. We will not sell or rent this information to anyone.</p>
+<p>
+	<strong>Information Collected Automatically.
+	</strong>We may use cookies and other technologies, such as analytical tools and services to automatically collect information from you, such as your IP address, location information, web browser and operating system, and other information that your internet service provider or web browsing software automatically provides to our Services.<br></p>
+<p>
+	<strong>Cookies.&nbsp;</strong>Cookies are small bits of data stored on your web browser that are created whenever you visit a website on a computer or mobile device. In addition to security purposes, we use cookies to personalize your experience with our Services. If you want to opt-out of this automatic data collection, you can do so via your web browser’s or mobile device’s security settings. You can learn more about cookies at&nbsp;allaboutcookies.org.</p>
+<p>A<strong>nalytics</strong>. We may use third-party analytics tools, such as Google Analytics and Hotjar, in order to better understand your use of our Services and the ways in which we can improve them. These analytics tools collect information such as the pages you visit on our website and how you interact with each page that you visit. For more information about how Google collects, uses, and shares your information, visit&nbsp;<a href="https://policies.google.com/technologies/partner-sites" rel="noopener noreferrer" target="_blank">https://policies.google.com/technologies/partner-sites</a>.</p>
+<p>
+	<strong>Using Your Information</strong>. We may use the information that you have provided to us or that we have collected from your browser:</p>
+<ul>
+	<li>to respond to you regarding your request for a free consultation;<br></li>
+	<li>to provide you with the services you have requested;<br></li>
+	<li>to respond to your inquiries and communicate with you, such as via phone, text messages, or emails;</li>
+	<li>to send you newsletters, legal updates, marketing communications, changes to this Privacy Policy, and other information that may be of interest to you;<br></li>
+	<li>to comply with applicable laws, regulations, and legal processes;</li>
+</ul>
+<p>
+	<strong>Sharing Your Information.</strong>&nbsp;We may share your information with our third-party business partners and service providers, such as our web hosting company and analytics providers. We may disclose personal information to comply with laws, regulations, or other legal obligations, such as to assist in an investigation, to protect and defend our rights and/or property, or the rights and/or safety of third parties, or for any additional purpose related to crime prevention. We may otherwise share your information in accordance with your consent.<br></p>
