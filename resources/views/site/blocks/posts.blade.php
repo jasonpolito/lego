@@ -7,6 +7,8 @@ $id = $block->input('block_id') ?? uniqid();
 @if (View::exists("themes.$theme_name.posts"))
 @include("themes.$theme_name.posts", ['block' => $block])
 @else
+@if ($block->input('tags'))
+
 <x-section id="{{ $id }}">
     <div class="fill-parent bg-canvas opacity-5"></div>
     <x-container>
@@ -49,4 +51,12 @@ $id = $block->input('block_id') ?? uniqid();
         </x-cols>
     </x-container>
 </x-section>
+@else
+
+<x-section class="text-red-800 bg-red-100">
+    <x-container class="text-center">
+        <div class="text-center" style="font-family: monospace">Select a post type.</div>
+    </x-container>
+</x-section>
+@endif
 @endif

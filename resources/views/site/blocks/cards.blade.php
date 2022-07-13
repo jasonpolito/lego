@@ -6,7 +6,7 @@ $id = $block->input('block_id') ?? uniqid();
 @if (View::exists("themes.$theme_name.cards"))
 @include("themes.$theme_name.cards", ['block' => $block])
 @else
-<div class="md:w-1/2"></div>
+@if ($sections->count())
 <x-section id="{{ $id }}">
 	<div class="fill-parent bg-canvas opacity-5"></div>
 	<x-container>
@@ -97,4 +97,13 @@ $id = $block->input('block_id') ?? uniqid();
 		@endforeach
 	</x-container>
 </x-section>
+@else
+
+<x-section class="text-red-800 bg-red-100">
+	<x-container class="text-center">
+		<div class="text-center" style="font-family: monospace">Add some cards.</div>
+	</x-container>
+</x-section>
+@endif
+
 @endif

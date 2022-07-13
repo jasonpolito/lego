@@ -5,8 +5,8 @@ use App\Repositories\SystemRepository;
 $system_repo = app(SystemRepository::class);
 $setting_repo = app(SettingRepository::class);
 
-$title_font = $setting_repo->byKey('font_title_g0j09sd09jdssd');
-$body_font = $setting_repo->byKey('font_body_g0j09sd09jdssd');
+$title_font = $setting_repo->byKey('font_title_g0j09sd09jdssd') ?? 'Inter';
+$body_font = $setting_repo->byKey('font_body_g0j09sd09jdssd') ?? 'Inter';
 
 // Google fonts
 $fonts = config('styles.fonts');

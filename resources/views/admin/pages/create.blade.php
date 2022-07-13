@@ -4,12 +4,6 @@ $templates = \App\Models\Template::options();
 
 @include('twill::partials.create')
 
-@formField('select', [
-'name' => 'page_type',
-'label' => 'Page Type',
-'default' => 'page',
-'options' => \App\Models\Page::AVAILABLE_PAGE_TYPES
-])
 
 @if ($item->template ?? false)
 
@@ -23,3 +17,12 @@ $templates = \App\Models\Template::options();
 ])
 
 @endif
+
+
+@formField('select', [
+'name' => 'page_type',
+'unpack' => true,
+'label' => 'Page Type',
+'default' => 'page',
+'options' => \App\Models\Page::AVAILABLE_PAGE_TYPES
+])

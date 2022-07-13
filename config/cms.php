@@ -4,20 +4,21 @@ return [
     'blocks' => [
         'default' => [
             'hero', //
-            'sidebyside', //
-            'bythenumbers', //
-            'cards', //
+            'text_content', //
             'posts', //
+            'partial', //
+            'sidebyside', //
+            'cards', //
+            'bigimage', //
             'callout', //
             'actionbox', //
+            'link_columns', //
             'faqs', //
-            'partial', //
-            'form', //
             'gallery', //
+            'bythenumbers', //
             'quote', //
             'sponsors', //
-            'text_content', //
-            'link_columns', //
+            'form', //
             // 'footer', //
             'html', //
         ],
@@ -25,23 +26,23 @@ return [
             'titles' => [
                 [
                     'value' => 'h1',
-                    'label' => 'H1'
+                    'label' => 'Heading 1'
                 ],
                 [
                     'value' => 'h2',
-                    'label' => 'H2'
+                    'label' => 'Heading 2'
                 ],
                 [
                     'value' => 'h3',
-                    'label' => 'H3'
+                    'label' => 'Heading 3'
                 ],
                 [
                     'value' => 'h4',
-                    'label' => 'H4'
+                    'label' => 'Heading 4'
                 ],
                 [
                     'value' => 'h5',
-                    'label' => 'H5'
+                    'label' => 'Heading 5'
                 ]
             ]
         ]

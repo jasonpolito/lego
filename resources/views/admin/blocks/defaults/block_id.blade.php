@@ -1,5 +1,6 @@
 @formField('input', [
 'name' => 'block_id',
 'label' => 'Section ID',
-'placeholder' => 'my-block-id'
+'note' => 'Does not include #',
+'placeholder' => 'section-id'
 ])

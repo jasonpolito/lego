@@ -1,0 +1,160 @@
+From d605113667c6512b0ecda667882c8b0d8dfa7197 Mon Sep 17 00:00:00 2001
+From: Harings Rob <haringsrob@gmail.com>
+Date: Fri, 8 Jul 2022 12:08:03 +0200
+Subject: [PATCH 1/2] Improve twill build with custom icons.
+
+---
+ .gitignore                                |  2 ++
+ src/Commands/Build.php                    | 40 ++++++++++++++++++++---
+ views/partials/icons/svg-sprite.blade.php |  4 +++
+ vue.config.js                             |  1 +
+ 4 files changed, 42 insertions(+), 5 deletions(-)
+
+diff --git a/.gitignore b/.gitignore
+index 0c18c2379..62e5fc69e 100644
+--- a/.gitignore
++++ b/.gitignore
+@@ -10,6 +10,8 @@ frontend/js/components/customs/*
+ !frontend/js/components/customs/.keep
+ frontend/js/components/customs-vendor/*
+ !frontend/js/components/customs-vendor/.keep
++frontend/icons-custom/*
++views/partials/icons/icons-custom-svg.blade.php
+ .DS_Store
+ public/
+ tests/coverage
+diff --git a/src/Commands/Build.php b/src/Commands/Build.php
+index 7ff92ccb6..17ae8f817 100644
+--- a/src/Commands/Build.php
++++ b/src/Commands/Build.php
+@@ -81,6 +81,7 @@ private function fullBuild()
+         $progressBar->setMessage("Copying custom components...\n\n");
+         $progressBar->advance();
+ 
++        $this->copyIcons();
+         $this->copyComponents();
+         sleep(1);
+ 
+@@ -140,11 +141,13 @@ private function startWatcher($pattern, $command)
+ 
+             try {
+                 $process->start();
+-            } catch(\Exception $e) {
++            } catch (\Exception $e) {
+                 $this->warn("Could not start the chokidar watcher ({$e->getMessage()})\n");
+             }
+         } else {
+-            $this->warn("The `chokidar-cli` package was not found. It is required to watch custom blocks & components in development. You can install it by running:\n");
++            $this->warn(
++                "The `chokidar-cli` package was not found. It is required to watch custom blocks & components in development. You can install it by running:\n"
++            );
+             $this->warn("    php artisan twill:dev\n");
+             $this->warn("without the `--noInstall` option.\n");
+             sleep(2);
+@@ -184,7 +187,9 @@ private function copyCustoms()
+      */
+     private function copyBlocks()
+     {
+-        $localCustomBlocksPath = resource_path(config('twill.block_editor.custom_vue_blocks_resource_path', 'assets/js/blocks'));
++        $localCustomBlocksPath = resource_path(
++            config('twill.block_editor.custom_vue_blocks_resource_path', 'assets/js/blocks')
++        );
+         $twillCustomBlocksPath = base_path(config('twill.vendor_path')) . '/frontend/js/components/blocks/customs';
+ 
+         if (!$this->filesystem->exists($twillCustomBlocksPath)) {
+@@ -203,7 +208,9 @@ private function copyBlocks()
+      */
+     private function copyComponents()
+     {
+-        $localCustomComponentsPath = resource_path(config('twill.custom_components_resource_path', 'assets/js/components'));
++        $localCustomComponentsPath = resource_path(
++            config('twill.custom_components_resource_path', 'assets/js/components')
++        );
+         $twillCustomComponentsPath = base_path(config('twill.vendor_path')) . '/frontend/js/components/customs';
+ 
+         if (!$this->filesystem->exists($twillCustomComponentsPath)) {
+@@ -218,12 +225,35 @@ private function copyComponents()
+         }
+     }
+ 
++    private function copyIcons()
++    {
++        $targetDirectory = base_path('vendor/area17/twill/frontend/icons-custom');
++        $originalIcons = base_path('vendor/area17/twill/frontend/icons');
++
++        if (!file_exists($targetDirectory)) {
++            mkdir($targetDirectory);
++        }
++
++        foreach (config('twill.block_editor.directories.source.icons') as $iconDirectory) {
++            // We do not want to process original icons.
++            if ($iconDirectory !== $originalIcons) {
++                foreach (glob($iconDirectory . DIRECTORY_SEPARATOR . '*.svg') as $svg) {
++                    $exploded = explode(DIRECTORY_SEPARATOR, $svg);
++                    $fileName = array_pop($exploded);
++                    copy($svg, $targetDirectory . DIRECTORY_SEPARATOR . $fileName);
++                }
++            }
++        }
++    }
++
+     /**
+      * @return void
+      */
+     private function copyVendorComponents()
+     {
+-        $localVendorComponentsPath = resource_path(config('twill.vendor_components_resource_path', 'assets/vendor/js/components'));
++        $localVendorComponentsPath = resource_path(
++            config('twill.vendor_components_resource_path', 'assets/vendor/js/components')
++        );
+         $twillVendorComponentsPath = base_path(config('twill.vendor_path')) . '/frontend/js/components/customs-vendor';
+ 
+         if (!$this->filesystem->exists($twillVendorComponentsPath)) {
+diff --git a/views/partials/icons/svg-sprite.blade.php b/views/partials/icons/svg-sprite.blade.php
+index 0a2e435a7..bdd0f49ea 100644
+--- a/views/partials/icons/svg-sprite.blade.php
++++ b/views/partials/icons/svg-sprite.blade.php
+@@ -4,4 +4,8 @@
+     @include('twill::partials.icons.icons-files-svg')
+ 
+     @include('twill::partials.icons.icons-wysiwyg-svg')
++
++    @if (\Illuminate\Support\Facades\View::exists('twill::partials.icons.icons-custom-svg'))
++        @include('twill::partials.icons.icons-custom-svg')
++    @endif
+ </div>
+diff --git a/vue.config.js b/vue.config.js
+index 5d96cd965..605a0648a 100644
+--- a/vue.config.js
++++ b/vue.config.js
+@@ -72,6 +72,7 @@ const svgConfig = (suffix = null) => {
+ let plugins = [
+   new CleanWebpackPlugin(),
+   new SVGSpritemapPlugin(`${srcDirectory}/icons/**/*.svg`, svgConfig()),
++  new SVGSpritemapPlugin(`${srcDirectory}/icons-custom/**/*.svg`, svgConfig('custom')),
+   new SVGSpritemapPlugin(`${srcDirectory}/icons-files/**/*.svg`, svgConfig('files')),
+   new SVGSpritemapPlugin(`${srcDirectory}/icons-wysiwyg/**/*.svg`, svgConfig('wysiwyg')),
+   new WebpackAssetsManifest({
+
+From 21b678e9fdf9be5215bbdc4572d03c7818da60cc Mon Sep 17 00:00:00 2001
+From: Harings Rob <haringsrob@gmail.com>
+Date: Fri, 8 Jul 2022 12:17:57 +0200
+Subject: [PATCH 2/2] Use no plugins in ci.
+
+---
+ .github/workflows/main.yml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/.github/workflows/main.yml b/.github/workflows/main.yml
+index 3266004c9..b365a620f 100644
+--- a/.github/workflows/main.yml
++++ b/.github/workflows/main.yml
+@@ -104,7 +104,7 @@ jobs:
+       - name: Install dependencies
+         run: |
+           composer require "laravel/framework:${{ matrix.laravel }}" "orchestra/testbench:${{ matrix.testbench }}" "doctrine/dbal:${{ matrix.dbal }}" --no-interaction --no-update -vvv
+-          composer install --prefer-dist --no-interaction -vvv
++          composer install --prefer-dist --no-interaction --no-plugins -vvv
+ 
+       - name: Execute tests
+         run: vendor/bin/phpunit

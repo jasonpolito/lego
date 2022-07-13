@@ -1,5 +1,5 @@
 @twillBlockTitle('Text Content')
-@twillBlockIcon('website')
+@twillBlockIcon('wysiwyg_bold')
 
 @formField('select', [
 'name' => 'align',

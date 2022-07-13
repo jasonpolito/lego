@@ -1,5 +1,5 @@
 @twillBlockTitle('Action Box')
-@twillBlockIcon('revision-single')
+@twillBlockIcon('b-button')
 
 @include('admin.blocks.defaults.title')
 

@@ -1,6 +1,6 @@
-@twillRepeaterTitle('Sponsor Section')
+@twillRepeaterTitle('Logo Section')
 @twillRepeaterTitleField('title_text', ['hidePrefix' => true])
-@twillRepeaterTrigger('Add sponsor section')
+@twillRepeaterTrigger('Add logo section')
 
 <div style="display: none">
     @formField('input', [

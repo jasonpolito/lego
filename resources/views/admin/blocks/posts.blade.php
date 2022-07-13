@@ -8,7 +8,7 @@ return [
 @endphp
 
 @twillBlockTitle('Posts')
-@twillBlockIcon('fix-grid')
+@twillBlockIcon('media-list')
 
 @include('admin.blocks.defaults.title')
 

@@ -1,6 +1,5 @@
-{{-- {{ ddd(get_defined_vars()) }} --}}
 @twillBlockTitle('Partial')
-@twillBlockIcon('more-dots')
+@twillBlockIcon('replace')
 
 @php
 use App\Models\Partial;

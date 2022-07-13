@@ -1,5 +1,5 @@
 @twillBlockTitle('Raw HTML')
-@twillBlockIcon('website')
+@twillBlockIcon('b-iframe')
 
 @formField('input', [
 'label' => 'HTML Content',

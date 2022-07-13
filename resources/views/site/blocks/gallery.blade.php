@@ -3,21 +3,24 @@ $id = $block->input("block_id") ?? uniqid();
 @endphp
 <x-section id="{{ $id }}">
     <div class="border-t opacity-50 fill-parent border-canvas-content"></div>
-    <x-container>
+    <div class="px-5 mx-auto sm:px-6 md:px-10 lg:px-14 xl:container">
         @if (!empty($block->input('title_text')))
         <div class="mb-8 text-center">@include('site.blocks.defaults.title', ['block' => $block])</div>
         @endif
-        <div class="gap-4 lg:gap-8 columns-2 lg:columns-3">
-            @foreach ($block->imagesAsArrays('flexible', 'flexible') as $img)
-            <div class="w-full mb-4 lg:mb-8">
-                <div>
-                    <img class="w-full {{ settings('rounded') }}" src="{{ $img['src'] }}" alt="{{ $img['alt'] }}">
-                    <div
-                        class="border pointer-events-none fill-parent opacity-50 border-canvas-content {{ settings('rounded') }}">
-                    </div>
+        <div class="gap-2 sm:gap-4 columns-2 lg:columns-3">
+            @php
+            $imgs = $block->imagesAsArrays('flexible', 'flexible');
+            shuffle($imgs);
+            @endphp
+            @foreach ($imgs as $img)
+            <div class="w-full mb-2 sm:mb-4">
+                <div class="bg-canvas-content {{ settings('rounded') }}"
+                    style="padding-top: {{ $img['height'] / $img['width'] * 100 }}%">
+                    <img data-zoomable class="fill-parent {{ settings('rounded') }}" src="{{ $img['src'] }}"
+                        alt="{{ $img['alt'] }}">
                 </div>
             </div>
             @endforeach
         </div>
-    </x-container>
+    </div>
 </x-section>

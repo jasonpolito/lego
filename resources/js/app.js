@@ -1,3 +1,7 @@
+import mediumZoom from 'medium-zoom'
+
+mediumZoom('[data-zoomable]')
+
 const iframes = document.querySelectorAll('iframe');
 
 iframes.forEach(iframe => {

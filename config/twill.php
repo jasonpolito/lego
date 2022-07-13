@@ -44,6 +44,14 @@ return [
                     ]
                 ],
             ],
+            'flexible2' => [
+                'flexible2' => [
+                    [
+                        'name' => 'flexible2',
+                        'ratio' => 0
+                    ]
+                ],
+            ],
             'og_image' => [
                 'flexible' => [
                     [

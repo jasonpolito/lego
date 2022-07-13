@@ -122,6 +122,10 @@
         [
         'label' => 'Number',
         'value' => 'number'
+        ],
+        [
+        'label' => 'Password',
+        'value' => 'password'
         ]
         ]
         ])

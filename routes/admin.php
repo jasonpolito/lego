@@ -10,7 +10,7 @@ Route::group(['prefix' => 'pages'], function () {
     Route::module('pages');
     Route::get('posts', 'PageController@postsIndex')->name('admin.posts.index');
     Route::module('templates');
-    // Route::module('taxonomies');
+    Route::module('taxonomies');
 });
 
 Route::module('forms');

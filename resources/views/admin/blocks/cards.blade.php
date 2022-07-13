@@ -5,4 +5,6 @@
 
 @formField('repeater', ['type' => 'card_section'])
 
+@include('admin.blocks.defaults.render')
+
 @include('admin.blocks.defaults.block_id')

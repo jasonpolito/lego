@@ -11,6 +11,11 @@ function get_post()
     return $post ?? false;
 }
 
+function has_img($img)
+{
+    return !Str::contains($img, 'data:image');
+}
+
 function fallback_img($img)
 {
     return !Str::contains($img, 'data:image') ? $img : '/img/lego.png';

@@ -47,11 +47,11 @@ class Page extends Model implements Sortable
     public const AVAILABLE_PAGE_TYPES = [
         [
             'value' => 'page',
-            'label' => 'Page'
+            'label' => 'Basic'
         ],
         [
             'value' => 'post',
-            'label' => 'Post'
+            'label' => 'Dynamic'
         ]
     ];
 

@@ -1,5 +1,5 @@
 @twillBlockTitle('Before & After')
-@twillBlockIcon('faqs.png')
+@twillBlockIcon('website')
 
 @include('admin.blocks.defaults.title', ['default' => 'Before & After'])
 

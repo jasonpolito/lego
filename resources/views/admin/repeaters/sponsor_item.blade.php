@@ -1,5 +1,5 @@
-@twillRepeaterTitle('Sponsor Item')
-@twillRepeaterTrigger('Add sponsor')
+@twillRepeaterTitle('Logo')
+@twillRepeaterTrigger('Add logo')
 
 <div style="display: none">
     @formField('input', [

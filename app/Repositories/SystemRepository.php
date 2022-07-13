@@ -22,12 +22,12 @@ class SystemRepository
 
     public static function primaryColor()
     {
-        return app(SettingRepository::class)->byKey('main_color_sdgagasdag');
+        return app(SettingRepository::class)->byKey('main_color_sdgagasdag') ?? '#147fd9';
     }
 
     public static function canvasColor()
     {
-        return app(SettingRepository::class)->byKey('canvas_color_sdgagasdag');
+        return app(SettingRepository::class)->byKey('canvas_color_sdgagasdag') ?? '#212c36';
     }
 
     public static function generatePrimaryColorVarsArray($target)

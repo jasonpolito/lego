@@ -28,7 +28,9 @@ class UserForm extends Component
 
     public function submit($data)
     {
-        $this->validate($this->form->rules());
+        if (count($this->form->rules())) {
+            $this->validate($this->form->rules());
+        }
 
         $this->form->submit($data);
     }

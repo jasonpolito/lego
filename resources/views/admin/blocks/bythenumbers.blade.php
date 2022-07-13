@@ -1,5 +1,5 @@
 @twillBlockTitle('By The Numbers')
-@twillBlockIcon('website')
+@twillBlockIcon('more-dots')
 
 <div style="margin-top: 35px">Columns</div>
 

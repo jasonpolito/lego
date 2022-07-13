@@ -2,6 +2,19 @@
 
 @section('contentFields')
 
+
+@formField('checkbox', [
+'name' => 'send_mail',
+'label' => 'Send email',
+])
+
+@formConnectedFields([
+'fieldName' => 'send_mail',
+'keepAlive' => true,
+'fieldValues' => true,
+'renderForBlocks' => true
+])
+
 @formField('input', [
 'name' => 'recipients',
 'label' => 'Recipient(s)',
@@ -40,6 +53,8 @@
 'label' => 'Autoresponder content',
 'placeholder' => 'Email content',
 ])
+
+@endformConnectedFields
 
 
 <div style="display: flex; align-items: center; margin-top: -24px">

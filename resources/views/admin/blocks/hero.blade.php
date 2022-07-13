@@ -1,5 +1,5 @@
 @twillBlockTitle('Hero')
-@twillBlockIcon('star-feature_active')
+@twillBlockIcon('preview-desktop')
 
 @include('admin.blocks.defaults.align')
 
