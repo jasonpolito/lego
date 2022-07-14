@@ -7,6 +7,14 @@ return [
 })->toArray();
 @endphp
 
+<div style="margin-bottom: -24px">
+    @formField('input', [
+    'name' => 'text',
+    'label' => 'Text',
+    'placeholder' => 'Link text'
+    ])
+</div>
+
 @formConnectedFields(['keepAlive' => true,
 'fieldName' => 'custom_link',
 'fieldValues' => false,

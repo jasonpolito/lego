@@ -5,21 +5,21 @@ return [
         'default' => [
             'hero', //
             'bigimage', //
-            // 'posts', //
-            // 'text_content', //
-            // 'partial', //
-            // 'sidebyside', //
-            // 'cards', //
-            // 'callout', //
-            // 'actionbox', //
-            // 'link_columns', //
-            // 'faqs', //
-            // 'gallery', //
-            // 'bythenumbers', //
-            // 'quote', //
-            // 'sponsors', //
-            // 'form', //
-            // 'html', //
+            'posts', //
+            'text_content', //
+            'partial', //
+            'sidebyside', //
+            'cards', //
+            'callout', //
+            'actionbox', //
+            'link_columns', //
+            'faqs', //
+            'gallery', //
+            'bythenumbers', //
+            'quote', //
+            'sponsors', //
+            'form', //
+            'html', //
         ],
         'options' => [
             'titles' => [

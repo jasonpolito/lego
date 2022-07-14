@@ -15,7 +15,10 @@ $styles = config('styles.btns');
             <span class="border border-white rounded-md fill-parent"></span>
             <span class="transition bg-white opacity-0 fill-parent group-hover:opacity-5"></span>
             @endif
-            {!! $btn->input('btn_text') ?? 'Learn more' !!}
+            @if (env('STACK_VERSION') < 1) {!! $btn->input('btn_text') ?? 'Learn more' !!}
+                @else
+                {!! $btn->input('text') ?? 'Learn more' !!}
+                @endif
         </a>
     </div>
     @endif

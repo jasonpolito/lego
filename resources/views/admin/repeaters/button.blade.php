@@ -1,5 +1,5 @@
 @twillRepeaterTitle('Button')
-@twillRepeaterTitleField('btn_text', ['hidePrefix' => true])
+@twillRepeaterTitleField('text', ['hidePrefix' => true])
 @twillRepeaterTrigger('Add button')
 
 <div style="display: none">
@@ -9,12 +9,12 @@
     'default' => 'button'
     ])
 </div>
-
+{{-- 
 @formField('input', [
 'name' => 'btn_text',
 'label' => 'Button Text',
 'placeholder' => 'Learn more'
-])
+]) --}}
 
 @include('admin.blocks.defaults.link')
 

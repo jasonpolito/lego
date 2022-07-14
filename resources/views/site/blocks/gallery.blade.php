@@ -14,10 +14,10 @@ $id = $block->input("block_id") ?? uniqid();
             @endphp
             @foreach ($imgs as $img)
             <div class="w-full mb-2 sm:mb-4">
-                <div class="bg-canvas-content {{ settings('rounded') }}"
+                <div class="bg-canvas-content shadow-inner {{ settings('rounded') }}"
                     style="padding-top: {{ $img['height'] / $img['width'] * 100 }}%">
-                    <img data-zoomable class="fill-parent {{ settings('rounded') }}" src="{{ $img['src'] }}"
-                        alt="{{ $img['alt'] }}">
+                    <img data-zoomable height="{{ $img['height'] }}" width="{{ $img['width'] }}"
+                        class="fill-parent {{ settings('rounded') }}" src="{{ $img['src'] }}" alt="{{ $img['alt'] }}">
                 </div>
             </div>
             @endforeach

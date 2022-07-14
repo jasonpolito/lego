@@ -17,16 +17,16 @@ function link_url($block)
 
     $is_custom = $block->input('custom_link');
     if ($is_custom) {
-        $url = $block->input('url');
+        return $block->input('url');
     } else {
         $page = Page::find($block->input('page_id'));
         if ($page) {
-            $url = '/' . $page->nestedSlug;
+            if ($page->title == 'Homepage') return '/';
+            return '/' . $page->nestedSlug;
         } else {
-            $url = '#';
+            return '#';
         }
     }
-    return $url;
 }
 
 function link_text($block)

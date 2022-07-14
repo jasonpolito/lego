@@ -13,7 +13,7 @@ $id = $block->input('block_id') ?? uniqid();
 @if (View::exists("themes.$theme_name.hero"))
 @include("themes.$theme_name.hero", ['block' => $block])
 @else
-<x-section id="{{ $id }}"
+<x-section id="{{ $id }}" :reduced-padding="$block->input('reduced_padding')"
     class="{{ $block->input('fullscreen') ? 'md:min-h-screen flex flex-col justify-center' : '' }} bg-cover bg-center text-white text-{{ $block->input('align') }}">
     <div class="bg-center bg-cover fill-parent bg-gradient-to-br from-primary-500 to-primary-700"
         style="background-image: url({{ $bg_img }})">

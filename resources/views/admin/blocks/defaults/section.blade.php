@@ -13,7 +13,7 @@
 
 <div style="margin-top: -26px">
     @formField('checkbox', [
-    'name' => 'is_narrow',
+    'name' => 'reduced_padding',
     'label' => 'Reduced padding',
     ])
 </div>
