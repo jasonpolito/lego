@@ -10,7 +10,7 @@ $id = $block->input('block_id') ?? uniqid();
         @if ($form)
         <div class="lg:text-center">@include('site.blocks.defaults.title', ['block' => $block])</div>
         <x-cols class="justify-center pt-8">
-            <x-col class="w-full lg:w-1/2">
+            <x-col class="w-full sm:w-2/3 lg:w-1/2">
                 <div class="p-4 shadow-xl sm:p-6 md:p-8 {{ settings('rounded') }}">
                     @livewire('user-form', ['form' => $form])
                     @if (auth('twill_users')->user())

@@ -18,7 +18,7 @@ $id = $block->input('block_id') ?? uniqid();
     <div class="bg-center bg-cover fill-parent bg-gradient-to-br from-primary-500 to-primary-700"
         style="background-image: url({{ $bg_img }})">
     </div>
-    @if ($block->input('video_background'))
+    @if ($block->input('video_background') || $block->file('bg_video'))
     <div class="transition duration-1000 opacity-0 fill-parent" id="video_bg_{{ $id }}">
         <div style="position: absolute; width: 100%; height: 100%; top: 0; left: 0;" class="jarallax" data-jarallax
             data-speed="0.5">
@@ -34,7 +34,7 @@ $id = $block->input('block_id') ?? uniqid();
         </script>
     </div>
     @endif
-    @if ($bg_img || $block->input('video_background'))
+    @if ($bg_img || $block->input('video_background') || $block->file('bg_video'))
     <div class="opacity-50 fill-parent bg-canvas"></div>
     @else
     <div class="fill-parent bg-gradient-to-br from-primary-500 to-primary-700"></div>

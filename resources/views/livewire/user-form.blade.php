@@ -11,19 +11,30 @@
             <div class="text-sm leading-8">{{ $block->input('name') }}</div>
             @if ($block->input('type') == 'text')
             <div class="-my-px">
-                <input id="{{ $input_id }}" wire:model.defer="{{ $name }}" name="{{ $name }}"
-                    class="block w-full py-2 px-4 text-base leading-10 group border border-canvas-content focus:border-primary {{ settings('rounded') }}"
-                    type="{{ $block->input('text_type') ?? 'text' }}" @if ($block->input('text_type') == 'tel')
+                <input id="{{ $input_id }}" wire:model.defer="{{ $name }}" name="{{ $name }}" class="block w-full py-2 px-4 text-base leading-10 group border
+                        @error($name)
+                        border-error focus:border-error
+                        @else
+                        border-canvas-content focus:border-primary
+                        @enderror
+                    {{ settings('rounded') }}" type="{{ $block->input('text_type') ?? 'text' }}"
+                    @if($block->input('text_type') == 'tel')
                 x-mask="(999) 999-9999"
 
                 @endif
                 placeholder="{{ $block->input('placeholder') ?? $block->input('name') }}">
+
             </div>
             @endif
             @if ($block->input('type') == 'textarea')
             <div class="-my-px">
-                <textarea id="{{ $input_id }}" wire:model.defer="{{ $name }}" name="{{ $name }}"
-                    class="block w-full py-2 px-4 text-base leading-10 group border border-canvas-content focus:border-primary {{ settings('rounded') }}"
+                <textarea id="{{ $input_id }}" wire:model.defer="{{ $name }}" name="{{ $name }}" class="block w-full py-2 px-4 text-base leading-10 group border 
+                    @error($name)
+                    border-error focus:border-error
+                    @else
+                    border-canvas-content focus:border-primary
+                    @enderror
+                     {{ settings('rounded') }}"
                     placeholder="{{ $block->input('placeholder') ?? $block->input('name') }}"></textarea>
             </div>
             @endif
@@ -70,10 +81,19 @@
             @endforeach
             @endif
             @endif
+            @error($name)
+            <div class="-mb-4 text-xs leading-8" style="color: #cc1d00">{{ $message }}</div>
+            {{-- <div class="absolute top-0 right-0 pt-12 pr-3 pointer-events-none text-error">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" width="24" height="24" viewBox="0 0 24 24"
+                    stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                    <circle cx="12" cy="12" r="9"></circle>
+                    <line x1="12" y1="8" x2="12" y2="12"></line>
+                    <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                </svg>
+            </div> --}}
+            @enderror
         </label>
-        @error($name)
-        <div class="-mt-4 text-sm leading-8" style="color: #cc1d00">{{ $message }}</div>
-        @enderror
         @endforeach
 
         <div class="flex justify-center">
@@ -85,7 +105,7 @@
             </div>
         </div>
         @if ($errors->any())
-        <div class="text-sm leading-8 text-center" style="color: #cc1d00">
+        <div class="-mt-2 text-xs leading-8 text-center" style="color: #cc1d00">
             Please fix any form errors.
         </div>
         @endif

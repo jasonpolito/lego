@@ -30,25 +30,25 @@ class SystemRepository
         return app(SettingRepository::class)->byKey('canvas_color_sdgagasdag') ?? '#212c36';
     }
 
-    public static function generatePrimaryColorVarsArray($target)
+    public static function generateColorVarsArray($target, $name = 'primary')
     {
         if (!$target) return [];
         $arr = [];
-        $primary = new Hex($target);
-        $arr['primary-50'] = (string) $primary->lighten(6.125 * self::STEP_AMT);
+        $hex = new Hex($target);
+        $arr["{$name}-50"] = (string) $hex->lighten(6.125 * self::STEP_AMT);
         for ($i = 4; $i > 0; $i--) {
-            $color = $primary->lighten($i * self::STEP_AMT);
+            $color = $hex->lighten($i * self::STEP_AMT);
             $amount = 500 - ($i * 100);
-            $arr["primary-{$amount}"] = (string) $color;
+            $arr["{$name}-{$amount}"] = (string) $color;
         }
-        $arr['primary'] = (string) $primary;
-        $arr['primary-500'] = (string) $primary;
+        $arr["{$name}"] = (string) $hex;
+        $arr["{$name}-500"] = (string) $hex;
         for ($i = 1; $i < 5; $i++) {
-            $color = $primary->darken($i * 6);
+            $color = $hex->darken($i * 6);
             $amount = ($i * 100) + 500;
-            $arr["primary-{$amount}"] = (string) $color;
+            $arr["{$name}-{$amount}"] = (string) $color;
         }
-        $arr['primary-950'] = (string) $primary->darken(5.5 * self::STEP_AMT);
+        $arr["{$name}-950"] = (string) $hex->darken(5.5 * self::STEP_AMT);
         return $arr;
     }
 
@@ -67,9 +67,10 @@ class SystemRepository
 
     public static function generateColorVarsCSS()
     {
-        $primary = self::generatePrimaryColorVarsArray(self::primaryColor());
+        $primary = self::generateColorVarsArray(self::primaryColor(), 'primary');
+        $error = self::generateColorVarsArray('#cc1d00', 'error');
         $canvas = self::generateCanvasColorVarsArray(self::canvasColor());
-        $colors = array_merge($primary, $canvas);
+        $colors = array_merge($error, array_merge($primary, $canvas));
         $css = ":root {\r\n";
         foreach ($colors as $name => $value) {
             $css .= "--color-$name: $value;\r\n";
@@ -80,9 +81,10 @@ class SystemRepository
 
     public static function generateColorClassesCSS()
     {
-        $primary = self::generatePrimaryColorVarsArray(self::primaryColor());
+        $primary = self::generateColorVarsArray(self::primaryColor(), 'primary');
+        $error = self::generateColorVarsArray('#cc1d00', 'error');
         $canvas = self::generateCanvasColorVarsArray(self::canvasColor());
-        $colors = array_merge($primary, $canvas);
+        $colors = array_merge($error, array_merge($primary, $canvas));
         $css = "";
         foreach ($colors as $name => $value) {
             foreach (self::CLASS_MAP as $class => $declaration) {
@@ -97,9 +99,10 @@ class SystemRepository
 
     public static function generateColorStateClassesCSS()
     {
-        $primary = self::generatePrimaryColorVarsArray(self::primaryColor());
+        $primary = self::generateColorVarsArray(self::primaryColor(), 'primary');
+        $error = self::generateColorVarsArray('#cc1d00', 'error');
         $canvas = self::generateCanvasColorVarsArray(self::canvasColor());
-        $colors = array_merge($primary, $canvas);
+        $colors = array_merge($error, array_merge($primary, $canvas));
         $css = "";
         foreach ($colors as $name => $value) {
             foreach (self::STATE_MAP as $state_class => $state) {
