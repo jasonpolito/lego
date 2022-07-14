@@ -6,9 +6,17 @@ $id = $block->input('block_id') ?? uniqid();
 @include("themes.$theme_name.html", ['block' => $block])
 @else
 @if (!empty($block->input('html_content')))
-<div id="{{ $id }}">
-    {!! $block->input('html_content') !!}
-</div>
+@if ($block->input('wrap_in_container'))
+<x-section :block="$block">
+    <x-container>
+        @endif
+        <div id="{{ $id }}">
+            {!! $block->input('html_content') !!}
+        </div>
+        @if ($block->input('wrap_in_container'))
+    </x-container>
+</x-section>
+@endif
 @else
 <x-section>
     <x-container>

@@ -29,12 +29,14 @@ $has_social = true;
                 <div class="border-t opacity-50 fill-parent border-canvas-mid"></div>
             </div>
             <x-cols class="justify-between">
-                @if (!Str::contains($block->image('flexible', 'flexible'), 'data:image'))
+                @if (!Str::contains($block->image('flexible', 'flexible'), 'data:image') || !empty($footer_copy))
                 <x-col class="w-full my-8 md:w-1/3 text-canvas-content">
+                    @if (!Str::contains($block->image('flexible', 'flexible'), 'data:image'))
                     <a class="block mb-8" href="/">
                         <img src="{{ $block->image('flexible', 'flexible', ['fm' => null]) }}"
-                            style="{{ $block->input('logo_style') }}" alt="">
+                            style="{{ $block->input('logo_style') }}" alt="{{ $block->imageAltText('flexible') }}">
                     </a>
+                    @endif
                     @if (!empty($footer_copy))
                     {!! $footer_copy !!}
                     @endif
@@ -57,9 +59,12 @@ $has_social = true;
                             <span class="opacity-50">{!!
                                 $link->input('text') !!}</span>
                             @else
-                            <span class=" hover:text-white focus:text-white">
-                                <a href="{!! $link->input('url') ?? '#' !!}">{!!
-                                    $link->input('text') !!}</a>
+                            <span class="">
+                                <a class="group" href="{!! link_url($link) !!}"><span
+                                        class="text-canvas-content group-hover:text-white group-focus:text-white">
+                                        {!!
+                                        $link->input('text') !!}
+                                    </span></a>
                             </span>
                             @endif
                         </li>

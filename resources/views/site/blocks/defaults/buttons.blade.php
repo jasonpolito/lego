@@ -9,13 +9,13 @@ $styles = config('styles.btns');
             href="{{ $btn->input('btn_url') ?? link_url($btn) }}" @if($btn->input('btn_style') == 'underline')
             style="box-shadow: 0 .125rem;"
             @endif
-            @if($btn->input('btn_external'))
+            @if($btn->input('btn_external') || $btn->input('external'))
             target="_blank" @endif>
             @if($btn->input('btn_style') == 'outlined')
             <span class="border border-white rounded-md fill-parent"></span>
             <span class="transition bg-white opacity-0 fill-parent group-hover:opacity-5"></span>
             @endif
-            @if (env('STACK_VERSION') < 1) {!! $btn->input('btn_text') ?? 'Learn more' !!}
+            @if (env('STACK_VERSION') < 1) {!! $btn->input('btn_text') ?? ($btn->input('text') ?? 'Learn more') !!}
                 @else
                 {!! $btn->input('text') ?? 'Learn more' !!}
                 @endif

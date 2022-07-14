@@ -35,7 +35,7 @@ $id = $block->input('block_id') ?? uniqid();
     </div>
     @endif
     @if ($bg_img || $block->input('video_background') || $block->file('bg_video'))
-    <div class="opacity-50 fill-parent bg-canvas"></div>
+    <div class="opacity-{{ $block->input('overlay_opacity') ?? '50' }} fill-parent bg-canvas"></div>
     @else
     <div class="fill-parent bg-gradient-to-br from-primary-500 to-primary-700"></div>
     @endif

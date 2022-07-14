@@ -30,6 +30,7 @@ class PageController extends Controller
     static function parseMustaches($content, $data = [], $include_vars = true)
     {
         $pattern = "/{{\s*(.*?)\s*}}/i";
+        $value = false;
         if (preg_match_all($pattern, $content, $matches)) {
             foreach ($matches[0] as $match) {
                 $search = $match;
@@ -147,9 +148,9 @@ class PageController extends Controller
             $view = view('public.page', compact('page'));
             $content = self::parseVariables($view);
             $content = self::parseUrlParams($content);
-            if ($page->page_type == 'post') {
-                $content = self::parseMustaches($content, $page->toArray(), false);
-            }
+            $content = self::parseMustaches($content, $page->toArray(), false);
+            // if ($page->page_type == 'post') {
+            // }
             $response = Response::make($content, 200);
 
             return $response;

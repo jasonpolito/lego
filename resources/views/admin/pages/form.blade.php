@@ -5,11 +5,17 @@
 @section('sideFieldsets')
 
 <a17-fieldset title="Options" id="options">
+
     @formField('checkbox', [
     'name' => 'meta_noindex',
     'label' => 'Discourage search engines from indexing this page',
     ])
 
+    @formField('input', [
+    'type' =>'textarea',
+    'name' => 'excerpt',
+    'label' => 'Excerpt',
+    ])
 
 </a17-fieldset>
 
@@ -122,18 +128,22 @@
 @formField('input', [
 'type' => 'textarea',
 'name' => 'head_code',
-'placeholder' => 'Code to insert into <head>',
-'label' => 'Head code'
-])
+'placeholder' => 'Code to insert into
 
-@formField('input', [
-'type' => 'textarea',
-'placeholder' => 'Code to insert into <body>',
-'name' => 'body_code',
-'label' => 'Body code'
-])
+<head>',
+    'label' => 'Head code'
+    ])
 
-@endformFieldset
+    @formField('input', [
+    'type' => 'textarea',
+    'placeholder' => 'Code to insert into
+
+<body>',
+    'name' => 'body_code',
+    'label' => 'Body code'
+    ])
+
+    @endformFieldset
 
 
-@endsection
+    @endsection

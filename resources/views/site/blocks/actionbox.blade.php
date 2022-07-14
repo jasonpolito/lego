@@ -13,7 +13,8 @@ $id = $block->input('block_id') ?? uniqid();
         <div class="px-5 pb-8 pt-10 sm:p-12 overflow-hidden bg-primary {{ settings('rounded') }}">
             <div class="fill-parent mix-blend-multiply">
                 <div class="w-full h-full jarallax" data-jarallax data-speed="0.8">
-                    <img src="{{ $img }}" class="object-cover w-full h-full opacity-25 filter grayscale jarallax-img">
+                    <img src="{{ $img }}" alt="Dream Skin Lasers"
+                        class="object-cover w-full h-full opacity-25 filter grayscale jarallax-img">
                 </div>
             </div>
             <div class="flex flex-wrap items-center lg:flex-nowrap">
@@ -23,8 +24,10 @@ $id = $block->input('block_id') ?? uniqid();
                 </div>
                 @if ($btn)
                 <div class="w-full pt-8 lg:pt-0 whitespace-nowrap lg:pl-12 sm:w-auto">
+                    @include('site.blocks.defaults.buttons', ['buttons' => $block->children])
+                    {{-- 
                     <a href="{{ $btn->input('btn_url') }}"
-                        class="block w-full px-6 py-4 my-2 text-center bg-white rounded-md sm:w-auto sm:inline-block">{{ $btn->input('btn_text') }}</a>
+                    class="block w-full px-6 py-4 my-2 text-center bg-white rounded-md sm:w-auto sm:inline-block">{{ $btn->input('btn_text') }}</a> --}}
                 </div>
                 @endif
             </div>

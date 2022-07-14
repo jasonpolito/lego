@@ -90,6 +90,7 @@ class Page extends Model implements Sortable
 
     public function scopePosts($query)
     {
+        return $query;
         return $query->where('page_type', 'post');
     }
 

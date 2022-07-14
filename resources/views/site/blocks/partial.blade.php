@@ -7,7 +7,6 @@ $id = $block->input('block_id') ?? uniqid();
 @if ($partial)
 <div id="{{ $id }}">
     {!! $partial->renderBlocks() !!}
-
     @if (auth('twill_users')->user())
     <div class="absolute top-0 right-0 p-2">
         <a href="/admin/partials/{{ $partial->id }}/edit" style="z-index: 999; border: solid 1px rgba(255,255,255,.5)"

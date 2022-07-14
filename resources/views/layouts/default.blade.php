@@ -34,18 +34,7 @@ $head_insert_code = app(SettingRepository::class)->byKey('global_head_insert_cod
         <div class="flex flex-col min-h-screen">
             <!--BEGIN_PAGE-->
             @if ($header)
-            <div>{!! $header->renderBlocks() !!}
-
-                @if (auth('twill_users')->user())
-                <div class="absolute top-0 right-0 p-2">
-                    <a href="/admin/partials/{{ $header->id }}/edit"
-                        style="z-index: 999; border: solid 1px rgba(255,255,255,.5)" target="_blank"
-                        class="flex flex-col items-center justify-center px-2 py-1 text-xs text-white transition bg-black rounded opacity-50 hover:opacity-100">
-                        Edit Partial
-                    </a>
-                </div>
-                @endif
-            </div>
+            {!! $header->renderBlocks() !!}
             @endif
             @yield('content')
             @if ($footer)
@@ -54,7 +43,7 @@ $head_insert_code = app(SettingRepository::class)->byKey('global_head_insert_cod
                 <div class="absolute top-0 right-0 p-2">
                     <a href="/admin/partials/{{ $footer->id }}/edit"
                         style="z-index: 999; border: solid 1px rgba(255,255,255,.5)" target="_blank"
-                        class="flex flex-col items-center justify-center px-2 py-1 text-sm text-white transition bg-black rounded opacity-50 hover:opacity-100">
+                        class="flex flex-col items-center justify-center px-2 py-1 text-xs text-white transition bg-black rounded opacity-50 hover:opacity-100">
                         Edit Partial
                     </a>
                 </div>

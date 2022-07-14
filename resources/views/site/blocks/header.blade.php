@@ -1,8 +1,7 @@
 @php
 use App\Http\Controllers\PageController;
 use App\Models\Partial;
-
-// $footer_copy = PageController::parseTextContent($block->input('footer_copy'));
+$partial = Partial::where('title', 'Header')->first();
 $theme_name = env('THEME_NAME');
 $themes = [
 'default' => '',
@@ -12,8 +11,7 @@ $themes = [
 @if (View::exists("themes.$theme_name.header"))
 @include("themes.$theme_name.header", ['block' => $block])
 @else
-<header class="z-50 bg-white top-0 sticky md:relative shadow {{ $themes[$block->input('theme')] }}"
-    x-data="{activeMenu: null}">
+<header class="sticky top-0 z-50 w-full bg-white shadow xl:relative" x-data="{activeMenu: null}">
     @if ($block->input('show_topbar'))
     <div class="py-4 text-xs">
         <div class="bg-black fill-parent opacity-10"></div>
@@ -30,7 +28,7 @@ $themes = [
             <div class="flex items-center justify-between">
                 <a class="block py-4" href="/">
                     <img src="{{ $block->image('flexible', 'flexible', ['fm' => null]) }}"
-                        style="{{ $block->input('logo_style') }}" alt="">
+                        style="{{ $block->input('logo_style') }}" alt="{{ $block->imageAltText('flexible') }}">
                 </a>
                 <ul class="items-center hidden h-full -mr-6 xl:flex">
                     @foreach ($block->children()->orderBy('position')->get() as $link)
@@ -50,11 +48,11 @@ $themes = [
                         </a>
                         @if ($link->children()->count())
                         <ul
-                            class="absolute pb-4 text-sm transition rounded shadow-2xl opacity-0 pointer-events-none group-hover:pointer-events-auto group-hover:opacity-100 top-full whitespace-nowrap bg-canvas">
+                            class="absolute pb-4 text-sm transition bg-white rounded shadow-2xl opacity-0 pointer-events-none group-hover:pointer-events-auto group-hover:opacity-100 top-full whitespace-nowrap">
                             @foreach ($link->children()->orderBy('position')->get() as $link)
                             <li>
-                                <a href="{!! $link->input('url') !!}"
-                                    class="block px-6 py-2 transition hover:opacity-80">{!! $link->input('text')
+                                <a style="min-width: 10rem" href="{!! $link->input('url') !!}"
+                                    class="block px-6 py-2 pr-8 transition hover:opacity-80">{!! $link->input('text')
                                     !!}</a>
                             </li>
                             @endforeach
@@ -66,16 +64,27 @@ $themes = [
                 <ul class="flex items-center -mr-6 xl:hidden" x-data="{menuOpen: false}">
                     <li>
                         <a href="#" class="block p-6" @click.prevent="menuOpen = !menuOpen">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="none" viewBox="0 0 24 24"
-                                stroke="currentColor" stroke-width="2">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16m-7 6h7" />
-                            </svg>
+                            <div class="w-8 h-8">
+                                <svg xmlns="http://www.w3.org/2000/svg"
+                                    :class="{'opacity-0 rotate-90': menuOpen, 'opacity-100 rotate-0': !menuOpen}"
+                                    class="w-8 h-8 transition duration-300 transform fill-parent" fill="none"
+                                    viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16m-7 6h7" />
+                                </svg>
+                                <svg xmlns="http://www.w3.org/2000/svg"
+                                    :class="{'opacity-100 -rotate-0': menuOpen, 'opacity-0 -rotate-90': !menuOpen}"
+                                    class="w-8 h-8 transition duration-300 transform opacity-0 fill-parent" fill="none"
+                                    viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                                </svg>
+                            </div>
                         </a>
                         <ul class="absolute right-0 pb-6 mr-2 transition transform -translate-y-4 bg-white rounded-lg shadow-xl opacity-0 pointer-events-none top-full"
                             :class="{'pointer-events-auto opacity-100 translate-y-0': menuOpen, 'pointer-events-none opacity-0 -translate-y-4': !menuOpen}">
                             @foreach ($block->children()->orderBy('position')->get() as $link)
                             <li>
-                                <a href="{!! $link->input('url') !!}" class="block px-8 py-4 group whitespace-nowrap">
+                                <a style="min-width: 12rem" href="{!! $link->input('url') !!}"
+                                    class="block px-8 py-4 group whitespace-nowrap">
                                     <div class="transition opacity-0 fill-parent bg-canvas group-hover:opacity-10">
                                     </div>
                                     {!!
@@ -101,5 +110,15 @@ $themes = [
         {!! $partial->renderBlocks() !!}</div>
     @endif
     @endforeach
+    @endif
+
+    @if (auth('twill_users')->user())
+    <div class="absolute top-0 right-0 p-2">
+        <a href="/admin/partials/{{ $partial->id }}/edit" style="z-index: 999; border: solid 1px rgba(255,255,255,.5)"
+            target="_blank"
+            class="flex flex-col items-center justify-center px-2 py-1 text-xs text-white transition bg-black rounded opacity-50 hover:opacity-100">
+            Edit Partial
+        </a>
+    </div>
     @endif
 </header>

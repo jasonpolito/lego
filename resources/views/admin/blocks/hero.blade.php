@@ -18,9 +18,33 @@
 'label' => 'Background Image',
 ])
 
+@include('admin.blocks.defaults.align')
+
 @php ob_start(); @endphp
 
-@include('admin.blocks.defaults.align')
+@formField('select', [
+'name' => 'overlay_opacity',
+'label' => 'Overlay Opactiy',
+'default' => '50',
+'options' => [
+[
+'label' => '0%',
+'value' => '0'
+],
+[
+'label' => '25%',
+'value' => '25'
+],
+[
+'label' => '50%',
+'value' => '50'
+],
+[
+'label' => '75%',
+'value' => '75'
+],
+]
+])
 
 @formField('files', [
 'name' => 'bg_video',

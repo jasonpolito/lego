@@ -30,66 +30,66 @@ class InitialSeeder extends Seeder
             "email" => "jason@placementlabs.com",
             "password" => \Hash::make("qwerasdf"),
         ]);
-        DB::table("pages")->insert([
-            "title" => "Homepage",
-            "published" => 1,
-            "meta_title" => "Welcome to $company",
-            "meta_description" => "Welcome to $company",
-            "og_title" => "Welcome to $company",
-            "og_description" => "Welcome to $company",
-            "meta_noindex" => 1,
-        ]);
-        DB::table("page_slugs")->insert([
-            "locale" => "en",
-            "page_id" => 1,
-            "active" => 1,
-            "slug" => '',
-        ]);
-        DB::table("pages")->insert([
-            "title" => "About",
-            "published" => 1,
-            "meta_title" => "About | $company",
-            "meta_description" => "This is the about page.",
-            "og_title" => "About | $company",
-            "og_description" => "This is the about page.",
-            "meta_noindex" => 1,
-        ]);
-        DB::table("page_slugs")->insert([
-            "locale" => "en",
-            "page_id" => 2,
-            "active" => 1,
-            "slug" => 'about',
-        ]);
-        DB::table("pages")->insert([
-            "title" => "Privacy Policy",
-            "published" => 1,
-            "meta_title" => "Privacy Policy | $company",
-            "meta_description" => "This is the about page.",
-            "og_title" => "Privacy Policy | $company",
-            "og_description" => "This is the about page.",
-            "meta_noindex" => 1,
-        ]);
-        DB::table("page_slugs")->insert([
-            "locale" => "en",
-            "page_id" => 3,
-            "active" => 1,
-            "slug" => 'privacy-policy',
-        ]);
-        DB::table("pages")->insert([
-            "title" => "Contact",
-            "published" => 1,
-            "meta_title" => "Contact $company",
-            "meta_description" => "Contact $company",
-            "og_title" => "Contact $company",
-            "og_description" => "Contact $company",
-            "meta_noindex" => 1,
-        ]);
-        DB::table("page_slugs")->insert([
-            "locale" => "en",
-            "page_id" => 4,
-            "active" => 1,
-            "slug" => 'contact',
-        ]);
+        // DB::table("pages")->insert([
+        //     "title" => "Homepage",
+        //     "published" => 1,
+        //     "meta_title" => "Welcome to $company",
+        //     "meta_description" => "Welcome to $company",
+        //     "og_title" => "Welcome to $company",
+        //     "og_description" => "Welcome to $company",
+        //     "meta_noindex" => 1,
+        // ]);
+        // DB::table("page_slugs")->insert([
+        //     "locale" => "en",
+        //     "page_id" => 1,
+        //     "active" => 1,
+        //     "slug" => '',
+        // ]);
+        // DB::table("pages")->insert([
+        //     "title" => "About",
+        //     "published" => 1,
+        //     "meta_title" => "About | $company",
+        //     "meta_description" => "This is the about page.",
+        //     "og_title" => "About | $company",
+        //     "og_description" => "This is the about page.",
+        //     "meta_noindex" => 1,
+        // ]);
+        // DB::table("page_slugs")->insert([
+        //     "locale" => "en",
+        //     "page_id" => 2,
+        //     "active" => 1,
+        //     "slug" => 'about',
+        // ]);
+        // DB::table("pages")->insert([
+        //     "title" => "Privacy Policy",
+        //     "published" => 1,
+        //     "meta_title" => "Privacy Policy | $company",
+        //     "meta_description" => "This is the about page.",
+        //     "og_title" => "Privacy Policy | $company",
+        //     "og_description" => "This is the about page.",
+        //     "meta_noindex" => 1,
+        // ]);
+        // DB::table("page_slugs")->insert([
+        //     "locale" => "en",
+        //     "page_id" => 3,
+        //     "active" => 1,
+        //     "slug" => 'privacy-policy',
+        // ]);
+        // DB::table("pages")->insert([
+        //     "title" => "Contact",
+        //     "published" => 1,
+        //     "meta_title" => "Contact $company",
+        //     "meta_description" => "Contact $company",
+        //     "og_title" => "Contact $company",
+        //     "og_description" => "Contact $company",
+        //     "meta_noindex" => 1,
+        // ]);
+        // DB::table("page_slugs")->insert([
+        //     "locale" => "en",
+        //     "page_id" => 4,
+        //     "active" => 1,
+        //     "slug" => 'contact',
+        // ]);
         DB::table("variables")->insert([
             "title" => "Company Name",
             "published" => 1,
@@ -131,16 +131,16 @@ class InitialSeeder extends Seeder
             "content" => '{}',
             "type" => "form_inputs",
         ]);
-        DB::table("blocks")->insert([
-            "blockable_id" => 3,
-            "parent_id" => null,
-            "blockable_type" => "App\Models\Page",
-            "position" => 1,
-            "content" => json_encode([
-                'content' => $privacy_content
-            ]),
-            "type" => "text_content",
-        ]);
+        // DB::table("blocks")->insert([
+        //     "blockable_id" => 3,
+        //     "parent_id" => null,
+        //     "blockable_type" => "App\Models\Page",
+        //     "position" => 1,
+        //     "content" => json_encode([
+        //         'content' => $privacy_content
+        //     ]),
+        //     "type" => "text_content",
+        // ]);
         DB::table("blocks")->insert([
             "blockable_id" => 1,
             "parent_id" => 1,
@@ -168,16 +168,16 @@ class InitialSeeder extends Seeder
             "type" => "form_input",
             "child_key" => "form_input",
         ]);
-        DB::table("blocks")->insert([
-            "blockable_id" => 4,
-            "blockable_type" => "App\Models\Page",
-            "position" => 1,
-            "content" => json_encode([
-                "form_id" => 1
-            ]),
-            "type" => "form",
-            "child_key" => null,
-            "parent_id" => null,
-        ]);
+        // DB::table("blocks")->insert([
+        //     "blockable_id" => 4,
+        //     "blockable_type" => "App\Models\Page",
+        //     "position" => 1,
+        //     "content" => json_encode([
+        //         "form_id" => 1
+        //     ]),
+        //     "type" => "form",
+        //     "child_key" => null,
+        //     "parent_id" => null,
+        // ]);
     }
 }

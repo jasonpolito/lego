@@ -53,12 +53,13 @@ $id = $block->input('block_id') ?? uniqid();
 							@endif class="block h-56 overflow-hidden rounded-t-md xl:h-80 group">
 							<div class="fill-parent"><img src="{{ $img }}"
 									class="object-cover w-full h-full transition duration-300 transform group-hover:scale-110"
-									alt="">
+									alt="{{ $card->imageAltText('flexible') }}">
 							</div>
 						</a>
 						@else
 						<div class="block h-56 overflow-hidden rounded-t-md xl:h-80">
-							<div class="fill-parent"><img src="{{ $img }}" class="object-cover w-full h-full" alt="">
+							<div class="fill-parent"><img src="{{ $img }}" class="object-cover w-full h-full"
+									alt="{{ $card->imageAltText('flexible') }}">
 							</div>
 						</div>
 						@endif
