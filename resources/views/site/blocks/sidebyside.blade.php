@@ -1,7 +1,7 @@
 @php
 use App\Http\Controllers\PageController;
 $theme_name = env('THEME_NAME');
-$rand_title = array_rand(array_flip(config('cms.placeholders')), 1);
+$rand_title = '';
 $reversed = $block->input('align') !== 'left';
 $checklist = get_block_children($block->children, 'checklist_item');
 $img = fallback_img($block->image('flexible', 'flexible'));

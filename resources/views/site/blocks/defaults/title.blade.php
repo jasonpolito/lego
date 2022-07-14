@@ -1,5 +1,5 @@
 @php
-$rand_title = array_rand(array_flip(config('cms.placeholders')), 1);
+$rand_title = '';
 @endphp
 @if (method_exists($block, 'input'))
 <x-title display="{{ $block->input('title_display_element') ?? 'h2' }}"
