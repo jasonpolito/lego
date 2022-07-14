@@ -8,6 +8,7 @@ use App\Models\Page;
 use App\Models\Taxonomy;
 use App\Models\Template;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,14 +23,17 @@ use Illuminate\Http\Request;
 
 Route::view('/styleguide', 'pages.styleguide')->name('stylguide');
 
+Route::get('/admin', function () {
+    return Redirect::to('/admin/pages/pages');
+});
+
 Route::post('/save-template/{id}', function (Request $request, $id) {
     $page = Page::find($id);
     ddd($page->blocks);
 })->name('admin.template.create');
 
 Route::get('/test', function (Request $request) {
-    $privacy_content = \File::get(storage_path('stubs/privacypolicy.txt'));
-    ddd($page);
+    ddd(env('APP_URL'));
 });
 
 app(PageRepository::class)->setupRoutes();

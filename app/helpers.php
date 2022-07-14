@@ -11,6 +11,40 @@ function get_post()
     return $post ?? false;
 }
 
+function link_url($block)
+{
+    if (env('STACK_VERSION') < 1) return $block->input('url') ?? '#';
+
+    $is_custom = $block->input('custom_link');
+    if ($is_custom) {
+        $url = $block->input('url');
+    } else {
+        $page = Page::find($block->input('page_id'));
+        if ($page) {
+            $url = '/' . $page->nestedSlug;
+        } else {
+            $url = '#';
+        }
+    }
+    return $url;
+}
+
+function link_text($block)
+{
+    if (env('STACK_VERSION') < 1) return $block->input('text');
+
+    if (!empty($block->input('text'))) {
+        return $block->input('text');
+    } else {
+        $page = Page::find($block->input('page_id'));
+        if ($page) {
+            return $page->title;
+        } else {
+            return '';
+        }
+    }
+}
+
 function has_img($img)
 {
     return !Str::contains($img, 'data:image');

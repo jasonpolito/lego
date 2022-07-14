@@ -54,5 +54,4 @@ return [
 ]
 ])
 
-
-@include('admin.blocks.defaults.block_id')
+@include('admin.blocks.defaults.advanced')

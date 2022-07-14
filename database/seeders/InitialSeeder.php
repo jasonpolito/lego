@@ -75,6 +75,21 @@ class InitialSeeder extends Seeder
             "active" => 1,
             "slug" => 'privacy-policy',
         ]);
+        DB::table("pages")->insert([
+            "title" => "Contact",
+            "published" => 1,
+            "meta_title" => "Contact $company",
+            "meta_description" => "Contact $company",
+            "og_title" => "Contact $company",
+            "og_description" => "Contact $company",
+            "meta_noindex" => 1,
+        ]);
+        DB::table("page_slugs")->insert([
+            "locale" => "en",
+            "page_id" => 4,
+            "active" => 1,
+            "slug" => 'contact',
+        ]);
         DB::table("variables")->insert([
             "title" => "Company Name",
             "published" => 1,
@@ -105,25 +120,64 @@ class InitialSeeder extends Seeder
             "search" => "tel",
             "replace" => "tel:5555555555",
         ]);
+        DB::table("forms")->insert([
+            "title" => "Basic Contact",
+            "published" => 1,
+        ]);
         DB::table("blocks")->insert([
             "blockable_id" => 1,
+            "blockable_type" => "App\Models\Form",
             "position" => 1,
-            "blockable_type" => "App\Models\Page",
-            "content" => json_encode([
-                "align" => 'start',
-                "content" => "<p>testing</p>"
-            ]),
-            "type" => "text_content"
+            "content" => '{}',
+            "type" => "form_inputs",
         ]);
         DB::table("blocks")->insert([
             "blockable_id" => 3,
-            "position" => 1,
+            "parent_id" => null,
             "blockable_type" => "App\Models\Page",
+            "position" => 1,
             "content" => json_encode([
-                "align" => 'start',
-                "content" => $privacy_content
+                'content' => $privacy_content
             ]),
-            "type" => "text_content"
+            "type" => "text_content",
+        ]);
+        DB::table("blocks")->insert([
+            "blockable_id" => 1,
+            "parent_id" => 1,
+            "blockable_type" => "App\Models\Form",
+            "position" => 1,
+            "content" => '{"name": "Full Name", "type": "text", "required": true, "text_type": "text", "child_type": "form_input", "placeholder": "John Doe", "options_type": "select", "allow_multiple": false}',
+            "type" => "form_input",
+            "child_key" => "form_input",
+        ]);
+        DB::table("blocks")->insert([
+            "blockable_id" => 1,
+            "parent_id" => 1,
+            "blockable_type" => "App\Models\Form",
+            "position" => 2,
+            "content" => '{"name": "Email", "type": "text", "required": true, "text_type": "email", "child_type": "form_input", "placeholder": "example@domain.tld", "options_type": "select", "allow_multiple": false}',
+            "type" => "form_input",
+            "child_key" => "form_input",
+        ]);
+        DB::table("blocks")->insert([
+            "blockable_id" => 1,
+            "parent_id" => 1,
+            "blockable_type" => "App\Models\Form",
+            "position" => 3,
+            "content" => '{"name": "Message", "type": "textarea", "required": false, "text_type": "text", "child_type": "form_input", "placeholder": "Provide any additional details", "options_type": "select", "allow_multiple": false}',
+            "type" => "form_input",
+            "child_key" => "form_input",
+        ]);
+        DB::table("blocks")->insert([
+            "blockable_id" => 4,
+            "blockable_type" => "App\Models\Page",
+            "position" => 1,
+            "content" => json_encode([
+                "form_id" => 1
+            ]),
+            "type" => "form",
+            "child_key" => null,
+            "parent_id" => null,
         ]);
     }
 }

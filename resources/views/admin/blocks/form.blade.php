@@ -14,4 +14,4 @@ $forms = Form::all()->pluck('title', 'id');
 'options' => $forms
 ])
 
-@include('admin.blocks.defaults.block_id')
+@include('admin.blocks.defaults.advanced')

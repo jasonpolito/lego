@@ -4,23 +4,22 @@ return [
     'blocks' => [
         'default' => [
             'hero', //
-            'text_content', //
-            'posts', //
-            'partial', //
-            'sidebyside', //
-            'cards', //
             'bigimage', //
-            'callout', //
-            'actionbox', //
-            'link_columns', //
-            'faqs', //
-            'gallery', //
-            'bythenumbers', //
-            'quote', //
-            'sponsors', //
-            'form', //
-            // 'footer', //
-            'html', //
+            // 'posts', //
+            // 'text_content', //
+            // 'partial', //
+            // 'sidebyside', //
+            // 'cards', //
+            // 'callout', //
+            // 'actionbox', //
+            // 'link_columns', //
+            // 'faqs', //
+            // 'gallery', //
+            // 'bythenumbers', //
+            // 'quote', //
+            // 'sponsors', //
+            // 'form', //
+            // 'html', //
         ],
         'options' => [
             'titles' => [

@@ -39,10 +39,10 @@ $themes = [
                     $has_megamenu = $link->input('has_megamenu');
                     @endphp
                     <li class="h-full group">
-                        <a href="{!! $link->input('url') !!}" @mouseover="activeMenu = '{{ $link_id }}'"
+                        <a href="{!! link_url($link) !!}" @mouseover="activeMenu = '{{ $link_id }}'"
                             @focus="activeMenu = '{{ $link_id }}'" x-ref="{{ $link_id }}"
                             class="block h-full p-6 transition hover:opacity-80">{!!
-                            $link->input('text') !!}
+                            link_text($link) !!}
                             @if ($has_megamenu)
                             <div class="absolute left-0 z-50 w-full h-8 top-full"></div>
 

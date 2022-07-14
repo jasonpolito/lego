@@ -11,3 +11,5 @@
 'label' => 'Wrap In Container',
 'name'=> 'wrap_in_container',
 ])
+
+@include('admin.blocks.defaults.advanced')

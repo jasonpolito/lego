@@ -10,31 +10,13 @@
     ])
 </div>
 
-<div style="display: flex">
-    <div style="width: 50%">
-        @formField('input', [
-        'name' => 'btn_text',
-        'label' => 'Button Text',
-        'placeholder' => 'Learn more'
-        ])
-    </div>
-    <div style="width: 1rem"></div>
-    <div style="width: 50%">
-        @formField('input', [
-        'name' => 'btn_url',
-        'label' => 'Button URL',
-        'placeholder' => 'https://google.com'
-        ])
-    </div>
-</div>
+@formField('input', [
+'name' => 'btn_text',
+'label' => 'Button Text',
+'placeholder' => 'Learn more'
+])
 
-
-<div style="margin-top: -26px">
-    @formField('checkbox', [
-    'name' => 'btn_external',
-    'label' => 'Open in new tab',
-    ])
-</div>
+@include('admin.blocks.defaults.link')
 
 @formField('select', [
 'name' => 'btn_style',

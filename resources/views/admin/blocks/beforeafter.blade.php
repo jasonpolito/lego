@@ -7,7 +7,4 @@
 
 @formField('repeater', ['type' => 'beforeafter_item'])
 
-@formField('input', [
-'name' => 'section_id',
-'label' => 'Section ID',
-])
+@include('admin.blocks.defaults.advanced')

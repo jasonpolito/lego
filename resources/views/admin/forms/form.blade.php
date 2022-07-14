@@ -3,7 +3,6 @@
 @section('contentFields')
 
 
-
 @formField('input', [
 'name' => 'recipients',
 'label' => 'Recipient(s)',
@@ -43,8 +42,6 @@
 'placeholder' => 'Email content',
 ])
 
-
-
 <div style="display: flex; align-items: center;">
     <div style="width: 50%">
         @formField('input', [
@@ -68,13 +65,6 @@
 'blocks' => [
 'form_inputs'
 ]
-])
-
-
-@formField('checkbox', [
-'name' => 'send_mail',
-'default' => true,
-'label' => 'Send email',
 ])
 
 

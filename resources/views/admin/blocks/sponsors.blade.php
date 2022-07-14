@@ -7,4 +7,4 @@
 
 @formField('repeater', ['type' => 'sponsor_section'])
 
-@include('admin.blocks.defaults.block_id')
+@include('admin.blocks.defaults.advanced')

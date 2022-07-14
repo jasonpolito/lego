@@ -2,7 +2,7 @@
 
 return [
     'enabled' => [
-        'dashboard' => true,
+        'dashboard' => false,
         'settings' => true,
     ],
     'block_editor' => [

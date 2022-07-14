@@ -45,3 +45,5 @@
 
 @include('admin.components.title', ['text' => 'Legal Links'])
 @formField('repeater', ['type' => 'link_item'])
+
+@include('admin.blocks.defaults.advanced')

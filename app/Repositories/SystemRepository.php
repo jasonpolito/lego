@@ -88,6 +88,8 @@ class SystemRepository
             foreach (self::CLASS_MAP as $class => $declaration) {
                 $css .= ".$class-$name { $declaration: var(--color-$name); }\r\n";
             }
+            $css .= ".to-$name { --tw-gradient-to: var(--color-$name); }\r\n";
+            $css .= ".from-$name { --tw-gradient-from: var(--color-$name); --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to); }\r\n";
         }
         $css .= "}";
         return $css;

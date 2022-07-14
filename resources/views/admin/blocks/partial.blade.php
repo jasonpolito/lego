@@ -12,4 +12,4 @@ $partials = Partial::all()->pluck('title', 'id');
 'options' => $partials
 ])
 
-@include('admin.blocks.defaults.block_id')
+@include('admin.blocks.defaults.advanced')

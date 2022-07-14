@@ -65,3 +65,5 @@
 ]
 ]
 ])
+
+@include('admin.blocks.defaults.advanced')

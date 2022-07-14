@@ -24,16 +24,28 @@ cd /var/www/;
 sudo mkdir ${dir_name};
 cd ${dir_name};
 sudo git clone https://github.com/jasonpolito/lego.git html;
-cd html;
+cd /var/www/${dir_name}/html;
 sudo composer install --no-interaction;
 
 # configure env
+sudo cp .env.example .env
+sudo sed -i "s/http://localhost/https://${site_url}/g" .env;
 echo "ADMIN_APP_URL=${site_url}" | sudo tee -a .env;
 echo "ADMIN_APP_PATH=admin" | sudo tee -a .env;
-
-# run migrations
-cd /var/www/${dir_name}/html;
-sudo php artisan migrate;
+echo "TIMEZONE = 'America/New_York'" | sudo tee -a .env;
+echo "FILE_LIBRARY_ENDPOINT_TYPE=local" | sudo tee -a .env;
+echo "MEDIA_LIBRARY_ENDPOINT_TYPE=local" | sudo tee -a .env;
+echo "MEDIA_LIBRARY_IMAGE_SERVICE=A17\Twill\Services\MediaLibrary\Glide" | sudo tee -a .env;
+echo "MEDIA_LIBRARY_LOCAL_PATH=uploads/" | sudo tee -a .env;
+echo "MEDIA_LIBRARY_CASCADE_DELETE=true" | sudo tee -a .env;
+echo "TELESCOPE_ENABLED=true" | sudo tee -a .env;
+echo "TELESCOPE_PATH=telescope" | sudo tee -a .env;
+echo "MAIL_MAILER=smtp" | sudo tee -a .env;
+echo "MAIL_HOST=smtp.googlemail.com" | sudo tee -a .env;
+echo "MAIL_PORT=465" | sudo tee -a .env;
+echo "MAIL_USERNAME=placementlabs.mail@gmail.com" | sudo tee -a .env;
+echo "MAIL_PASSWORD=Dsplmi1!" | sudo tee -a .env;
+echo "MAIL_ENCRYPTION=ssl" | sudo tee -a .env;
 
 # set upload limits
 cd /var/www/${dir_name}/html/public;
@@ -44,9 +56,10 @@ echo "php_value post_max_size 20M" | sudo tee -a .htaccess;
 cd /var/www/${dir_name}/;
 sudo chown -R root:www-data html && sudo chmod -R 775 html;
 
+# run migrations
+cd /var/www/${dir_name}/html;
+sudo php artisan migrate;
+sudo php artisan storage:link;
+
 # install ssl
 sudo certbot -d ${site_url};
-
-# create admin
-cd /var/www/${dir_name}/html;
-sudo php artisan twill:superadmin;

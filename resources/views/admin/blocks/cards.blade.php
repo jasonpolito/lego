@@ -7,4 +7,4 @@
 
 @include('admin.blocks.defaults.render')
 
-@include('admin.blocks.defaults.block_id')
+@include('admin.blocks.defaults.advanced')

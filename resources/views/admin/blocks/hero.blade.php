@@ -1,10 +1,7 @@
 @twillBlockTitle('Hero')
 @twillBlockIcon('preview-desktop')
 
-@include('admin.blocks.defaults.align')
-
 @include('admin.blocks.defaults.title')
-
 
 @formField('wysiwyg', [
 'name' => 'content',
@@ -14,49 +11,26 @@
 'editSource' => true,
 ])
 
+@include('admin.blocks.defaults.buttons')
 
 @formField('medias', [
 'name' => 'flexible',
 'label' => 'Background Image',
 ])
 
-<div style="margin-top: -26px">
-    @formField('checkbox', [
-    'name' => 'fullscreen',
-    'label' => 'Fill viewport',
-    ])
-</div>
+@php ob_start(); @endphp
 
-<div style="margin-top: -26px">
-    @formField('checkbox', [
-    'name' => 'is_narrow',
-    'label' => 'Narrow (less vertical padding)',
-    ])
-</div>
+@include('admin.blocks.defaults.align')
 
-<div style="margin-top: -26px">
-    @formField('checkbox', [
-    'name' => 'video_background',
-    'label' => 'Video background',
-    ])
-</div>
-
-@formConnectedFields(['keepAlive' => true,
-'fieldName' => 'video_background',
-'fieldValues' => true,
-'renderForBlocks' => true
+@formField('files', [
+'name' => 'bg_video',
+'note' => '',
+'label' => 'Background video',
 ])
 
-<div style="margin-top: -26px">
-    @formField('files', [
-    'name' => 'bg_video',
-    'note' => '',
-    'label' => 'Video',
-    ])
-</div>
+@php
+$extra = ob_get_contents();
+ob_end_clean();
+@endphp
 
-@endformConnectedFields
-
-@include('admin.blocks.defaults.buttons')
-
-@include('admin.blocks.defaults.block_id')
+@include('admin.blocks.defaults.advanced', ['extra' => $extra])
