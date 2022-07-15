@@ -1,10 +1,13 @@
 @php
+use App\Models\Page;
 $theme_name = env('THEME_NAME');
 $limit = $block->input('limit') !== 'all' ? $block->input('limit') : -1;
-$posts = App\Models\Page::withTag([$block->input('tags')])->orderBy('position',
-'asc')->published()->limit($limit)->get()->filter(function ($post) {
-return $post->nestedSlug != request()->path();
-});
+$current_post = Page::published()->get()->filter(function($item) {
+return $item->nestedSlug == request()->path();
+})->first();
+$exclude = $current_post ? [$current_post->id] : [];
+$posts = Page::withTag([$block->input('tags')])->orderBy('position',
+'asc')->published()->whereNotIn('id', $exclude)->limit($limit)->get();
 $id = $block->input('block_id') ?? uniqid();
 @endphp
 @if (View::exists("themes.$theme_name.posts"))

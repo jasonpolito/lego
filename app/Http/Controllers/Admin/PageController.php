@@ -18,19 +18,23 @@ class PageController extends BaseModuleController
         'reorder' => true,
     ];
 
-    // protected $indexColumns = [
-    //     'title' => [ // field column
-    //         'title' => 'Title',
-    //         'field' => 'title',
-    //         'sort' => true,
-    //     ],
-    //     'page_type' => [ // field column
-    //         'title' => 'Type',
-    //         'sort' => true,
-    //         'field' => 'pageType',
-    //         'present' => true
-    //     ],
-    // ];
+    protected $indexColumns = [
+        'title' => [ // field column
+            'title' => 'Title',
+            'field' => 'title',
+            'sort' => true,
+        ],
+        'tagsAsString' => [
+            'title' => 'Tags',
+            'field' => 'tagsAsString',
+            'present' => true,
+        ],
+        'lastUpdated' => [
+            'title' => 'Last Updated',
+            'field' => 'lastUpdated',
+            'present' => true,
+        ],
+    ];
 
     protected function formData($request)
     {
