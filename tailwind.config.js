@@ -65,7 +65,7 @@ module.exports = {
                 translate: ['group-hover', 'group-focus', 'active'],
                 scale: ['group-hover', 'group-focus'],
                 rotate: ['group-hover', 'group-focus'],
-                opacity: ['group-focus'],
+                opacity: ['peer-hover', 'group-focus'],
                 margin: ['last'],
                 fontWeight: ['dark'],
             }

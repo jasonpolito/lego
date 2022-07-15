@@ -1,13 +1,21 @@
 @php
 use App\Http\Controllers\PageController;
-$post = get_post();
 $theme_name = env('THEME_NAME');
-$bg_img = !Str::contains($block->image('flexible', 'flexible'), 'data:image') ? $block->image('flexible', 'flexible') :
-false;
+if ($block->input('use_main_image')) {
+$post = get_post();
 if ($post) {
 $bg_img = !Str::contains($post->image('flexible', 'flexible'), 'data:image') ? $post->image('flexible', 'flexible') :
 false;
+} else {
+$bg_img = !Str::contains($block->image('flexible', 'flexible'), 'data:image') ? $block->image('flexible',
+'flexible') : false;
 }
+} else {
+$bg_img = !Str::contains($block->image('flexible', 'flexible'), 'data:image') ? $block->image('flexible',
+'flexible') : false;
+}
+// $bg_img = $post_img ?? $block_img;
+// ddd($block_img);
 $id = $block->input('block_id') ?? uniqid();
 @endphp
 @if (View::exists("themes.$theme_name.hero"))

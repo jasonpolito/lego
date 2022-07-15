@@ -45,6 +45,11 @@ function link_text($block)
     }
 }
 
+function active_link($link)
+{
+    return Str::contains('/' . request()->path(), link_url($link));
+}
+
 function has_img($img)
 {
     return !Str::contains($img, 'data:image');

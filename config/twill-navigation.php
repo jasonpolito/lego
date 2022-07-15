@@ -32,7 +32,7 @@ return [
         'module' => true,
     ],
     'settings' => [
-        'title' => 'Global Settings',
+        'title' => 'Settings',
         'route' => 'admin.settings',
         'params' => ['section' => 'global'],
         'primary_navigation' => [
@@ -47,5 +47,10 @@ return [
                 'params' => ['section' => 'sitemap']
             ],
         ]
+    ],
+    'view_site' => [
+        'title' => 'View Site',
+        'route' => 'home',
+        'target' => 'external',
     ],
 ];

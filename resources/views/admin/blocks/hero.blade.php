@@ -24,6 +24,13 @@
 'name' => 'flexible',
 'label' => 'Background Image',
 ])
+<div style="margin-top: -26px">
+    @formField('checkbox', [
+    'name' => 'use_main_image',
+    'label' => 'Use main image'
+    ])
+</div>
+
 
 @endformConnectedFields
 

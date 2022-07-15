@@ -81,10 +81,11 @@ $has_social = true;
     <div class="pt-8 pb-16 text-xs bg-canvas text-canvas-mid">
         <x-container>
             <div class="flex">
-                <ul class="flex items-center my-4 -mx-2">
-                    <li class="px-2">{!! PageController::parsePHP($block->input('legal_copy')) !!}</li>
+                <ul class="flex flex-wrap items-center my-4 -mx-2">
+                    <li class="w-full px-2 sm:w-auto">{!! PageController::parsePHP($block->input('legal_copy')) !!}</li>
+                    <li class="w-full pt-4 sm:hidden"></li>
                     @foreach (get_block_children($block->children, 'link_item') as $link)
-                    <li class="px-2 opacity-75">|</li>
+                    <li class="px-2 opacity-75 {{ $loop->first }} hidden sm:block">|</li>
                     <li class="px-2"><span class="hover:text-white"><a href="{!! $link->input('url') ?? '#' !!}">{!!
                                 $link->input('text')
                                 !!}</a></span></li>

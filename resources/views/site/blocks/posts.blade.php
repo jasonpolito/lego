@@ -2,7 +2,9 @@
 $theme_name = env('THEME_NAME');
 $limit = $block->input('limit') !== 'all' ? $block->input('limit') : -1;
 $posts = App\Models\Page::withTag([$block->input('tags')])->orderBy('position',
-'asc')->published()->limit($limit)->get();
+'asc')->published()->limit($limit)->get()->filter(function ($post) {
+return $post->nestedSlug != request()->path();
+});
 $id = $block->input('block_id') ?? uniqid();
 @endphp
 @if (View::exists("themes.$theme_name.posts"))
@@ -17,15 +19,16 @@ $id = $block->input('block_id') ?? uniqid();
             @include('site.blocks.defaults.title', ['block' => $block])
             <div></div>
         </div>
-        <x-cols class="justify-center md:-mx-4">
+        <x-cols class="justify-center">
             @foreach ($posts as $post)
             @php
             $url = route('page.show', ['slug' => $post->nestedSlug])
             @endphp
-            <x-col class="flex justify-center w-full md:px-4 lg:w-1/2">
+            <x-col class="flex justify-center w-full lg:w-1/2">
                 <div class="w-full bg-white max-w-lg my-4 {{ settings('rounded') }} lg:max-w-none">
                     <div class="overflow-hidden {{ settings('rounded') }}">
-                        <a href="{{ $url }}" class="block h-56 overflow-hidden rounded-t-md xl:h-80 group">
+                        <a href="{{ $url }}"
+                            class="block h-56 overflow-hidden rounded-t-md xl:h-80 group bg-gradient-to-br from-primary to-primary-700">
                             <div class="fill-parent"><img src="{{ $post->image('flexible', 'flexible') }}"
                                     class="object-cover w-full h-full transition duration-300 transform group-hover:scale-110"
                                     alt="{{ $post->imageAltText('flexible') }}">

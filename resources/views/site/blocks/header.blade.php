@@ -34,13 +34,20 @@ $themes = [
                     @foreach ($block->children()->orderBy('position')->get() as $link)
                     @php
                     $link_id = Str::slug($link->input('text'), '_');
+                    $active = active_link($link);
                     $has_megamenu = $link->input('has_megamenu');
                     @endphp
                     <li class="h-full group">
                         <a href="{!! link_url($link) !!}" @mouseover="activeMenu = '{{ $link_id }}'"
                             @focus="activeMenu = '{{ $link_id }}'" x-ref="{{ $link_id }}"
-                            class="block h-full p-6 transition hover:opacity-80">{!!
+                            class="block h-full p-6 transition hover:text-primary {{ $active ? 'text-primary hover:opacity-75' : '' }}">{!!
                             link_text($link) !!}
+                            @if ($active)
+                            <div
+                                class="absolute bottom-0 w-3 h-1 mb-3 transform -translate-x-1/2 rounded-full bg-primary left-1/2">
+                            </div>
+
+                            @endif
                             @if ($has_megamenu)
                             <div class="absolute left-0 z-50 w-full h-8 top-full"></div>
 
@@ -50,10 +57,25 @@ $themes = [
                         <ul
                             class="absolute pb-4 text-sm transition bg-white rounded shadow-2xl opacity-0 pointer-events-none group-hover:pointer-events-auto group-hover:opacity-100 top-full whitespace-nowrap">
                             @foreach ($link->children()->orderBy('position')->get() as $link)
+                            @php
+                            $active = active_link($link);
+                            @endphp
+
                             <li>
                                 <a style="min-width: 10rem" href="{!! link_url($link) !!}"
-                                    class="block px-6 py-2 pr-8 transition hover:opacity-80">{!! link_text($link)
-                                    !!}</a>
+                                    class="block px-6 py-2 pr-8 transition hover:text-primary {{ $active ? 'text-primary' : '' }}">
+
+                                    <div class="peer fill-parent"></div>
+                                    <div
+                                        class="transition opacity-{{ $active ? '5' : '0' }} pointer-events-none fill-parent bg-primary peer-hover:opacity-10">
+                                    </div>
+                                    @if ($active)
+                                    <div
+                                        class="absolute left-0 w-1 h-1 ml-3 transform -translate-y-1/2 rounded-full top-1/2 bg-primary">
+                                    </div>
+                                    @endif
+                                    {!! link_text($link) !!}
+                                </a>
                             </li>
                             @endforeach
                         </ul>
@@ -61,9 +83,10 @@ $themes = [
                     </li>
                     @endforeach
                 </ul>
-                <ul class="flex items-center -mr-6 xl:hidden" x-data="{menuOpen: false}">
+                <ul class="flex items-center -mr-4 sm:-mr-6 xl:hidden" x-data="{menuOpen: false}">
                     <li>
-                        <a href="#" class="block p-6" @click.prevent="menuOpen = !menuOpen">
+                        <a href="#" class="block p-6 transition hover:text-primary"
+                            @click.prevent="menuOpen = !menuOpen">
                             <div class="w-8 h-8">
                                 <svg xmlns="http://www.w3.org/2000/svg"
                                     :class="{'opacity-0 -rotate-90': menuOpen, 'opacity-100 -rotate-0': !menuOpen}"
@@ -79,16 +102,27 @@ $themes = [
                                 </svg>
                             </div>
                         </a>
-                        <ul class="absolute right-0 pb-6 mr-2 transition duration-300 transform -translate-y-8 bg-white rounded-lg shadow-xl opacity-0 pointer-events-none translat top-full"
+                        <ul class="absolute right-0 pb-2 mr-4 transition duration-300 transform -translate-y-8 bg-white rounded-lg shadow-xl opacity-0 pointer-events-none sm:mr-6 translat top-full"
                             :class="{'pointer-events-auto opacity-100 translate-y-0': menuOpen, 'pointer-events-none opacity-0 -translate-y-4': !menuOpen}">
+                            <li @click.outside="menuOpen = false" x-show="menuOpen" class="fill-parent"></li>
                             @foreach ($block->children()->orderBy('position')->get() as $link)
+                            @php
+                            $active = active_link($link);
+                            @endphp
                             <li>
-                                <a style="min-width: 12rem" href="{!! $link->input('url') !!}"
-                                    class="block px-8 py-4 group whitespace-nowrap">
-                                    <div class="transition opacity-0 fill-parent bg-canvas group-hover:opacity-10">
+                                <a style="min-width: 12rem" href="{!! link_url($link) !!}"
+                                    class="block px-8 py-3 transition group whitespace-nowrap hover:text-primary {{ $active ? 'text-primary' : '' }}">
+                                    <div
+                                        class="transition opacity-{{ $active ? '5' : '0' }} fill-parent bg-primary group-hover:opacity-10 group-focus:opacity-10">
                                     </div>
+                                    @if ($active)
+                                    <div
+                                        class="absolute left-0 w-2 h-2 ml-3 transform -translate-y-1/2 rounded-full top-1/2 bg-primary">
+                                    </div>
+
+                                    @endif
                                     {!!
-                                    $link->input('text') !!}
+                                    link_text($link) !!}
                                 </a>
                             </li>
                             @endforeach

@@ -21,6 +21,10 @@ use Illuminate\Support\Facades\Redirect;
 |
 */
 
+Route::get('/view-site', function () {
+    return Redirect::to('/');
+})->name('home');
+
 Route::view('/styleguide', 'pages.styleguide')->name('stylguide');
 
 Route::get('/admin', function () {
