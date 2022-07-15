@@ -96,6 +96,7 @@ array_push($font_options, [
         @formField('select', [
         'label' => 'Body Font',
         'name' => 'font_body_g0j09sd09jdssd',
+        'searchable' => true,
         'options' => $font_options,
         ])
     </div>
@@ -104,6 +105,7 @@ array_push($font_options, [
         @formField('select', [
         'label' => 'Title Font',
         'name' => 'font_title_g0j09sd09jdssd',
+        'searchable' => true,
         'options' => $font_options,
         ])
     </div>
@@ -115,16 +117,20 @@ array_push($font_options, [
 @formField('input', [
 'type' => 'textarea',
 'name' => 'global_head_insert_code',
-'placeholder' => 'Code to insert into <head>',
-'label' => 'Head code'
-])
+'placeholder' => 'Code to insert into
 
-@formField('input', [
-'type' => 'textarea',
-'placeholder' => 'Code to insert into <body>',
-'name' => 'global_body_insert_code',
-'label' => 'Body code'
-])
-@endformFieldset
+<head>',
+    'label' => 'Head code'
+    ])
 
-@endsection
+    @formField('input', [
+    'type' => 'textarea',
+    'placeholder' => 'Code to insert into
+
+<body>',
+    'name' => 'global_body_insert_code',
+    'label' => 'Body code'
+    ])
+    @endformFieldset
+
+    @endsection

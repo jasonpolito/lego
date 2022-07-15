@@ -30,7 +30,7 @@ $has_social = true;
             </div>
             <x-cols class="justify-between">
                 @if (!Str::contains($block->image('flexible', 'flexible'), 'data:image') || !empty($footer_copy))
-                <x-col class="w-full my-8 md:w-1/3 text-canvas-content">
+                <x-col class="w-full my-8 lg:w-1/3 text-canvas-content">
                     @if (!Str::contains($block->image('flexible', 'flexible'), 'data:image'))
                     <a class="block mb-8" href="/">
                         <img src="{{ $block->image('flexible', 'flexible', ['fm' => null]) }}"
@@ -47,7 +47,7 @@ $has_social = true;
                 $links = get_block_children($col->children, 'link_item');
                 $btns = get_block_children($col->children, 'button');
                 @endphp
-                <x-col class="w-1/2 md:w-1/{{ $cols->count() / 2 }} xl:w-auto my-8">
+                <x-col class="w-1/2 my-8 sm:w-1/3 lg:w-auto">
                     <div>
                         <div class="md:w-1/3"></div>
                         <h5 class="mb-2 leading-6 show-rhythm">{!! $col->input('title') !!}</h5>
@@ -75,21 +75,6 @@ $has_social = true;
                     @endif
                 </x-col>
                 @endforeach
-                @if ($has_social)
-                <x-col class="w-full my-8 md:w-1/3 text-canvas-content">
-                    <ul class="flex -mx-2">
-                        @foreach ($social_links as $link)
-                        @if (!empty($block->input($link . '_link')))
-                        <li class="px-2">
-                            <a class="block mb-2" target="_blank" href="{{ $block->input($link . '_link') }}">
-                                @include('partials.socialicons.' . $link)
-                            </a>
-                        </li>
-                        @endif
-                        @endforeach
-                    </ul>
-                </x-col>
-                @endif
             </x-cols>
         </x-container>
     </x-section>

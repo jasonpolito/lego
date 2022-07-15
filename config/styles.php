@@ -22,14 +22,16 @@ return [
     ],
     'font_options' => [
         'Open Sans',
+        'Noto Serif',
+        'Noto Sans',
         'Jost',
         'Merriweather',
         'Inter',
         'Barlow Condensed',
-        'Inter',
         'Bungee',
         'Playfair Display',
         'Roboto Mono',
+        'Amiri',
     ],
     'fonts' => [
         // 'body' => 'Roboto Mono',
