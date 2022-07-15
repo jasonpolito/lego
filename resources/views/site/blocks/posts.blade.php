@@ -11,7 +11,7 @@ $id = $block->input('block_id') ?? uniqid();
 @include("themes.$theme_name.posts", ['block' => $block])
 @else
 @if ($block->input('tags'))
-
+@if (count($posts))
 <x-section id="{{ $id }}" :reduced-padding="$block->input('reduced_padding')">
     <div class="fill-parent bg-canvas opacity-5"></div>
     <x-container>
@@ -55,6 +55,7 @@ $id = $block->input('block_id') ?? uniqid();
         </x-cols>
     </x-container>
 </x-section>
+@endif
 @else
 
 <x-section class="text-red-800 bg-red-100">

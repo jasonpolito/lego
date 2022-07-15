@@ -48,41 +48,11 @@ $colors = [
 
 
 <link rel="stylesheet" href="{{ mix('css/app.css') }}">
-@foreach ($colors as $name => $hex)
-<style>
-
-</style>
-@endforeach
 <style>
     @include('layouts.includes.colors')
-
-    /*  */
-    ::selection {
-        color: white;
-        background-color: var(--color-primary);
-    }
-
-    /*  */
-    html body {
-        font-size: {
-                {
-                config('styles.base.font-size')
-            }
-        }
-
-        ;
-    }
-
-    [class*=material-icons] {
-        vertical-align: text-bottom;
-    }
-
-    @foreach ($fonts as $type=> $font)
-
-    /* .font-{{ $type }} {
-        font-family: "{{ $font }}";
-    } */
-    @endforeach .font-title {
+</style>
+<style>
+    .font-title {
         font-family: "{{ $title_font }}";
     }
 
@@ -103,6 +73,16 @@ $colors = [
         width: 100%;
         height: 100%;
         z-index: -1;
+    }
+
+    ::-moz-selection {
+        color: white;
+        background: var(--color-primary);
+    }
+
+    ::selection {
+        color: white;
+        background: var(--color-primary);
     }
 </style>
 

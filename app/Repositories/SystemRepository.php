@@ -68,8 +68,9 @@ class SystemRepository
     public static function generateColorVarsCSS()
     {
         $primary = self::generateColorVarsArray(self::primaryColor(), 'primary');
+        $canvas = self::generateColorVarsArray(self::canvasColor(), 'canvas');
         $error = self::generateColorVarsArray('#cc1d00', 'error');
-        $canvas = self::generateCanvasColorVarsArray(self::canvasColor());
+        // $canvas = self::generateCanvasColorVarsArray(self::canvasColor());
         $colors = array_merge($error, array_merge($primary, $canvas));
         $css = ":root {\r\n";
         foreach ($colors as $name => $value) {
@@ -82,8 +83,9 @@ class SystemRepository
     public static function generateColorClassesCSS()
     {
         $primary = self::generateColorVarsArray(self::primaryColor(), 'primary');
+        $canvas = self::generateColorVarsArray(self::canvasColor(), 'canvas');
         $error = self::generateColorVarsArray('#cc1d00', 'error');
-        $canvas = self::generateCanvasColorVarsArray(self::canvasColor());
+        // $canvas = self::generateCanvasColorVarsArray(self::canvasColor());
         $colors = array_merge($error, array_merge($primary, $canvas));
         $css = "";
         foreach ($colors as $name => $value) {
@@ -100,8 +102,9 @@ class SystemRepository
     public static function generateColorStateClassesCSS()
     {
         $primary = self::generateColorVarsArray(self::primaryColor(), 'primary');
+        $canvas = self::generateColorVarsArray(self::canvasColor(), 'canvas');
         $error = self::generateColorVarsArray('#cc1d00', 'error');
-        $canvas = self::generateCanvasColorVarsArray(self::canvasColor());
+        // $canvas = self::generateCanvasColorVarsArray(self::canvasColor());
         $colors = array_merge($error, array_merge($primary, $canvas));
         $css = "";
         foreach ($colors as $name => $value) {

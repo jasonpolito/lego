@@ -25,12 +25,12 @@ $has_social = true;
 <footer id="{{ $id }}">
     <x-section class="flex-1 text-sm text-white font-content bg-canvas">
         <x-container>
-            <div class="w-full md:pb-8 md:-mt-8">
+            {{-- <div class="w-full md:pb-8 md:-mt-8">
                 <div class="border-t opacity-50 fill-parent border-canvas-mid"></div>
-            </div>
+            </div> --}}
             <x-cols class="justify-between">
                 @if (!Str::contains($block->image('flexible', 'flexible'), 'data:image') || !empty($footer_copy))
-                <x-col class="w-full my-8 lg:w-1/3 text-canvas-content">
+                <x-col class="w-full my-8 lg:w-1/3 text-canvas-100">
                     @if (!Str::contains($block->image('flexible', 'flexible'), 'data:image'))
                     <a class="block mb-8" href="/">
                         <img src="{{ $block->image('flexible', 'flexible', ['fm' => null]) }}"
@@ -54,14 +54,14 @@ $has_social = true;
                     </div>
                     <ul class="leading-6 content show-rhythm">
                         @foreach ($links as $link)
-                        <li class="text-canvas-content">
+                        <li class="text-canvas-100">
                             @if ($link->input('is_title'))
                             <span class="opacity-50">{!!
                                 $link->input('text') !!}</span>
                             @else
                             <span class="">
                                 <a class="group" href="{!! link_url($link) !!}"><span
-                                        class="text-canvas-content group-hover:text-white group-focus:text-white">
+                                        class="text-canvas-100 group-hover:text-white group-focus:text-white">
                                         {!!
                                         $link->input('text') !!}
                                     </span></a>
@@ -78,7 +78,7 @@ $has_social = true;
             </x-cols>
         </x-container>
     </x-section>
-    <div class="pt-8 pb-16 text-xs bg-canvas text-canvas-mid">
+    <div class="pt-8 pb-16 text-xs bg-canvas text-canvas-200">
         <x-container>
             <div class="flex">
                 <ul class="flex flex-wrap items-center my-4 -mx-2">

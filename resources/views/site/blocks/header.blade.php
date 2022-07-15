@@ -55,7 +55,7 @@ $themes = [
                         </a>
                         @if ($link->children()->count())
                         <ul
-                            class="absolute pb-4 text-sm transition bg-white rounded shadow-2xl opacity-0 pointer-events-none group-hover:pointer-events-auto group-hover:opacity-100 top-full whitespace-nowrap">
+                            class="absolute py-2 text-sm transition duration-300 -translate-y-8 bg-white border rounded shadow-2xl opacity-0 pointer-events-none group-hover:translate-y-0 border-canvas-50 group-hover:pointer-events-auto group-hover:opacity-100 top-full whitespace-nowrap">
                             @foreach ($link->children()->orderBy('position')->get() as $link)
                             @php
                             $active = active_link($link);
@@ -85,7 +85,7 @@ $themes = [
                 </ul>
                 <ul class="flex items-center -mr-4 sm:-mr-6 xl:hidden" x-data="{menuOpen: false}">
                     <li>
-                        <a href="#" class="block p-6 transition hover:text-primary"
+                        <a href="#" class="block p-6 transition opacity-50 hover:text-primary hover:opacity-100"
                             @click.prevent="menuOpen = !menuOpen">
                             <div class="w-8 h-8">
                                 <svg xmlns="http://www.w3.org/2000/svg"
@@ -102,7 +102,7 @@ $themes = [
                                 </svg>
                             </div>
                         </a>
-                        <ul class="absolute right-0 pb-2 mr-4 transition duration-300 transform -translate-y-8 bg-white rounded-lg shadow-xl opacity-0 pointer-events-none sm:mr-6 translat top-full"
+                        <ul class="absolute right-0 py-2 mr-4 -mt-2 transition duration-300 transform -translate-y-8 bg-white border rounded-lg shadow-xl opacity-0 pointer-events-none border-canvas-50 sm:mr-6 translat top-full"
                             :class="{'pointer-events-auto opacity-100 translate-y-0': menuOpen, 'pointer-events-none opacity-0 -translate-y-4': !menuOpen}">
                             <li @click.outside="menuOpen = false" x-show="menuOpen" class="fill-parent"></li>
                             @foreach ($block->children()->orderBy('position')->get() as $link)

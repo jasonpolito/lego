@@ -48,7 +48,8 @@ $id = $block->input('block_id') ?? uniqid();
 
         @endif
         class="
-        opacity-{{ $block->input('overlay_opacity') ?? '50' }} fill-parent bg-canvas"></div>
+        opacity-{{ $block->input('overlay_opacity') ?? '50' }} fill-parent bg-gradient-to-br from-primary-700
+        to-primary-900"></div>
     @else
     <div class="fill-parent bg-gradient-to-br from-primary-500 to-primary-700"></div>
     @endif
