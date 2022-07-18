@@ -56,6 +56,13 @@
     ])
 </div>
 
+<div style="margin-top: -26px">
+    @formField('checkbox', [
+    'name' => 'parallax_background',
+    'label' => 'Parallax background'
+    ])
+</div>
+
 @include('admin.blocks.defaults.align')
 
 @php ob_start(); @endphp

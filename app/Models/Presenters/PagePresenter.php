@@ -11,10 +11,10 @@ class PagePresenter extends Presenter
      *
      * @var Model
      */
-    protected $entity;
-    public function __construct($entity)
+    protected $model;
+    public function __construct($model)
     {
-        $this->entity = $entity;
+        $this->model = $model;
     }
     /**
      * Return the requested presenter attribute.
@@ -29,7 +29,7 @@ class PagePresenter extends Presenter
         if (method_exists($this, $property)) {
             return $this->{$property}();
         }
-        return $this->entity->{$property};
+        return $this->model->{$property};
     }
 
     public function fullSlugAsString()
@@ -66,7 +66,7 @@ class PagePresenter extends Presenter
      */
     public function lastUpdated()
     {
-        $user = $this->entity->revisions()->latest()->first()->user->name;
+        $user = $this->model->revisions()->latest()->first()->user->name;
         return "Updated: " . \Carbon\Carbon::parse($this->updated_at)->diffForHumans() . ' by ' . $user;
     }
 }

@@ -9,6 +9,8 @@ $id = $block->input('block_id') ?? uniqid();
 @include("themes.$theme_name.actionbox", ['block' => $block])
 @else
 <div id="{{ $id }}" class="actionbox {{ $block->input('divide_sections') ? '-mb-32 z-10 -translate-y-1/2' : 'py-16' }}">
+    <div class="border-t border-b opacity-50 fill-parent border-canvas-50"></div>
+
     <x-container>
         <div class="px-5 pb-8 pt-10 sm:p-12 overflow-hidden bg-primary {{ settings('rounded') }}">
             <div class="fill-parent mix-blend-multiply">

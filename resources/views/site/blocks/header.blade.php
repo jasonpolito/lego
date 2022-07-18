@@ -44,7 +44,7 @@ $themes = [
                             link_text($link) !!}
                             @if ($active)
                             <div
-                                class="absolute bottom-0 w-3 h-1 mb-3 transform -translate-x-1/2 rounded-full bg-primary left-1/2">
+                                class="absolute bottom-0 w-3 h-1 mb-3 transition duration-300 transform -translate-x-1/2 rounded-full group-hover:scale-x-150 bg-primary left-1/2">
                             </div>
 
                             @endif
@@ -63,7 +63,7 @@ $themes = [
 
                             <li>
                                 <a style="min-width: 10rem" href="{!! link_url($link) !!}"
-                                    class="block px-6 py-2 pr-8 transition hover:text-primary {{ $active ? 'text-primary' : '' }}">
+                                    class="block group px-6 py-2 pr-8 transition hover:text-primary {{ $active ? 'text-primary' : '' }}">
 
                                     <div class="peer fill-parent"></div>
                                     <div
@@ -71,7 +71,7 @@ $themes = [
                                     </div>
                                     @if ($active)
                                     <div
-                                        class="absolute left-0 w-1 h-1 ml-3 transform -translate-y-1/2 rounded-full top-1/2 bg-primary">
+                                        class="absolute left-0 w-1 h-1 ml-3 transition duration-300 transform -translate-y-1/2 rounded-full peer-hover:scale-150 top-1/2 bg-primary">
                                     </div>
                                     @endif
                                     {!! link_text($link) !!}
@@ -117,7 +117,7 @@ $themes = [
                                     </div>
                                     @if ($active)
                                     <div
-                                        class="absolute left-0 w-2 h-2 ml-3 transform -translate-y-1/2 rounded-full top-1/2 bg-primary">
+                                        class="absolute left-0 w-2 h-2 ml-3 transition transform -translate-y-1/2 rounded-full top-1/2 bg-primary">
                                     </div>
 
                                     @endif

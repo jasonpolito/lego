@@ -16,6 +16,7 @@ $id = $block->input('block_id') ?? uniqid();
 @if ($block->input('tags'))
 @if (count($posts))
 <x-section id="{{ $id }}" :reduced-padding="$block->input('reduced_padding')">
+    {{-- <div class="border-t border-b opacity-25 fill-parent border-canvas-50"></div> --}}
     <div class="fill-parent bg-canvas opacity-5"></div>
     <x-container>
         <div class="text-center">

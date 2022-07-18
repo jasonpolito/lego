@@ -20,25 +20,27 @@ $id = $block->input('block_id') ?? Str::slug($block->input('title_text'));
                 @endphp
                 <a href="{{ $block->input('img_url') }}" @if ($external) target="_blank" @endif
                     class="lg:hidden block group overflow-hidden bg-canvas {{ settings('rounded') }}">
-                    <img src="{{ $img }}" class="transition duration-300 transform group-hover:scale-110">
+                    <img src="{{ $img }}" alt="{{ $block->imageAltText('flexible') }}"
+                        class="transition duration-300 transform group-hover:scale-110">
                 </a>
                 <div class="hidden lg:block h-full {{ !$reversed ? 'lg:pl-8 xl:pl-14' : 'lg:pr-8 xl:pr-14' }}">
                     <a href="{{ $block->input('img_url') }}" @if ($external) target="_blank" @endif
                         class="block h-full group overflow-hidden bg-canvas {{ settings('rounded') }}">
                         <div class="fill-parent">
-                            <img src="{{ $img }}"
+                            <img src="{{ $img }}" alt="{{ $block->imageAltText('flexible') }}"
                                 class="object-cover w-full h-full transition duration-300 transform group-hover:scale-110">
                         </div>
                     </a>
                 </div>
                 @else
                 <div class="lg:hidden block overflow-hidden bg-canvas {{ settings('rounded') }}">
-                    <img src="{{ $img }}">
+                    <img src="{{ $img }}" alt="{{ $block->imageAltText('flexible') }}">
                 </div>
                 <div class="hidden lg:block h-full {{ !$reversed ? 'lg:pl-8 xl:pl-14' : 'lg:pr-8 xl:pr-14' }}">
                     <div class="block h-full overflow-hidden bg-canvas {{ settings('rounded') }}">
                         <div class="fill-parent">
-                            <img src="{{ $img }}" class="object-cover w-full h-full">
+                            <img src="{{ $img }}" alt="{{ $block->imageAltText('flexible') }}"
+                                class="object-cover w-full h-full">
                         </div>
                     </div>
                 </div>
