@@ -40,7 +40,7 @@ $sections = [
         @if (!$loop->first)
         <div class="flex justify-center py-8 mb-16">
             <div class="w-1/3">
-                <div class="border-t border-canvas-content"></div>
+                <div class="border-t border-canvas-50"></div>
             </div>
         </div>
 

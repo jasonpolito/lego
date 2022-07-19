@@ -4,7 +4,7 @@ $sections = get_block_children($block->children()->orderBy('position')->get(), '
 $id = $block->input('block_id') ?? uniqid();
 @endphp
 <x-section id="{{ $id }}">
-    <div class="border-t opacity-50 fill-parent border-canvas-content"></div>
+    <div class="border-t opacity-50 fill-parent border-canvas-50"></div>
     <x-container>
         @include('site.blocks.defaults.title', ['block' => $block])
         @foreach ($sections as $section)
@@ -15,7 +15,7 @@ $id = $block->input('block_id') ?? uniqid();
             @if (!$loop->first)
             <div class="flex justify-center py-8 mb-16">
                 <div class="w-1/3">
-                    <div class="border-t border-canvas-content"></div>
+                    <div class="border-t border-canvas-50"></div>
                 </div>
             </div>
             @endif

@@ -11,7 +11,7 @@ $id = $block->input('block_id') ?? uniqid();
 @include("themes.$theme_name.callout", ['block' => $block])
 @else
 <x-section id="{{ $id }}" class="text-white text-{{ $block->input('align') }} callout">
-    {{-- <div class="border-t opacity-50 fill-parent border-canvas-content"></div> --}}
+    {{-- <div class="border-t opacity-50 fill-parent border-canvas-50"></div> --}}
 
     <x-container>
         <div class="px-5 py-12 bg-center bg-cover {{ settings('rounded') }} overflow-hidden bg-primary sm:px-16 sm:py-20 sm:-mx-8 lg:-mx-0 lg:px-20 md:py-32 xl:px-32"

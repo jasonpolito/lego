@@ -7,7 +7,7 @@ $id = $block->input('block_id') ?? uniqid();
 @include("themes.$theme_name.faqs", ['block' => $block])
 @else
 <div x-data="{selected:null}" id="{{ $id }}">
-    <div class="border-t border-b opacity-50 fill-parent border-canvas-content"></div>
+    <div class="border-t border-b opacity-50 fill-parent border-canvas-50"></div>
     <x-section class="faqs">
         <x-container>
             <div class="pb-8 sm:text-center sm:pb-16">@include('site.blocks.defaults.title', ['block' => $block])</div>

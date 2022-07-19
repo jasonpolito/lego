@@ -11,7 +11,7 @@ $themes = [
 @if (View::exists("themes.$theme_name.header"))
 @include("themes.$theme_name.header", ['block' => $block])
 @else
-<header class="sticky top-0 z-50 w-full bg-white shadow xl:relative" x-data="{activeMenu: null}">
+<header class="sticky top-0 z-50 w-full text-white shadow bg-canvas xl:relative" x-data="{activeMenu: null}">
     @if ($block->input('show_topbar'))
     <div class="py-4 text-xs">
         <div class="bg-black fill-parent opacity-10"></div>
@@ -40,11 +40,11 @@ $themes = [
                     <li class="h-full group">
                         <a href="{!! link_url($link) !!}" @mouseover="activeMenu = '{{ $link_id }}'"
                             @focus="activeMenu = '{{ $link_id }}'" x-ref="{{ $link_id }}"
-                            class="block h-full p-6 transition hover:text-primary {{ $active ? 'text-primary hover:opacity-75' : '' }}">{!!
+                            class="block h-full p-6 transition hover:text-primary-50 {{ $active ? 'text-primary-50 hover:opacity-75' : '' }}">{!!
                             link_text($link) !!}
                             @if ($active)
                             <div
-                                class="absolute bottom-0 w-3 h-1 mb-3 transition duration-300 transform -translate-x-1/2 rounded-full group-hover:scale-x-150 bg-primary left-1/2">
+                                class="absolute bottom-0 w-3 h-1 mb-3 transition duration-300 transform -translate-x-1/2 rounded-full group-hover:scale-x-150 bg-primary-50 left-1/2">
                             </div>
 
                             @endif
@@ -55,7 +55,7 @@ $themes = [
                         </a>
                         @if ($link->children()->count())
                         <ul
-                            class="absolute py-2 text-sm transition duration-300 -translate-y-8 bg-white border rounded shadow-2xl opacity-0 pointer-events-none group-hover:translate-y-0 border-canvas-50 group-hover:pointer-events-auto group-hover:opacity-100 top-full whitespace-nowrap">
+                            class="absolute py-2 text-sm text-white transition duration-300 -translate-y-8 border rounded shadow-2xl opacity-0 pointer-events-none bg-canvas group-hover:translate-y-0 border-canvas-800 group-hover:pointer-events-auto group-hover:opacity-100 top-full whitespace-nowrap">
                             @foreach ($link->children()->orderBy('position')->get() as $link)
                             @php
                             $active = active_link($link);
@@ -63,7 +63,7 @@ $themes = [
 
                             <li>
                                 <a style="min-width: 10rem" href="{!! link_url($link) !!}"
-                                    class="block group px-6 py-2 pr-8 transition hover:text-primary {{ $active ? 'text-primary' : '' }}">
+                                    class="block group px-6 py-2 pr-8 transition hover:text-primary-50 {{ $active ? 'text-primary-50' : '' }}">
 
                                     <div class="peer fill-parent"></div>
                                     <div
@@ -102,7 +102,7 @@ $themes = [
                                 </svg>
                             </div>
                         </a>
-                        <ul class="absolute right-0 py-2 mr-4 -mt-2 transition duration-300 transform -translate-y-8 bg-white border rounded-lg shadow-xl opacity-0 pointer-events-none border-canvas-50 sm:mr-6 translat top-full"
+                        <ul class="absolute right-0 py-2 mr-4 -mt-2 transition duration-300 transform -translate-y-8 bg-white border rounded-lg shadow-xl opacity-0 pointer-events-none border-canvas-800 sm:mr-6 translat top-full"
                             :class="{'pointer-events-auto opacity-100 translate-y-0': menuOpen, 'pointer-events-none opacity-0 -translate-y-4': !menuOpen}">
                             <li @click.outside="menuOpen = false" x-show="menuOpen" class="fill-parent"></li>
                             @foreach ($block->children()->orderBy('position')->get() as $link)
@@ -111,13 +111,13 @@ $themes = [
                             @endphp
                             <li>
                                 <a style="min-width: 12rem" href="{!! link_url($link) !!}"
-                                    class="block px-8 py-3 transition group whitespace-nowrap hover:text-primary {{ $active ? 'text-primary' : '' }}">
+                                    class="block px-8 py-3 transition group whitespace-nowrap hover:text-primary {{ $active ? 'text-primary-50' : '' }}">
                                     <div
-                                        class="transition opacity-{{ $active ? '5' : '0' }} fill-parent bg-primary group-hover:opacity-10 group-focus:opacity-10">
+                                        class="transition opacity-{{ $active ? '5' : '0' }} fill-parent bg-primary-50 group-hover:opacity-10 group-focus:opacity-10">
                                     </div>
                                     @if ($active)
                                     <div
-                                        class="absolute left-0 w-2 h-2 ml-3 transition transform -translate-y-1/2 rounded-full top-1/2 bg-primary">
+                                        class="absolute left-0 w-2 h-2 ml-3 transition transform -translate-y-1/2 rounded-full top-1/2 bg-primary-50">
                                     </div>
 
                                     @endif

@@ -5,7 +5,7 @@ $id = $block->input('block_id') ?? uniqid();
 @endphp
 
 <x-section id="{{ $id }}" :reduced-padding="$block->input('reduced_padding')">
-    {{-- <div class="border-t border-b opacity-50 fill-parent border-canvas-content"></div> --}}
+    {{-- <div class="border-t border-b opacity-50 fill-parent border-canvas-50></div> --}}
     <x-container>
         @if ($form)
         <div class="lg:text-center">@include('site.blocks.defaults.title', ['block' => $block])</div>

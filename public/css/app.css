@@ -1581,14 +1581,6 @@ margin: 0 (var(--line) * -1.5); */
     margin-bottom: 0 !important;
 }
 
-.btn-wrap:not(.btn-outline):hover .flash-outline {
-    box-shadow: inset 0 0 0 1px;
-}
-
-.btn-outline .flash-outline {
-    box-shadow: inset 0 0 0 1px;
-}
-
 .side-by-side + .side-by-side {
     padding-top: 0;
 }

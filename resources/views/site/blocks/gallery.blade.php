@@ -2,7 +2,7 @@
 $id = $block->input("block_id") ?? uniqid();
 @endphp
 <x-section id="{{ $id }}">
-    <div class="border-t opacity-50 fill-parent border-canvas-content"></div>
+    <div class="border-t opacity-50 fill-parent border-canvas-50"></div>
     <div class="px-5 mx-auto sm:px-6 md:px-10 lg:px-14 xl:container">
         @if (!empty($block->input('title_text')))
         <div class="mb-8 text-center">@include('site.blocks.defaults.title', ['block' => $block])</div>
