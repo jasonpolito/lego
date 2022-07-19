@@ -15,7 +15,7 @@
                         @error($name)
                         border-error focus:border-error
                         @else
-                        border-canvas-content focus:border-primary
+                        border-canvas-50 focus:border-primary
                         @enderror
                     {{ settings('rounded') }}" type="{{ $block->input('text_type') ?? 'text' }}"
                     @if($block->input('text_type') == 'tel')
@@ -32,7 +32,7 @@
                     @error($name)
                     border-error focus:border-error
                     @else
-                    border-canvas-content focus:border-primary
+                    border-canvas-50 focus:border-primary
                     @enderror
                      {{ settings('rounded') }}"
                     placeholder="{{ $block->input('placeholder') ?? $block->input('name') }}"></textarea>
@@ -42,7 +42,7 @@
             @if ($block->input('options_type') == 'select')
             <div class="-my-px">
                 <select id="{{ $id }}" multiple wire:model.defer="{{ $name }}" name="{{ $name }}"
-                    class="block w-full appearance-none py-2 px-4 text-base leading-10 group border border-canvas-content focus:border-primary {{ settings('rounded') }}"
+                    class="block w-full appearance-none py-2 px-4 text-base leading-10 group border border-canvas-50 focus:border-primary {{ settings('rounded') }}"
                     placeholder="{{ $block->input('placeholder') ?? $block->input('name') }}">
                     @foreach ($block->children()->orderBy('position')->get() as $opt)
                     <option value="{{ $opt->input('text') }}">{{ $opt->input('text') }}</option>

@@ -1,3 +1,10 @@
+@php
+$page_data = [
+'meta_title' => '404 - Page Not Found',
+'meta_description' => '404 - Page Not Found',
+'meta_noindex' => 1,
+];
+@endphp
 @extends('layouts.default')
 @section('content')
 <x-section>

@@ -24,19 +24,19 @@
 @section('fieldsets')
 
 <div style="display: flex; align-items: center; margin-top: -24px">
-    <div style="width: 33%">
-        @formField('select', [
+    <div style="width: 50%">
+        @formField('tags')
+        {{-- @formField('select', [
         'name' => 'page_type',
         'label' => 'Page Type',
         'default' => 'page',
         'options' => \App\Models\Page::AVAILABLE_PAGE_TYPES
-        ])
+        ]) --}}
     </div>
-    <div style="width: 1rem"></div>
+    {{-- <div style="width: 1rem"></div>
     <div style="width: 66%">
-        @formField('tags')
 
-    </div>
+    </div> --}}
 </div>
 
 

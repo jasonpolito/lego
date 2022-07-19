@@ -17,7 +17,7 @@ $templates = \App\Models\Template::options();
 ])
 
 @endif
-
+{{-- 
 
 @formField('select', [
 'name' => 'page_type',
@@ -25,4 +25,4 @@ $templates = \App\Models\Template::options();
 'label' => 'Page Type',
 'default' => 'page',
 'options' => \App\Models\Page::AVAILABLE_PAGE_TYPES
-])
+]) --}}
