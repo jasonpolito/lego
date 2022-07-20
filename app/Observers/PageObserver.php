@@ -26,11 +26,7 @@ class PageObserver
      */
     public function updated(Page $page)
     {
-        ddd();
         PageRepository::generateOpenGraphImage($page);
-        if ($page->isDirty('title')) {
-            PageRepository::generateOpenGraphImage($page);
-        }
     }
 
     /**

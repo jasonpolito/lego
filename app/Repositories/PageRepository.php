@@ -13,7 +13,9 @@ use A17\Twill\Repositories\ModuleRepository;
 use App\Models\Page;
 use App\Http\Controllers\PageController;
 use A17\Twill\Repositories\SettingRepository;
+use App\Http\Controllers\ImageController;
 use App\Models\Taxonomy;
+use Google\Service\BeyondCorp\ImageConfig;
 use Illuminate\Support\Facades\Storage;
 
 class PageRepository extends ModuleRepository
@@ -71,7 +73,6 @@ class PageRepository extends ModuleRepository
 
     public static function generateOpenGraphImage($model)
     {
-        $id = $model->id;
-        Storage::makeDirectory(public_path("img/opengraph/$id"));
+        ImageController::makeOpenGraph($model);
     }
 }

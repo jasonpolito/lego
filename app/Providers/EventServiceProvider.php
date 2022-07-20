@@ -32,6 +32,6 @@ class EventServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        // Page::observe(PageObserver::class);
+        Page::observe(PageObserver::class);
     }
 }
