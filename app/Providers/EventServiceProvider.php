@@ -34,7 +34,7 @@ class EventServiceProvider extends ServiceProvider
     public function boot()
     {
         Event::listen("cms-module.saved", function () {
-            ImageController::makeOpenGraph(Page::latest()->first());
+            ImageController::makeOpenGraph(Page::orderBy('updated_at', 'DESC')->get()->first());
         });
         // Page::observe(PageObserver::class);
     }
