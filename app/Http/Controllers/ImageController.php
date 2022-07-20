@@ -26,7 +26,7 @@ class ImageController extends Controller
         $height = 628;
         // $text =  wordwrap($page->title, 18); // Source Code Pro
         $text =  wordwrap($page->title, 22); // Roboto Bold
-        $company_name = Variable::where('search', 'company_name')->first() ? Variable::where('search', 'company_name')->first()->replace : env('COMPANY_NAME');
+        $company_name = Variable::where('search', 'company_name')->first() ? Variable::where('search', 'company_name')->first()->replace : (env('COMPANY_NAME') ?? " ");
         $padding = $height / 6.5;
 
         $img = \Image::make($page->image('flexible', 'flexible'));
