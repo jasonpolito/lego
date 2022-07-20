@@ -7,6 +7,8 @@ use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Event;
 use App\Listeners\SettingsSavedListener;
+use App\Models\Page;
+use App\Observers\PageObserver;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -25,10 +27,11 @@ class EventServiceProvider extends ServiceProvider
     /**
      * Register any events for your application.
      *
+     * php artisan make:observer PageObserver --model=Page
      * @return void
      */
     public function boot()
     {
-        //
+        // Page::observe(PageObserver::class);
     }
 }

@@ -13,6 +13,7 @@ use A17\Twill\Models\Behaviors\Sortable;
 use A17\Twill\Models\Model;
 use A17\Twill\Models\Tag;
 use App\Models\Presenters\PagePresenter;
+use App\Observers\PageObserver;
 
 class Page extends Model implements Sortable
 {

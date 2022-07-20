@@ -14,6 +14,7 @@ use App\Models\Page;
 use App\Http\Controllers\PageController;
 use A17\Twill\Repositories\SettingRepository;
 use App\Models\Taxonomy;
+use Illuminate\Support\Facades\Storage;
 
 class PageRepository extends ModuleRepository
 {
@@ -68,10 +69,9 @@ class PageRepository extends ModuleRepository
         Route::name('page.show')->get('{slug?}', [PageController::class, 'show'])->where('slug', '.*');
     }
 
-
-    public function order($query, array $orders = [])
+    public static function generateOpenGraphImage($model)
     {
-
-        return parent::order($query, $orders);
+        $id = $model->id;
+        Storage::makeDirectory(public_path("img/opengraph/$id"));
     }
 }

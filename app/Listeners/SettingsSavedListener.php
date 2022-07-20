@@ -29,17 +29,5 @@ class SettingsSavedListener
      */
     public function handle($event)
     {
-        $hex = app(SettingRepository::class)->byKey('main_color_sdgagasdag');
-        // chdir(base_path());
-        // $theme = file_get_contents('./theme.js');
-        // $theme = preg_replace("/(primary:\s\S*?').*?(')/", "$1$hex$2", $theme);
-        // file_put_contents('./theme.js', $theme);
-        echo '<pre>';
-        echo shell_exec('ls -a 2>&1');
-        echo shell_exec('node --version');
-        echo shell_exec('npm --version 2>&1');
-        echo shell_exec('npm run prod 2>&1');
-        dd();
-        // CompileAssets::dispatch();
     }
 }
