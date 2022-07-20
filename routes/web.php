@@ -37,7 +37,7 @@ Route::get('/admin', function () {
 });
 
 Route::get('/automagic.jpg', function (Request $request) {
-    $page = Page::find(7);
+    $page = Page::orderBy('updated_at', 'DESC')->get()->first();
     return ImageController::makeOpenGraph($page);
 })->name('admin.template.create');
 

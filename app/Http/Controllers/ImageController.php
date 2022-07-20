@@ -11,8 +11,8 @@ class ImageController extends Controller
 {
     public static function makeOpenGraph($page)
     {
-        $font_file = resource_path("fonts/SourceCodePro-Bold.ttf");
-        $font_file = resource_path("fonts/Roboto-Bold.ttf");
+        $font_file = public_path("fonts/SourceCodePro-Bold.ttf");
+        $font_file = public_path("fonts/Roboto-Bold.ttf");
         $hex = app(SettingRepository::class)->byKey('main_color_sdgagasdag') ?? '#147fd9';
         $fonts = [
             "src" => $font_file,
