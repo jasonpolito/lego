@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Http\Controllers\ImageController;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -32,6 +33,9 @@ class EventServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Page::observe(PageObserver::class);
+        Event::listen("cms-module.saved", function () {
+            ImageController::makeOpenGraph(Page::latest()->first());
+        });
+        // Page::observe(PageObserver::class);
     }
 }

@@ -10,7 +10,8 @@ $page_data = [
 <meta property="og:title" content="{{ $page->og_title ?? $page->meta_title }}" />
 <meta property="og:description" content="{{ $page->og_description ?? $page->meta_description }}" />
 @if (!Str::contains($page->image('og_image', 'flexible'), 'data:image'))
-<meta property="og:image" content="{{ $page->image('og_image', 'flexible') }}" />
+@else
+<meta property="og:image" content="{{ url('img/opengraph/' . Str::slug((string) $page->title, '-') . '.jpg') }}" />
 @endif
 <meta property="og:type" content="website" />
 <meta property="og:url" content="{{ request()->url() }}" />

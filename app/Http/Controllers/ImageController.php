@@ -16,6 +16,7 @@ class ImageController extends Controller
             "title_size" => 84,
             "company_size" => 40,
         ];
+        $blur = 15;
         $width = 1200;
         $height = 628;
         $text =  wordwrap($page->title, 18);
@@ -47,7 +48,7 @@ class ImageController extends Controller
             $font->valign('top');
         });
 
-        $img->blur(10);
+        $img->blur($blur);
 
 
         $img->text(env('COMPANY_NAME'), $padding, $padding, function ($font) use ($fonts) {
@@ -64,7 +65,7 @@ class ImageController extends Controller
         });
 
         $filename = \Str::slug($text, '-');
-        $img->save(public_path("img/$filename.png"));
+        $img->save(public_path("img/opengraph/$filename.jpg"));
 
         return $img->response();
     }
