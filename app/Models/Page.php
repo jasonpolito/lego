@@ -37,6 +37,7 @@ class Page extends Model implements Sortable
         'head_code',
         'body_code',
         'page_type',
+        'page_color',
         'taxonomy',
     ];
 

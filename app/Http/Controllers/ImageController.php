@@ -13,7 +13,7 @@ class ImageController extends Controller
     {
         $font_file = public_path("fonts/SourceCodePro-Bold.ttf");
         $font_file = public_path("fonts/Roboto-Bold.ttf");
-        $hex = app(SettingRepository::class)->byKey('main_color_sdgagasdag') ?? '#147fd9';
+        $hex = $page->page_color ?? app(SettingRepository::class)->byKey('main_color_sdgagasdag') ?? '#147fd9';
         $fonts = [
             "src" => $font_file,
             "title_size" => 84,

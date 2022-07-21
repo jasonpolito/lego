@@ -3,21 +3,9 @@ use App\Http\Controllers\PageController;
 $footer_copy = PageController::parseTextContent($block->input('footer_copy'));
 $footer_copy = Str::replace('text-base', 'text-sm', $footer_copy);
 $theme_name = env('THEME_NAME');
+$page = get_post();
 $cols = get_block_children($block->children, 'footer_column');
 $id = $block->input('block_id') ?? uniqid();
-$social_links = [
-'facebook',
-'instagram',
-'twitter',
-'youtube',
-'linkedin',
-];
-$has_social = false;
-foreach ($social_links as $name) {
-if (!empty($block->input($name . '_link'))) {
-$has_social = true;
-}
-}
 @endphp
 @if (View::exists("themes.$theme_name.footer"))
 @include("themes.$theme_name.footer", ['block' => $block])
@@ -75,6 +63,35 @@ $has_social = true;
                     @endif
                 </x-col>
                 @endforeach
+                @php
+                $socials = get_block_children($block->children, 'social_item');
+                $socials = $socials->filter(function($item) {
+                return $item->input('icon') != null;
+                });
+                @endphp
+                @if (count($socials))
+                <x-col class="w-1/2 my-8 sm:w-1/3 lg:w-auto">
+                    <div>
+                        <h5 class="mb-2 leading-6 show-rhythm">Social</h5>
+                    </div>
+                    <ul class="flex items-center -mx-2 show-rhythm">
+                        @php
+                        @endphp
+                        @foreach ($socials as $link)
+                        @php
+                        $partial = 'partials.socialicons.' . Str::lower($link->input("icon"))
+                        @endphp
+                        @if (View::exists($partial))
+                        <li class="px-2 text-canvas-100">
+                            <a href="{{ $link->input('url') }}" target="_blank" class="transition hover:text-white">
+                                @include($partial)
+                            </a>
+                        </li>
+                        @endif
+                        @endforeach
+                    </ul>
+                </x-col>
+                @endif
             </x-cols>
         </x-container>
     </x-section>

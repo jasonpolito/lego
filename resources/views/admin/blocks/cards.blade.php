@@ -7,4 +7,24 @@
 
 @include('admin.blocks.defaults.render')
 
-@include('admin.blocks.defaults.advanced')
+
+@php ob_start(); @endphp
+
+<div style="display: flex">
+    <div style="width: 100%">
+        @formField('select', [
+        'name' => 'style',
+        'label' => 'Style',
+        'default' => 'default',
+        'options' => [
+        [ 'label' => 'Default', 'value' => 'default' ],
+        ]])
+    </div>
+</div>
+
+@php
+$extra = ob_get_contents();
+ob_end_clean();
+@endphp
+
+@include('admin.blocks.defaults.advanced', ['extra' => $extra])

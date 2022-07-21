@@ -18,11 +18,15 @@ $page_data = [
 <meta name="twitter:description"
     content="{{ $page->og_description ?? $page->meta_description ?? $page->excerpt ?? $page->title }}">
 @if (!Str::contains($page->image('og_image', 'flexible'), 'data:image'))
-<meta property="og:image" content="{{ url($page->image('og_image', 'flexible')) }}">
-<meta name="twitter:image" content="{{ url($page->image('og_image', 'flexible')) }}">
+<meta property="og:image"
+    content="{{ url($page->image('og_image', 'flexible')) }}?u={{ $page->updated_at->format('U') }}">
+<meta name="twitter:image"
+    content="{{ url($page->image('og_image', 'flexible')) }}?u={{ $page->updated_at->format('U') }}">
 @else
-<meta property="og:image" content="{{ url('img/opengraph/' . Str::slug((string) $page->title, '-') . '.jpg') }}">
-<meta name="twitter:image" content="{{ url('img/opengraph/' . Str::slug((string) $page->title, '-') . '.jpg') }}">
+<meta property="og:image"
+    content="{{ url('img/opengraph/' . Str::slug((string) $page->title, '-') . '.jpg') }}?u={{ $page->updated_at->format('U') }}">
+<meta name="twitter:image"
+    content="{{ url('img/opengraph/' . Str::slug((string) $page->title, '-') . '.jpg') }}?u={{ $page->updated_at->format('U') }}">
 @endif
 <meta property="og:type" content="website">
 <meta property="og:url" content="{{ request()->url() }}">

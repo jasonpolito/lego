@@ -810,10 +810,6 @@ margin: 0 (var(--line) * -1.5); */
   height: 100vh;
 }
 
-.h-12 {
-  height: 3rem;
-}
-
 .h-56 {
   height: 14rem;
 }
@@ -828,6 +824,10 @@ margin: 0 (var(--line) * -1.5); */
 
 .h-24 {
   height: 6rem;
+}
+
+.h-12 {
+  height: 3rem;
 }
 
 .max-h-0 {

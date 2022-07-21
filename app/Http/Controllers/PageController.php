@@ -138,36 +138,31 @@ class PageController extends Controller
     public function show($slug = false)
     {
 
+        $page = false;
         if (empty($slug)) {
             $page = Page::where('title', 'Homepage')->first();
         } else {
             $page = $this->repository->forNestedSlug($slug);
         }
 
+        $view = view('public.page', compact('page'));
+
+        $page = $page ?? Page::where('title', '404')->first();
+
+        // if (!$page && auth('twill_users')->user()) {
+        //     $page = Page::query(function ($page) use ($slug) {
+        //         $page->nestedSlug == $slug;
+        //     })->first();
+        // }
+
         if ($page) {
-            $view = view('public.page', compact('page'));
             $content = self::parseVariables($view);
             $content = self::parseUrlParams($content);
             $content = self::parseMustaches($content, $page->toArray(), false);
-            // if ($page->page_type == 'post') {
-            // }
             $response = Response::make($content, 200);
-
             return $response;
-        } else {
-            $page = Page::where('title', '404')->first();
-
-            if ($page) {
-
-                $view = view('public.page', compact('page'));
-                $content = self::parseVariables($view);
-                $content = self::parseUrlParams($content);
-                $response = Response::make($content, 404);
-
-                return $response;
-            } else {
-                abort_unless($page, 404);
-            }
         }
+
+        abort_unless($page, 404);
     }
 }

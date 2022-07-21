@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Event;
 use App\Listeners\SettingsSavedListener;
 use App\Models\Page;
 use App\Observers\PageObserver;
+use Illuminate\Support\Facades\Log;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -34,7 +35,13 @@ class EventServiceProvider extends ServiceProvider
     public function boot()
     {
         Event::listen("cms-module.saved", function () {
-            ImageController::makeOpenGraph(Page::orderBy('updated_at', 'DESC')->get()->first());
+            $latest = Page::orderBy('updated_at', 'DESC')->get()->first();
+            $start = now()->addSeconds(5);
+            $end = now()->addSeconds(-5);
+            Log::debug(!!$latest->isDirty('title'));
+            if ($latest->updated_at->between($start, $end)) {
+                // ImageController::makeOpenGraph($latest);
+            }
         });
         // Page::observe(PageObserver::class);
     }

@@ -6,7 +6,7 @@
 'label' => 'Logo',
 ])
 
-<div style="margin-top: -26px">
+<div style="margin-top: -24px">
     @formField('checkbox', [
     'name' => 'customize_logo',
     'label' => 'Customize logo style',
@@ -18,12 +18,13 @@
 'fieldValues' => true,
 'renderForBlocks' => true
 ])
-
-@formField('input', [
-'type' => 'textarea',
-'name' => 'logo_style',
-'label' => 'Logo CSS',
-])
+<div style="margin-top: -24px">
+    @formField('input', [
+    'type' => 'text',
+    'name' => 'logo_style',
+    'label' => 'Logo CSS',
+    ])
+</div>
 
 @endformConnectedFields
 
@@ -36,6 +37,9 @@
 
 @include('admin.components.title', ['text' => 'Columns'])
 @formField('repeater', ['type' => 'footer_column'])
+
+@include('admin.components.title', ['text' => 'Social Media'])
+@formField('repeater', ['type' => 'social_item'])
 
 @formField('wysiwyg', [
 'name' => 'legal_copy',

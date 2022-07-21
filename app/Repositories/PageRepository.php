@@ -30,7 +30,7 @@ class PageRepository extends ModuleRepository
     {
         $fields = Taxonomy::all()->map(function ($item) {
             return $item->blocks()->get()->filter(function ($block) {
-                return $block->type == 'taxonomy_input';
+                return $block->type == 'taxonomy_input' && !empty($block->content['name']);
             })->map(function ($block) {
                 return \Str::slug($block->content['name'], '_');
             });

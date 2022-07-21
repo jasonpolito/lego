@@ -55,7 +55,7 @@ class PagePresenter extends Presenter
         if (!empty($tags)) {
             return "Tags: " . $tags;
         } else {
-            return '---';
+            return '<span>---</span>';
         }
     }
 

@@ -5,10 +5,15 @@ use App\Models\Page;
 
 function get_post()
 {
-    $post = Page::posts()->get()->filter(function ($post) {
-        return $post->getNestedSlug() == request()->path();
-    })->first();
-    return $post ?? false;
+    $slug = request()->path();
+    if ($slug == '/') {
+        $page = Page::where('title', 'Homepage')->first();
+    } else {
+        $page = Page::get()->filter(function ($page) {
+            return $page->nestedSlug == request()->path();
+        })->first();
+    }
+    return $page ?? false;
 }
 
 function link_url($block)

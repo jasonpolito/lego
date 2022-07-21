@@ -23,29 +23,29 @@
 
 @section('fieldsets')
 
-<div style="display: flex; align-items: center; margin-top: -24px">
-    <div style="width: 50%">
-        @formField('tags')
-        {{-- @formField('select', [
-        'name' => 'page_type',
-        'label' => 'Page Type',
-        'default' => 'page',
-        'options' => \App\Models\Page::AVAILABLE_PAGE_TYPES
-        ]) --}}
-    </div>
-    {{-- <div style="width: 1rem"></div>
+<div style="display: flex; margin-bottom: 24px">
     <div style="width: 66%">
+        <div style="margin-bottom: 24px">
+            @formField('medias', [
+            'name' => 'flexible',
+            'label' => 'Main Image',
+            ])
+        </div>
 
-    </div> --}}
+    </div>
+    <div style="width: 1rem"></div>
+    <div style="width: 33%">
+        @formField('tags')
+        <div style="margin-top: -24px">
+            @formField('color', [
+            'label' => 'Page Color',
+            'name' => 'page_color',
+            'default' => null
+            ])
+        </div>
+    </div>
 </div>
 
-
-<div style="margin-bottom: 24px">
-    @formField('medias', [
-    'name' => 'flexible',
-    'label' => 'Main Image',
-    ])
-</div>
 
 
 @if ($page->taxonomy())
@@ -87,7 +87,7 @@
 
 <div style="padding-top: 24px"></div>
 
-@formFieldset(['id' => 'seo', 'title' => 'SEO', 'open' => true])
+@formFieldset(['id' => 'seo', 'title' => 'SEO', 'open' => false])
 
 @formField('input', [
 'name' => 'meta_title',
