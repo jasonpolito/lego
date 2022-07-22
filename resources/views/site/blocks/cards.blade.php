@@ -27,7 +27,7 @@ $id = $block->input('block_id') ?? uniqid();
 			@php
 			$img = $card->image('flexible', 'flexible');
 			@endphp
-			<x-col class="flex justify-center w-full md:px-4 lg:w-1/2 xl:w-1/3">
+			<x-col class="flex justify-center w-full md:px-4 lg:w-1/2">
 				@if ($card->input('is_img_card'))
 				<a class="flex flex-col text-white py-8 md:py-16 justify-center items-center w-full shadow hover:shadow-2xl my-4 transition-all px-6 text-center bg-cover bg-center group {{ settings('rounded') }}"
 					href="{{ $card->input('url') }}" style="background-image: url({{ $img }})"
@@ -87,8 +87,11 @@ $id = $block->input('block_id') ?? uniqid();
 								<p class="leading-6 show-rhythm opacity-80">{!! $card->input('card_content') !!}</p>
 							</div>
 						</div>
-						@include('site.blocks.defaults.buttons', ['buttons' => $card->children, 'align' =>
-						$card->input('align_buttons')])
+						<div>
+							@include('site.blocks.defaults.buttons', ['buttons' =>
+							$card->children()->orderBy('position')->get(), 'align' =>
+							$card->input('align_buttons')])
+						</div>
 					</div>
 				</div>
 				@endif

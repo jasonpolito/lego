@@ -60,7 +60,7 @@ return [
         'white' => 'block my-2 rounded-md px-6 py-4 text-center sm:inline-block text-primary-600
         bg-white hover:opacity-90 transition',
         'outlined' => 'block my-2 rounded-md px-6 py-4 text-center sm:inline-block text-white',
-        'underline' => 'hover:text-primary-600 transition text-primary font-bold my-2 sm:my-0 inline-block mr-4 py-2',
+        'underline' => 'hover:text-primary-600 transition text-primary font-bold my-2 sm:my-0 inline-block py-2',
         'link' => 'text-primary inline-block mr-4',
     ],
     'btn' => [

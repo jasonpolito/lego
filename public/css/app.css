@@ -1835,6 +1835,10 @@ margin: 0 (var(--line) * -1.5); */
     width: 66.666667%;
   }
 
+  .sm\:flex-row-reverse {
+    flex-direction: row-reverse;
+  }
+
   .sm\:items-center {
     align-items: center;
   }

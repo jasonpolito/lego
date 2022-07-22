@@ -1,6 +1,6 @@
 @php
 $project = \Str::slug(env("APP_NAME"), '_');
-$path = "img/icons/$project/";
+$path = "img/icons/$project";
 @endphp
 <link rel="apple-touch-icon" sizes="180x180" href="{{ asset("$path/apple-touch-icon.png") }}">
 <link rel="icon" type="image/png" sizes="32x32" href="{{ asset("$path/favicon-32x32.png") }}">

@@ -19,7 +19,7 @@
 
 @formField('select', [
 'name' => 'align_buttons',
-'default' => 'start',
+'default' => 'end',
 'label' => 'Align buttons',
 'options' => [
 [
