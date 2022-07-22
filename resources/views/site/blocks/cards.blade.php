@@ -45,35 +45,34 @@ $id = $block->input('block_id') ?? uniqid();
 				</a>
 				@else
 				<div
-					class="w-full {{ $card->input('card_cover') ? 'text-white' : '' }} bg-white max-w-lg my-4 {{ settings('rounded') }} lg:max-w-none">
-					<div class="overflow-hidden {{ settings('rounded') }}">
-						@if ($card->input('url'))
-						<a href="{{ $card->input('url') }}" @if ($card->input('external'))
-							target="_blank"
-							@endif class="block h-56 overflow-hidden rounded-t-md xl:h-80 group">
-							<div class="fill-parent"><img src="{{ $img }}"
-									class="object-cover w-full h-full transition duration-300 transform group-hover:scale-110"
-									alt="{{ $card->imageAltText('flexible') }}">
-							</div>
-						</a>
-						@else
-						<div class="block h-56 overflow-hidden rounded-t-md xl:h-80">
-							<div class="fill-parent"><img src="{{ $img }}" class="object-cover w-full h-full"
-									alt="{{ $card->imageAltText('flexible') }}">
-							</div>
+					class="flex flex-col w-full {{ $card->input('card_cover') ? 'text-white' : '' }} bg-white max-w-lg my-4 {{ settings('rounded') }} lg:max-w-none">
+					@if ($card->input('url'))
+					<a href="{{ $card->input('url') }}" @if ($card->input('external'))
+						target="_blank"
+						@endif class="block h-56 overflow-hidden rounded-t-md xl:h-80 group">
+						<div class="fill-parent"><img src="{{ $img }}"
+								class="object-cover w-full h-full transition duration-300 transform group-hover:scale-110"
+								alt="{{ $card->imageAltText('flexible') }}">
 						</div>
-						@endif
-						@if ($card->input('card_cover'))
-						<div class="bg-center bg-cover fill-parent" style="background-image: url({{ $img }})"></div>
-						<div class="opacity-75 fill-parent bg-primary"></div>
-						@endif
-						<div class="px-5 py-4 sm:p-6 md:p-8">
+					</a>
+					@else
+					<div class="block h-56 overflow-hidden rounded-t-md xl:h-80">
+						<div class="fill-parent"><img src="{{ $img }}" class="object-cover w-full h-full"
+								alt="{{ $card->imageAltText('flexible') }}">
+						</div>
+					</div>
+					@endif
+					@if ($card->input('card_cover'))
+					<div class="bg-center bg-cover fill-parent" style="background-image: url({{ $img }})"></div>
+					<div class="opacity-75 fill-parent bg-primary"></div>
+					@endif
+					<div class="flex flex-col flex-1 px-5 py-4 sm:p-6 md:p-8">
+						<div class="w-full h-full">
 							@if (!empty($card->input('title_text')))
 							<div class="pt-2">
 								@if ($card->input('url'))
 								<a href="{{ $card->input('url') }}" @if ($card->input('external'))
 									target="_blank"
-
 									@endif
 									>@include('site.blocks.defaults.title', ['block' => $card])
 									<span></span>
@@ -87,8 +86,9 @@ $id = $block->input('block_id') ?? uniqid();
 							<div class="mb-4 -mt-2 md:-mt-4">
 								<p class="leading-6 show-rhythm opacity-80">{!! $card->input('card_content') !!}</p>
 							</div>
-							@include('site.blocks.defaults.buttons', ['buttons' => $card->children])
 						</div>
+						@include('site.blocks.defaults.buttons', ['buttons' => $card->children, 'align' =>
+						$card->input('align_buttons')])
 					</div>
 				</div>
 				@endif

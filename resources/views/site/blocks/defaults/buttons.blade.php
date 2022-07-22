@@ -1,7 +1,7 @@
 @php
 $styles = config('styles.btns');
 @endphp
-<div class="flex flex-wrap items-center -mx-3">
+<div class="flex flex-wrap justify-{{ $align ?? 'start' }} items-center -mx-3">
     @foreach ($buttons as $btn)
     @if ($btn->input('child_type') == 'button')
     <div class="w-full px-3 sm:w-auto">
