@@ -12,7 +12,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var medium_zoom__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! medium-zoom */ "./node_modules/medium-zoom/dist/medium-zoom.esm.js");
 
 (0,medium_zoom__WEBPACK_IMPORTED_MODULE_0__["default"])('[data-zoomable]');
-var iframes = document.querySelectorAll('iframe');
+var iframes = document.querySelectorAll('.content-basic iframe');
 iframes.forEach(function (iframe) {
   var wrap = document.createElement('div');
   iframe.classList.add('fill-parent');

@@ -18,7 +18,7 @@ $id = $block->input('block_id') ?? uniqid();
             </div> --}}
             <x-cols class="justify-between">
                 @if (!Str::contains($block->image('flexible', 'flexible'), 'data:image') || !empty($footer_copy))
-                <x-col class="w-full my-8 lg:w-1/3 text-canvas-100">
+                <x-col class="w-full my-8 lg:w-1/3 text-canvas-50">
                     @if (!Str::contains($block->image('flexible', 'flexible'), 'data:image'))
                     <a class="block mb-8" href="/">
                         <img src="{{ $block->image('flexible', 'flexible', ['fm' => null]) }}"
@@ -42,14 +42,14 @@ $id = $block->input('block_id') ?? uniqid();
                     </div>
                     <ul class="leading-6 content show-rhythm">
                         @foreach ($links as $link)
-                        <li class="text-canvas-100">
+                        <li class="text-canvas-50">
                             @if ($link->input('is_title'))
                             <span class="opacity-50">{!!
                                 $link->input('text') !!}</span>
                             @else
                             <span class="">
                                 <a class="group" href="{!! link_url($link) !!}"><span
-                                        class="text-canvas-100 group-hover:text-white group-focus:text-white">
+                                        class="text-canvas-50 group-hover:text-white group-focus:text-white">
                                         {!!
                                         $link->input('text') !!}
                                     </span></a>
@@ -82,7 +82,7 @@ $id = $block->input('block_id') ?? uniqid();
                         $partial = 'partials.socialicons.' . Str::lower($link->input("icon"))
                         @endphp
                         @if (View::exists($partial))
-                        <li class="px-2 text-canvas-100">
+                        <li class="px-2 text-canvas-50">
                             <a href="{{ $link->input('url') }}" target="_blank" class="transition hover:text-white">
                                 @include($partial)
                             </a>

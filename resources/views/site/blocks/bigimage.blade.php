@@ -3,7 +3,7 @@ $id = $block->input('block_id') ?? uniqid();
 @endphp
 @if (has_img($block->image('flexible', 'flexible')))
 <div id="{{ $id }}">
-    <img src="{{ $block->image('flexible', 'flexible', ['fm' => null]) }}" alt="{{ $block->imageAlt('flexible') }}"
+    <img src="{{ $block->image('flexible', 'flexible', ['fm' => null]) }}" alt="{{ $block->imageAltText('flexible') }}"
         class="w-full align-top">
 </div>
 @else

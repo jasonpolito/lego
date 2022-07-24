@@ -2,7 +2,7 @@ import mediumZoom from 'medium-zoom'
 
 mediumZoom('[data-zoomable]')
 
-const iframes = document.querySelectorAll('iframe');
+const iframes = document.querySelectorAll('.content-basic iframe');
 
 iframes.forEach(iframe => {
     const wrap = document.createElement('div');

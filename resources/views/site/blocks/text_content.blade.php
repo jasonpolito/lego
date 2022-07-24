@@ -5,7 +5,7 @@ $html = PageController::parseTextContent($block->input('content'));
 <x-block-section :block="$block">
     <x-cols class="justify-{{ $block->input('align') }}">
         <x-col class="w-full lg:w-2/3">
-            <div class="content">
+            <div class="content content-basic">
                 {!! $html !!}
             </div>
         </x-col>

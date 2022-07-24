@@ -22,7 +22,7 @@ $id = $block->input('block_id') ?? uniqid();
                     <ul class="leading-6 content">
                         <h5 class="mb-2 leading-6 show-rhythm">{!! $col->input('title_text') !!}</h5>
                         @foreach ($links as $link)
-                        <li class="text-canvas-content">
+                        <li class="text-canvas-50">
                             <span class=" hover:text-white focus:text-white">
                                 <a @if ($link->input('external'))
                                     target="_blank"

@@ -30,8 +30,7 @@ $id = $block->input('block_id') ?? uniqid();
 			<x-col class="flex justify-center w-full md:px-4 lg:w-1/2">
 				@if ($card->input('is_img_card'))
 				<a class="flex flex-col text-white py-8 md:py-16 justify-center items-center w-full shadow hover:shadow-2xl my-4 transition-all px-6 text-center bg-cover bg-center group {{ settings('rounded') }}"
-					href="{{ $card->input('url') }}" style="background-image: url({{ $img }})"
-					@if($card->input('external'))
+					href="{{ link_url($card) }}" style="background-image: url({{ $img }})" @if($card->input('external'))
 					target="_blank"
 					@endif>
 					<div class="fill-parent {{ settings('rounded') }} overflow-hidden">
@@ -47,7 +46,7 @@ $id = $block->input('block_id') ?? uniqid();
 				<div
 					class="flex flex-col w-full {{ $card->input('card_cover') ? 'text-white' : '' }} bg-white max-w-lg my-4 {{ settings('rounded') }} lg:max-w-none">
 					@if ($card->input('url'))
-					<a href="{{ $card->input('url') }}" @if ($card->input('external'))
+					<a href="{{ link_url($card) }}" @if ($card->input('external'))
 						target="_blank"
 						@endif class="block h-56 overflow-hidden rounded-t-md xl:h-80 group">
 						<div class="fill-parent"><img src="{{ $img }}"

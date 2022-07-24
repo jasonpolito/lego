@@ -69,7 +69,7 @@ function get_block_children($children, $type)
 {
     return $children->filter(function ($item) use ($type) {
         return $item->input('child_type') == $type;
-    });
+    })->sortBy('position');
 }
 
 function settings($name)

@@ -7,6 +7,7 @@ use App\Models\Post;
 use App\Models\Variable;
 use App\Repositories\PageRepository;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Response;
 
 class PageController extends Controller
@@ -16,12 +17,15 @@ class PageController extends Controller
         $this->repository = $repository;
     }
 
-    static function parseVariables($content)
+    static function parseVariables($content, $exclude = [])
     {
-        $vars = Variable::all(['search', 'replace']);
+        $vars = Variable::whereNotIn('id', $exclude)->orderBy('created_at')->get(['search', 'replace', 'id']);
         foreach ($vars as $var) {
             $regex = "/{{\s*$var->search\s*}}/i";
             $replace = $var->replace;
+            if (\Str::contains($replace, '{{')) {
+                $replace = self::parseVariables($replace, [$var->id]);
+            }
             $content = preg_replace($regex, $replace, $content);
         }
         return $content;
