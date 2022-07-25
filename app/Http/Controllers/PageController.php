@@ -153,13 +153,15 @@ class PageController extends Controller
 
         $page = $page ?? Page::where('title', '404')->first();
 
-        // if (!$page && auth('twill_users')->user()) {
-        //     $page = Page::query(function ($page) use ($slug) {
-        //         $page->nestedSlug == $slug;
-        //     })->first();
-        // }
+        if (!$page && auth('twill_users')->user()) {
+            $page = Page::query()->get()->filter(function ($page) use ($slug) {
+                return $page->nestedSlug == $slug;
+            })->first();
+            $view = view('public.page', compact('page'));
+        }
 
         if ($page) {
+            // ddd($page);
             $content = self::parseVariables($view);
             $content = self::parseUrlParams($content);
             $content = self::parseMustaches($content, $page->toArray(), false);

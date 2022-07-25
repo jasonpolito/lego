@@ -43,8 +43,9 @@ Route::get('/automagic.jpg', function (Request $request) {
 })->name('admin.template.create');
 
 Route::get('/favicon', function (Request $request) {
-    $font_file = public_path("fonts/SourceCodePro-Bold.ttf");
+
     $font_file = public_path("fonts/Roboto-Black.ttf");
+
     $hex = $page->page_color ?? app(SettingRepository::class)->byKey('main_color_sdgagasdag') ?? '#147fd9';
     $fonts = [
         "src" => $font_file,
@@ -60,12 +61,19 @@ Route::get('/favicon', function (Request $request) {
     $rgb = (string) $color->toRgba();
     $img = Image::canvas($w, $w);
 
-    $img->circle($w, $w / 2, $w / 2, function ($draw) use ($rgb) {
+    $img->circle($w, $w / 2, $w / 2, function ($draw) use ($rgb, $w) {
         $draw->background($rgb);
     });
 
+    $img->text($initial, $w / 2 + 10 + 20, $w / 2 + 30, function ($font) use ($fonts) {
+        $font->file($fonts['src']);
+        $font->color([0, 0, 0, 0.3]);
+        $font->size(350);
+        $font->align('center');
+        $font->valign('middle');
+    });
 
-    $img->text($initial, $w / 2, $w / 2, function ($font) use ($fonts) {
+    $img->text($initial, $w / 2 + 10, $w / 2, function ($font) use ($fonts) {
         $font->file($fonts['src']);
         $font->color($fonts['company_color']);
         $font->size(350);
