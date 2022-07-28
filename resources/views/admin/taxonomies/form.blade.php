@@ -1,6 +1,10 @@
-@extends('twill::layouts.form')
+@extends('twill::layouts.form', [
+'disableContentFieldset' => true
+])
 
-@section('contentFields')
+{{-- @section('contentFields') --}}
+@section('fieldsets')
+
 @formField('block_editor', [
 'blocks' => [
 'taxonomy_inputs'

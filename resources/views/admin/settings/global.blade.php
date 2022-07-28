@@ -1,4 +1,6 @@
 @php
+$body_placeholder = 'Code to insert into the <body> tag.';
+$head_placeholder = 'Code to insert into the <head> tag.';
 $font_list = config('styles.font_options');
 $font_options = [];
 foreach ($font_list as $value) {
@@ -50,10 +52,14 @@ array_push($font_options, [
 <div style="display: flex; align-items-center">
     <div style="width: 15rem;">
         @formField('select', [
-        'label' => 'Corners',
+        'label' => 'Rounded Corners',
         'name' => 'rounded',
         'default' => 'rounded',
         'options' => [
+        [
+        'label' => 'None',
+        'value' => 'rounded-none'
+        ],
         [
         'label' => 'Default',
         'value' => 'rounded'
@@ -117,17 +123,13 @@ array_push($font_options, [
 @formField('input', [
 'type' => 'textarea',
 'name' => 'global_head_insert_code',
-'placeholder' => 'Code to insert into
-
-<head>',
+    'placeholder' => $head_placeholder,
     'label' => 'Head code'
     ])
 
     @formField('input', [
     'type' => 'textarea',
-    'placeholder' => 'Code to insert into
-
-<body>',
+    'placeholder' => $body_placeholder,
     'name' => 'global_body_insert_code',
     'label' => 'Body code'
     ])

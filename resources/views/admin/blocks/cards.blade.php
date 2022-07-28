@@ -7,7 +7,7 @@
 
 @include('admin.blocks.defaults.render')
 
-
+{{-- 
 @php ob_start(); @endphp
 
 <div style="display: flex">
@@ -25,6 +25,6 @@
 @php
 $extra = ob_get_contents();
 ob_end_clean();
-@endphp
+@endphp --}}
 
-@include('admin.blocks.defaults.advanced', ['extra' => $extra])
+@include('admin.blocks.defaults.advanced')

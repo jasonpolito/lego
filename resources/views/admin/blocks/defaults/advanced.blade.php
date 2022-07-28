@@ -17,20 +17,34 @@ $no_section = $no_section ?? false;
 'renderForBlocks' => true
 ])
 
-<div style="margin-top: -24px">
 
-    @if (isset($extra))
-    {!! $extra !!}
-    @endif
+<a17-tabs :tabs="[
+        { name: 'style', label: 'Appearance' },
+        { name: 'utils', label: 'Utilities' },
+    ]">
+    <div class="custom-tab custom-tab--style">
+        <div style="margin-top: -24px">
 
-    @if (!$no_section)
-    @include('admin.blocks.defaults.section')
-    @endif
+            @if (isset($extra))
+            {!! $extra !!}
+            @endif
 
-    @include('admin.blocks.defaults.block_id')
+            @if (!$no_section)
+            @include('admin.blocks.defaults.section')
+            @endif
 
-    @include('admin.blocks.defaults.render')
+        </div>
+    </div>
 
-</div>
+    <div class="custom-tab custom-tab--utils">
+        <div>// UNDER DEVELOPMENT</div>
+    </div>
+
+</a17-tabs>
+
+@include('admin.blocks.defaults.block_id')
+
+@include('admin.blocks.defaults.render')
+
 
 @endformConnectedFields

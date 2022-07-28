@@ -7,20 +7,21 @@ return [
 })->toArray();
 @endphp
 
-@twillBlockTitle('Posts')
+@twillBlockTitle('Pages')
 @twillBlockIcon('media-list')
 
 @include('admin.blocks.defaults.title')
 
 @formField('select', [
 'name' => 'tags',
-'label' => 'Post type',
+'label' => 'Tag',
+'placeholder' => 'Select a page tag',
 'options' => $options
 ])
 
 @formField('select', [
 'name' => 'limit',
-'label' => 'Number of posts',
+'label' => 'Number of pages',
 'default' => 'all',
 'options' => [
 [

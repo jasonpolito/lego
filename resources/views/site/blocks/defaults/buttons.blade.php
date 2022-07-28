@@ -14,7 +14,7 @@ $styles = config('styles.btns');
             @if($btn->input('btn_external') || $btn->input('external'))
             target="_blank" @endif>
             @if($btn->input('btn_style') == 'outlined')
-            <span class="border border-white rounded-md fill-parent"></span>
+            <span class="border border-white {{ settings('rounded') }} fill-parent"></span>
             <span class="transition bg-white opacity-0 fill-parent group-hover:opacity-5"></span>
             @endif
             @if (env('STACK_VERSION') < 1) {!! $btn->input('btn_text') ?? ($btn->input('text') ?? 'Learn more') !!}

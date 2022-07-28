@@ -5,6 +5,14 @@ return [
         'dashboard' => false,
         'settings' => true,
     ],
+    'blocks' => [
+        'save-partial' => [
+            'title' => 'Example',
+            'trigger' => 'Add Example Block',
+            'components' => 'a17-block-save-partial',
+            'compiled' => true
+        ],
+    ],
     'block_editor' => [
         'files' => ['bg_video'],
         'crops' => [

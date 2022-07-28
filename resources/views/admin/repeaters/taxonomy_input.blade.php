@@ -1,6 +1,6 @@
-@twillRepeaterTitle('Input')
+@twillRepeaterTitle('Field')
 @twillRepeaterTitleField('name', ['hidePrefix' => true])
-@twillRepeaterTrigger('Add input')
+@twillRepeaterTrigger('Add field')
 
 <div style="display: none">
     @formField('input', [
@@ -14,7 +14,7 @@
     <div style="width: 50%">
         @formField('input', [
         'name' => 'name',
-        'placeholder' => 'Service title',
+        'placeholder' => 'Field name (ex: Service Title)',
         'label' => 'Name'
         ])
     </div>
@@ -22,7 +22,8 @@
     <div style="width: 50%">
         @formField('select', [
         'name' => 'type',
-        'label' => 'Input type',
+        'label' => 'Type',
+        'searchable' => true,
         'default' => 'text',
         'options' => [
         [
@@ -32,6 +33,14 @@
         [
         'label' => 'Long text',
         'value' => 'textarea'
+        ],
+        [
+        'label' => 'Checkbox',
+        'value' => 'checkbox'
+        ],
+        [
+        'label' => 'Date',
+        'value' => 'date'
         ],
         ]
         ])

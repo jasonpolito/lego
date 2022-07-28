@@ -96,7 +96,7 @@ class Page extends Model implements Sortable
         return $query->where('page_type', 'post');
     }
 
-    public function taxonomy()
+    public function taxonomyModel()
     {
         $tags = $this->tags()->get()->map(function ($item) {
             return $item->name;
@@ -114,7 +114,7 @@ class Page extends Model implements Sortable
 
     public function taxonomyInputs()
     {
-        return $this->taxonomy()->blocks()->get()->filter(function ($block) {
+        return $this->taxonomyModel()->blocks()->get()->filter(function ($block) {
             return $block->type == 'taxonomy_input';
         })->map(function ($block) {
             $content = $block->content;
