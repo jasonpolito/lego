@@ -50,15 +50,15 @@ $id = $block->input('block_id') ?? uniqid();
 						target="_blank"
 						@endif class="block sm:h-56 overflow-hidden
 						rounded-t{{ Str::replace('rounded-', '', settings('rounded')) }} xl:h-80 group">
-						<div class="md:fill-parent"><img src="{{ $img }}"
-								class="w-full transition duration-300 transform sm:object-cover sm:h-full group-hover:scale-110"
+						<div class="fill-parent"><img src="{{ $img }}"
+								class="object-cover w-full h-full transition duration-300 transform group-hover:scale-110"
 								alt="{{ $card->imageAltText('flexible') }}">
 						</div>
 					</a>
 					@else
 					<div
-						class="block md:h-56 overflow-hidden rounded-t{{ Str::replace('rounded-', '', settings('rounded')) }} xl:h-80">
-						<div class="md:fill-parent"><img src="{{ $img }}" class="object-cover w-full h-full"
+						class="block h-56 overflow-hidden rounded-t{{ Str::replace('rounded-', '', settings('rounded')) }} xl:h-80">
+						<div class="fill-parent"><img src="{{ $img }}" class="object-cover w-full h-full"
 								alt="{{ $card->imageAltText('flexible') }}">
 						</div>
 					</div>

@@ -1,10 +1,10 @@
 @php
 use App\Http\Controllers\PageController;
 $theme_name = env('THEME_NAME');
+$page = get_post();
 if ($block->input('use_main_image')) {
-$post = get_post();
-if ($post) {
-$bg_img = !Str::contains($post->image('flexible', 'flexible'), 'data:image') ? $post->image('flexible', 'flexible') :
+if ($page) {
+$bg_img = !Str::contains($page->image('flexible', 'flexible'), 'data:image') ? $page->image('flexible', 'flexible') :
 false;
 } else {
 $bg_img = !Str::contains($block->image('flexible', 'flexible'), 'data:image') ? $block->image('flexible',
@@ -43,8 +43,8 @@ $id = $block->input('block_id') ?? uniqid();
     </div>
     @endif
     @if ($bg_img || $block->input('video_background') || $block->file('bg_video'))
-    <div @if (!empty($block->input('overlay_color')))
-        style="background: {{ $block->input('overlay_color') }}"
+    <div @if (!empty($block->input('overlay_color')) || $page)
+        style="background: {{ $block->input('overlay_color') ?? $page->page_color }}"
 
         @endif
         class="

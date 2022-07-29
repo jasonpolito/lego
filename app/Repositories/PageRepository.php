@@ -22,6 +22,7 @@ class PageRepository extends ModuleRepository
 {
     use HandleBlocks, HandleSlugs, HandleMedias, HandleRevisions, HandleNesting, HandleTags;
 
+    protected $relatedBrowsers = ['taxonomies'];
     protected $fieldsGroups = [];
     public $fieldsGroupsFormFieldNamesAutoPrefix = true;
     public $fieldsGroupsFormFieldNameSeparator = '.';

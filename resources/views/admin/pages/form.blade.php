@@ -1,9 +1,11 @@
 @php
 use App\Models\Taxonomy;
 $taxonomy_opts = Taxonomy::all()->pluck('title', 'id');
+$taxonomy_count = Taxonomy::count();
 
 $meta_title_placeholder = 'A meta title refers to the text that is displayed on search engine result pages.';
-$meta_description_placeholder = 'A meta description generally informs and interests users with a short summary of what a particular page is about. ';
+$meta_description_placeholder = 'A meta description generally informs and interests users with a short summary of what a
+particular page is about. ';
 $excerpt_placeholder = 'A short, relevant summary of what this particular page is about. ';
 @endphp
 @extends('twill::layouts.form', [
@@ -38,69 +40,39 @@ $excerpt_placeholder = 'A short, relevant summary of what this particular page i
     ]">
     <div class="custom-tab custom-tab--content">
 
-        @if ($page->taxonomyModel())
-
-        <div style="margin-bottom: 24px">
-            {{-- @formFieldset(['id' => 'taxonomy', 'title' => 'Page Fields', 'open' => true]) --}}
-    
-            @foreach ($page->taxonomyInputs() as $input)
-    
-            @if ($input['type'] == 'textarea')
-    
-            @formField('wysiwyg', [
-            'name' => 'taxonomy' . $input['name'],
-            'label' => $input['label'],
-            'placeholder' => $input['label'],
-            'note' => "Use in templates with @{{ page." . $input['name'] . " }}",
-            'toolbarOptions' => config('cms.toolbar_options'),
-            ])
-    
-            @else
-    
-            @formField('input', [
-            // 'name' => "taxonomy",
-            // 'name' => "taxonomy->" . $input['name'],
-            // 'name' => "taxonomy[" . $input['name'] . "]",
-            'name' => "taxonomy." . $input['name'],
-            'note' => "Use in templates with @{{ page." . $input['name'] . " }}",
-            'label' => $input['label'],
-            'placeholder' => $input['label'],
-            ])
-    
-            @endif
-    
-            @endforeach
-    
-            {{-- @endformFieldset --}}
-        </div>
-
-        @endif
-
         @formField('block_editor', [
-            'withoutSeparator' => true,
-            'blocks' => config('cms.blocks.default')
+        'withoutSeparator' => true,
+        'blocks' => config('cms.blocks.default')
         ])
     </div>
 
     <div class="custom-tab custom-tab--details">
-            @formField('medias', [
-            'name' => 'flexible',
-            'label' => 'Main Image',
-            ])
-        <div style="display: flex; margin-top: -24px">
-            <div style="width: 33%">
-                @formField('select', [
-                    'label' => 'Taxonomy',
-                    'name' => 'taxonomy',
-                    'options' => $taxonomy_opts
+        <div style="display: flex;">
+            <div style="width: 50%">
+                @formField('medias', [
+                'name' => 'flexible',
+                'label' => 'Main Image',
                 ])
             </div>
             <div style="width: 1rem"></div>
-            <div style="width: 33%">
+            <div style="width: 50%">
+                @formField('browser', [
+                'moduleName' => 'taxonomies',
+                'name' => 'taxonomies',
+                'label' => 'Taxonomies',
+                'sortable' => false,
+                'max' => $taxonomy_count,
+                'browserNote' => 'Refresh after saving to use taxonomy fields',
+                'fieldNote' => 'Inherit additional fields on this page'
+                ])
+            </div>
+        </div>
+        <div style="display: flex; margin-top: -24px">
+            <div style="width: 50%">
                 @formField('tags')
             </div>
             <div style="width: 1rem"></div>
-            <div style="width: 33%">
+            <div style="width: 50%">
                 @formField('color', [
                 'label' => 'Page Color',
                 'name' => 'page_color',
@@ -110,6 +82,38 @@ $excerpt_placeholder = 'A short, relevant summary of what this particular page i
         </div>
 
 
+        @if (count($page->taxonomyInputs()))
+
+        <div style="margin-bottom: 24px">
+
+            @foreach ($page->taxonomyInputs() as $input)
+
+            @if ($input['type'] == 'textarea')
+
+            @formField('wysiwyg', [
+            'name' => 'taxonomy' . $input['name'],
+            'label' => $input['label'],
+            'placeholder' => $input['label'],
+            'note' => "Use in templates with @{{ page." . $input['name'] . " }}",
+            'toolbarOptions' => config('cms.toolbar_options'),
+            ])
+
+            @else
+
+            @formField('input', [
+            'name' => "taxonomy." . $input['name'],
+            'note' => "Use in templates with @{{ page." . $input['name'] . " }}",
+            'label' => $input['label'],
+            'placeholder' => $input['label'],
+            ])
+
+            @endif
+
+            @endforeach
+
+        </div>
+
+        @endif
 
     </div>
 
@@ -122,40 +126,50 @@ $excerpt_placeholder = 'A short, relevant summary of what this particular page i
         'label' => 'Discourage search engines from indexing this page',
         ])
 
-        @formField('input', [
-        'name' => 'meta_title',
-        'label' => 'Meta Title',
-        'placeholder' => $meta_title_placeholder,
-        'maxlength' => 80
-        ])
+        <div style="display: flex;">
+            <div style="width: 50%">
+                @formField('input', [
+                'name' => 'meta_title',
+                'type' => 'textarea',
+                'label' => 'Meta Title',
+                'placeholder' => $meta_title_placeholder,
+                'maxlength' => 80
+                ])
+        
+                @formField('input', [
+                'name' => 'meta_description',
+                'placeholder' => $meta_description_placeholder,
+                'type' => 'textarea',
+                'maxlength' => 160,
+                'label' => 'Meta Description',
+                ])
+            </div>
+            <div style="width: 1rem"></div>
+            <div style="width: 50%">
+                @formField('input', [
+                'name' => 'og_title',
+                'type' => 'textarea',
+                'placeholder' => $meta_title_placeholder,
+                'label' => 'OpenGraph Title',
+                'note' => 'Defaults to meta title',
+                'maxlength' => 80
+                ])
+        
+                @formField('input', [
+                'name' => 'og_description',
+                'type' => 'textarea',
+                'maxlength' => 160,
+                'label' => 'OpenGraph Description',
+                'placeholder' => $meta_description_placeholder,
+                'note' => 'Defaults to meta description',
+                ])
+            </div>
+        </div>
 
-        @formField('input', [
-        'name' => 'meta_description',
-        'placeholder' => $meta_description_placeholder,
-        'type' => 'textarea',
-        'maxlength' => 160,
-        'label' => 'Meta Description',
-        ])
-
-        @formField('input', [
-        'name' => 'og_title',
-        'placeholder' => $meta_title_placeholder,
-        'label' => 'OpenGraph Title',
-        'note' => 'Defaults to meta title',
-        'maxlength' => 80
-        ])
-
-        @formField('input', [
-        'name' => 'og_description',
-        'type' => 'textarea',
-        'maxlength' => 160,
-        'label' => 'OpenGraph Description',
-        'placeholder' => $meta_description_placeholder,
-        'note' => 'Defaults to meta description',
-        ])
 
         @formField('medias', [
         'name' => 'og_image',
+        'fieldNote' => 'Default image is generated from title, main image, and page color',
         'label' => 'OpenGraph Image',
         ])
 

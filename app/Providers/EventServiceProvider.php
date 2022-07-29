@@ -38,11 +38,9 @@ class EventServiceProvider extends ServiceProvider
             $latest = Page::orderBy('updated_at', 'DESC')->get()->first();
             $start = now()->addSeconds(5);
             $end = now()->addSeconds(-5);
-            Log::debug(!!$latest->isDirty('title'));
             if ($latest->updated_at->between($start, $end)) {
-                // ImageController::makeOpenGraph($latest);
+                ImageController::makeOpenGraph($latest);
             }
         });
-        // Page::observe(PageObserver::class);
     }
 }

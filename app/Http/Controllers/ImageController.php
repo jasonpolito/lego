@@ -74,6 +74,7 @@ class ImageController extends Controller
         });
 
         $filename = \Str::slug($text, '-');
+        \Log::debug('testin');
         $img->save(public_path("img/opengraph/$filename.jpg"));
 
         return $img->response();

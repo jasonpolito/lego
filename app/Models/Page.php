@@ -7,6 +7,7 @@ use A17\Twill\Models\Behaviors\HasSlug;
 use A17\Twill\Models\Behaviors\HasMedias;
 use A17\Twill\Models\Behaviors\HasFiles;
 use A17\Twill\Models\Behaviors\HasRevisions;
+use A17\Twill\Models\Behaviors\HasRelated;
 use A17\Twill\Models\Behaviors\HasPosition;
 use A17\Twill\Models\Behaviors\HasNesting;
 use A17\Twill\Models\Behaviors\Sortable;
@@ -17,7 +18,7 @@ use App\Observers\PageObserver;
 
 class Page extends Model implements Sortable
 {
-    use HasBlocks, HasSlug, HasMedias, HasFiles, HasRevisions, HasPosition, HasNesting;
+    use HasBlocks, HasSlug, HasMedias, HasFiles, HasRelated, HasRevisions, HasPosition, HasNesting;
 
     protected $presenterAdmin = PagePresenter::class;
 
@@ -114,13 +115,19 @@ class Page extends Model implements Sortable
 
     public function taxonomyInputs()
     {
-        return $this->taxonomyModel()->blocks()->get()->filter(function ($block) {
-            return $block->type == 'taxonomy_input';
-        })->map(function ($block) {
-            $content = $block->content;
-            $content['label'] = $content['name'];
-            $content['name'] = \Str::slug($content['name'], '_');
-            return $content;
+        $inputs = $this->getRelated('taxonomies')->map(function ($taxonomy) {
+            return $taxonomy->blocks()->get()->filter(function ($block) {
+                return $block->type == 'taxonomy_input';
+            })->map(function ($block) {
+                $content = $block->content;
+                $content['label'] = $content['name'];
+                $content['name'] = \Str::slug($content['name'], '_');
+                return $content;
+            });
         })->toArray();
+        if (count($inputs)) {
+            return $inputs[0];
+        }
+        return [];
     }
 }

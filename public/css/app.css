@@ -464,6 +464,16 @@ Ensure the default browser behavior of the `hidden` attribute.
   width: 100%;
 }
 
+@media (min-width: 768px) {
+    .md\:fill-parent {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: 100%;
+    width: 100%;
+  }
+}
+
 .cover {
   position: absolute;
   top: 0px;
@@ -814,16 +824,16 @@ margin: 0 (var(--line) * -1.5); */
   height: 100vh;
 }
 
-.h-56 {
-  height: 14rem;
-}
-
 .h-1 {
   height: 0.25rem;
 }
 
 .h-2 {
   height: 0.5rem;
+}
+
+.h-56 {
+  height: 14rem;
 }
 
 .h-24 {
@@ -1072,6 +1082,10 @@ margin: 0 (var(--line) * -1.5); */
   border-radius: 0.375rem;
 }
 
+.rounded-none {
+  border-radius: 0px;
+}
+
 .rounded-sm {
   border-radius: 0.125rem;
 }
@@ -1096,18 +1110,14 @@ margin: 0 (var(--line) * -1.5); */
   border-radius: 9999px;
 }
 
-.rounded-none {
-  border-radius: 0px;
+.rounded-t {
+  border-top-left-radius: 0.25rem;
+  border-top-right-radius: 0.25rem;
 }
 
 .rounded-t-md {
   border-top-left-radius: 0.375rem;
   border-top-right-radius: 0.375rem;
-}
-
-.rounded-t {
-  border-top-left-radius: 0.25rem;
-  border-top-right-radius: 0.25rem;
 }
 
 .border {
@@ -2043,12 +2053,12 @@ margin: 0 (var(--line) * -1.5); */
     display: none;
   }
 
-  .md\:h-32 {
-    height: 8rem;
-  }
-
   .md\:h-56 {
     height: 14rem;
+  }
+
+  .md\:h-32 {
+    height: 8rem;
   }
 
   .md\:min-h-screen {

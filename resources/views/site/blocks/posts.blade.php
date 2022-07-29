@@ -32,7 +32,7 @@ $id = $block->input('block_id') ?? uniqid();
                 <div class="w-full bg-white max-w-lg my-4 {{ settings('rounded') }} lg:max-w-none">
                     <div class="overflow-hidden {{ settings('rounded') }}">
                         <a href="{{ $url }}"
-                            class="block h-56 overflow-hidden rounded-t-md xl:h-80 group bg-gradient-to-br from-primary to-primary-700">
+                            class="block h-56 overflow-hidden rounded-t-md xl:h-80 group bg-gradient-to-br from-primary to-primary-900">
                             <div class="fill-parent"><img src="{{ $post->image('flexible', 'flexible') }}"
                                     class="object-cover w-full h-full transition duration-300 transform group-hover:scale-110"
                                     alt="{{ $post->imageAltText('flexible') }}">
@@ -64,7 +64,7 @@ $id = $block->input('block_id') ?? uniqid();
 
 <x-section class="text-red-800 bg-red-100">
     <x-container class="text-center">
-        <div class="text-center" style="font-family: monospace">Select a post type.</div>
+        <div class="text-center" style="font-family: monospace">Select a page tag.</div>
     </x-container>
 </x-section>
 @endif

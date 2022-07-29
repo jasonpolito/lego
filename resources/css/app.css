@@ -9,6 +9,12 @@
     @apply absolute top-0 left-0 w-full h-full;
 }
 
+@screen md {
+    .md\:fill-parent {
+        @apply absolute top-0 left-0 w-full h-full;
+    }
+}
+
 .cover {
     @apply absolute top-0 left-0 flex w-full h-full;
 }

@@ -19,5 +19,10 @@ class Taxonomy extends Model implements Sortable
         'description',
         'position',
     ];
-    
+
+
+    public function pages()
+    {
+        return $this->belongsToMany(Page::class);
+    }
 }
