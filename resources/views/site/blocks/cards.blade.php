@@ -76,8 +76,9 @@ $id = $block->input('block_id') ?? uniqid();
 			<x-col class="flex justify-center w-full max-w-3xl md:px-4">
 				<div
 					class="flex flex-wrap w-full {{ $block->input('variant') == 'stacked_reversed' ? 'flex-row-reverse' : '' }} bg-white max-w-lg my-4 {{ settings('rounded') }} lg:max-w-none">
-					<a href="{{ route('page.show', ['slug' => $page->nestedSlug]) }}" class="block h-56 w-full sm:w-1/3 sm:h-auto overflow-hidden
-							rounded-t{{ Str::replace('rounded-', '', settings('rounded')) }} group">
+					<a href="{{ route('page.show', ['slug' => $page->nestedSlug]) }}"
+						class="block h-56 w-full sm:w-1/3 sm:h-auto overflow-hidden
+							sm:rounded-tl-none sm:rounded-r-{{ Str::replace('rounded-', '', settings('rounded')) }} rounded-t-{{ Str::replace('rounded-', '', settings('rounded')) }} group">
 						<div class="fill-parent"><img src="{{ $img }}"
 								class="object-cover w-full h-full transition duration-300 transform group-hover:scale-110"
 								alt="{{ $page->imageAltText('flexible') }}">

@@ -7,7 +7,7 @@ $styles = config('styles.btns');
     @foreach ($buttons as $btn)
     @if ($btn->input('child_type') == 'button')
     <div class="w-full px-3 sm:w-auto">
-        <a class="group {{ $styles[$btn->input('btn_style') ?? 'default'] }}"
+        <a class="group {{ $styles[$btn->input('btn_style') ?? 'default'] }} {{ settings('rounded') }}"
             href="{{ $btn->input('btn_url') ?? link_url($btn) }}" @if($btn->input('btn_style') == 'underline')
             style="box-shadow: 0 .125rem;"
             @endif

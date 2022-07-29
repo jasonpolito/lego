@@ -69,7 +69,13 @@ $head_insert_code = app(SettingRepository::class)->byKey('global_head_insert_cod
     {!! $body_insert_code !!}
     <!-- END INSERTED FROM BACKEND -->
     <div
-        class="w-1/2 w-1/3 w-1/4 sm:w-1/2 sm:w-1/3 sm:w-1/4 md:w-1/2 md:w-1/3 md:w-1/4 lg:w-1/2 lg:w-1/3 lg:w-1/4 xl:w-1/2 xl:w-1/3 xl:w-1/4">
+        class="w-1/2 w-1/3 w-1/4 rounded-r-sm rounded-r-lg rounded-r-xl rounded-r-md rounded-r-2xl rounded-r-3xl sm:w-1/2 sm:w-1/3 sm:w-1/4 md:w-1/2 md:w-1/3 md:w-1/4 lg:w-1/2 lg:w-1/3 lg:w-1/4 xl:w-1/2 xl:w-1/3 xl:w-1/4">
+    </div>
+    <div
+        class="w-1/2 w-1/3 w-1/4 rounded-t-sm rounded-t-lg rounded-t-xl rounded-t-md rounded-t-2xl rounded-t-3xl sm:w-1/2 sm:w-1/3 sm:w-1/4 md:w-1/2 md:w-1/3 md:w-1/4 lg:w-1/2 lg:w-1/3 lg:w-1/4 xl:w-1/2 xl:w-1/3 xl:w-1/4">
+    </div>
+    <div
+        class="w-1/2 w-1/3 w-1/4 sm:rounded-r-sm sm:rounded-r-lg sm:rounded-r-xl sm:rounded-r-md sm:rounded-r-2xl sm:rounded-r-3xl sm:w-1/2 sm:w-1/3 sm:w-1/4 md:w-1/2 md:w-1/3 md:w-1/4 lg:w-1/2 lg:w-1/3 lg:w-1/4 xl:w-1/2 xl:w-1/3 xl:w-1/4">
     </div>
 
     @if (auth('twill_users')->user() && isset($page))
