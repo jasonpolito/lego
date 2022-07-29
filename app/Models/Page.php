@@ -130,4 +130,9 @@ class Page extends Model implements Sortable
         }
         return [];
     }
+
+    public function taxonomies()
+    {
+        return $this->belongsToMany(Taxonomy::class);
+    }
 }

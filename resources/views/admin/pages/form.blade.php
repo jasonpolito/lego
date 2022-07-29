@@ -3,9 +3,25 @@ use App\Models\Taxonomy;
 $taxonomy_opts = Taxonomy::all()->pluck('title', 'id');
 $taxonomy_count = Taxonomy::count();
 
+$tabs = [
+    ['name' => 'content', 'label' => 'Content' ],
+    ['name' => 'details', 'label' => 'Details' ],
+    ['name' => 'seo', 'label' => 'SEO' ],
+    ['name' => 'advanced', 'label' => 'Advanced' ],
+];
+
+if (count($page->taxonomyInputs())) {
+    $tabs = [
+    ['name' => 'content', 'label' => 'Content' ],
+    ['name' => 'fields', 'label' => 'Custom Fields' ],
+    ['name' => 'details', 'label' => 'Details' ],
+    ['name' => 'seo', 'label' => 'SEO' ],
+    ['name' => 'advanced', 'label' => 'Advanced' ],
+    ];
+}
+
 $meta_title_placeholder = 'A meta title refers to the text that is displayed on search engine result pages.';
-$meta_description_placeholder = 'A meta description generally informs and interests users with a short summary of what a
-particular page is about. ';
+$meta_description_placeholder = 'A meta description generally informs and interests users with a short summary of what a particular page is about. ';
 $excerpt_placeholder = 'A short, relevant summary of what this particular page is about. ';
 @endphp
 @extends('twill::layouts.form', [
@@ -32,12 +48,7 @@ $excerpt_placeholder = 'A short, relevant summary of what this particular page i
 
 @formFieldset(['id' => 'page', 'title' => 'Page', 'open' => true])
 
-<a17-tabs :tabs="[
-        { name: 'content', label: 'Content' },
-        { name: 'details', label: 'Details' },
-        { name: 'seo', label: 'SEO' },
-        { name: 'advanced', label: 'Advanced' },
-    ]">
+<a17-tabs :tabs="{{ Illuminate\Support\Js::from($tabs) }}">
     <div class="custom-tab custom-tab--content">
 
         @formField('block_editor', [
@@ -67,7 +78,7 @@ $excerpt_placeholder = 'A short, relevant summary of what this particular page i
                 ])
             </div>
         </div>
-        <div style="display: flex; margin-top: -24px">
+        <div style="display: flex;">
             <div style="width: 50%">
                 @formField('tags')
             </div>
@@ -81,6 +92,10 @@ $excerpt_placeholder = 'A short, relevant summary of what this particular page i
             </div>
         </div>
 
+    </div>
+
+
+    <div class="custom-tab custom-tab--fields">
 
         @if (count($page->taxonomyInputs()))
 
@@ -114,10 +129,7 @@ $excerpt_placeholder = 'A short, relevant summary of what this particular page i
         </div>
 
         @endif
-
     </div>
-
-    {{-- SEO --}}
 
     <div class="custom-tab custom-tab--seo">
 
