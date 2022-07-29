@@ -6,7 +6,6 @@ $rand_title = '';
     el="{{ $block->input('title_element') ?? 'h3' }}">
     {!! $block->input('title_text') !!}
 </x-title>
-
 @else
 <x-title display="h4" el="h3">
     {!! $block->title !!}

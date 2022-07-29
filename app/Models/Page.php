@@ -116,17 +116,20 @@ class Page extends Model implements Sortable
     public function taxonomyInputs()
     {
         $inputs = $this->getRelated('taxonomies')->map(function ($taxonomy) {
-            return $taxonomy->blocks()->get()->filter(function ($block) {
+            $block_inputs = $taxonomy->blocks()->get()->filter(function ($block) {
                 return $block->type == 'taxonomy_input';
             })->map(function ($block) {
                 $content = $block->content;
                 $content['label'] = $content['name'];
                 $content['name'] = \Str::slug($content['name'], '_');
                 return $content;
-            });
+            })->toArray();
+            // ddd($block_inputs);
+            return $block_inputs;
         })->toArray();
         if (count($inputs)) {
-            return $inputs[0];
+            $inputs = array_reduce($inputs, 'array_merge', []);
+            return $inputs;
         }
         return [];
     }

@@ -1,7 +1,7 @@
 @formField('checkbox', [
 'name' => 'has_buttons',
 'label' => 'Has buttons',
-'default' => true
+'default' => false
 ])
 
 @formConnectedFields([

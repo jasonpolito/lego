@@ -22,13 +22,12 @@
 'title_display_element' => 'h4',
 ]])
 
-<div style="margin-top: -26px">
-    @formField('checkbox', [
-    'name' => 'is_img_card',
-    'label' => 'Image card (no content)',
-    'default' => true
-    ])
-</div>
+@formField('input', [
+'type' => 'textarea',
+'name' => 'card_content',
+'label' => 'Card Content',
+'placeholder' => 'Almost before we knew it, we had left the ground.',
+])
 
 <div style="margin-top: -26px">
     @formField('checkbox', [
@@ -48,20 +47,4 @@
 
 @endformConnectedFields
 
-@formConnectedFields(['keepAlive' => true,
-'fieldName' => 'is_img_card',
-'fieldValues' => false,
-'renderForBlocks' => true
-])
-
-@formField('input', [
-'type' => 'textarea',
-'name' => 'card_content',
-'label' => 'Card Content',
-'placeholder' => 'Almost before we knew it, we had left the ground.',
-])
-
 @include('admin.blocks.defaults.buttons')
-
-
-@endformConnectedFields

@@ -1,6 +1,15 @@
 @php
+use App\Models\Page;
+
 $theme_name = env('THEME_NAME');
 $sections = get_block_children($block->children, 'card_section');
+$limit = $block->input('limit') !== 'all' ? $block->input('limit') : -1;
+
+$current_page = get_post();
+
+$exclude = $current_page ? [$current_page->id] : [];
+$pages = Page::withTag($block->input('tags'))->orderBy('position',
+'asc')->published()->whereNotIn('id', $exclude)->limit($limit)->get();
 $id = $block->input('block_id') ?? uniqid();
 @endphp
 @if (View::exists("themes.$theme_name.cards"))
@@ -10,6 +19,90 @@ $id = $block->input('block_id') ?? uniqid();
 <x-section id="{{ $id }}">
 	<div class="fill-parent bg-canvas opacity-5"></div>
 	<x-container>
+		@if ($block->input('use_pages'))
+		<div class="text-center lg:text-left">
+			@include('site.blocks.defaults.title', ['block' => $block])
+			<div></div>
+		</div>
+		<x-cols class="justify-center md:-mx-4">
+			@foreach ($pages as $page)
+			@php
+			$img = $page->image('flexible', 'flexible');
+			@endphp
+
+			@if (
+			$block->input('card_style') == 'basic' ||
+			empty($block->input('card_style'))
+			)
+			<x-col class="flex justify-center w-full md:px-4 lg:w-1/2">
+				<div class="flex flex-col w-full bg-white max-w-lg my-4 {{ settings('rounded') }} lg:max-w-none">
+					<a href="{{ route('page.show', ['slug' => $page->nestedSlug]) }}" class="block h-56 overflow-hidden
+						rounded-t{{ Str::replace('rounded-', '', settings('rounded')) }} xl:h-80 group">
+						<div class="fill-parent"><img src="{{ $img }}"
+								class="object-cover w-full h-full transition duration-300 transform group-hover:scale-110"
+								alt="{{ $page->imageAltText('flexible') }}">
+						</div>
+					</a>
+					<div class="flex flex-col flex-1 px-5 py-4 sm:p-6 md:p-8">
+						<div class="w-full h-full">
+							<div class="pt-2">
+								<a href="{{ route('page.show', ['slug' => $page->nestedSlug]) }}">@include('site.blocks.defaults.title',
+									['block' => $page])
+									<span></span>
+								</a>
+								<div></div>
+							</div>
+							<div class="mb-4 -mt-2 md:-mt-4">
+								<p class="leading-6 show-rhythm opacity-80">{!! $page->excerpt !!}</p>
+							</div>
+						</div>
+						{{-- <div>
+							@include('site.blocks.defaults.buttons', ['buttons' =>
+							$card->children()->orderBy('position')->get(), 'align' =>
+							$card->input('align_buttons')])
+						</div> --}}
+					</div>
+				</div>
+			</x-col>
+			@endif
+			@if (
+			$block->input('card_style') == 'stacked' ||
+			$block->input('card_style') == 'stacked_reversed'
+			)
+			<x-col class="flex justify-center w-full max-w-3xl md:px-4">
+				<div class="flex flex-wrap w-full bg-white max-w-lg my-4 {{ settings('rounded') }} lg:max-w-none">
+					<a href="{{ route('page.show', ['slug' => $page->nestedSlug]) }}" class="block h-56 w-full sm:w-1/3 sm:h-auto overflow-hidden
+							rounded-t{{ Str::replace('rounded-', '', settings('rounded')) }} group">
+						<div class="fill-parent"><img src="{{ $img }}"
+								class="object-cover w-full h-full transition duration-300 transform group-hover:scale-110"
+								alt="{{ $page->imageAltText('flexible') }}">
+						</div>
+					</a>
+					<div class="flex flex-col flex-1 px-5 py-4 sm:p-6 md:p-8">
+						<div class="w-full h-full">
+							<div class="pt-2">
+								<a href="{{ route('page.show', ['slug' => $page->nestedSlug]) }}">@include('site.blocks.defaults.title',
+									['block' => $page])
+									<span></span>
+								</a>
+								<div></div>
+							</div>
+							<div class="mb-4 -mt-2 md:-mt-4">
+								<p class="leading-6 show-rhythm opacity-80">{!! $page->excerpt !!}</p>
+							</div>
+						</div>
+						{{-- <div>
+								@include('site.blocks.defaults.buttons', ['buttons' =>
+								$card->children()->orderBy('position')->get(), 'align' =>
+								$card->input('align_buttons')])
+							</div> --}}
+					</div>
+				</div>
+			</x-col>
+			@endif
+			@endforeach
+		</x-cols>
+		@else
 		@foreach ($sections as $section)
 		@if (!$loop->first)
 		<div class="py-8"></div>
@@ -27,6 +120,7 @@ $id = $block->input('block_id') ?? uniqid();
 			@php
 			$img = $card->image('flexible', 'flexible');
 			@endphp
+			@if ($block->input('card_style') == 'basic' || empty($block->input('card_style')))
 			<x-col class="flex justify-center w-full md:px-4 lg:w-1/2">
 				@if ($card->input('is_img_card'))
 				<a class="flex flex-col text-white py-8 md:py-16 justify-center items-center w-full shadow hover:shadow-2xl my-4 transition-all px-6 text-center bg-cover bg-center group {{ settings('rounded') }}"
@@ -97,9 +191,67 @@ $id = $block->input('block_id') ?? uniqid();
 				</div>
 				@endif
 			</x-col>
+			@endif
+			@if (
+			$block->input('card_style') == 'stacked' ||
+			$block->input('card_style') == 'stacked_reversed'
+			)
+			<x-col class="w-full max-w-3xl md:px-4">
+				<div
+					class="flex flex-wrap w-full {{ $block->input('card_style') == 'stacked_reversed' ? 'flex-row-reverse' : '' }} {{ $card->input('card_cover') ? 'text-white' : '' }} bg-white my-4 {{ settings('rounded') }}">
+					@if ($card->input('url'))
+					<a href="{{ link_url($card) }}" @if ($card->input('external'))
+						target="_blank"
+						@endif class="block h-56 overflow-hidden
+						rounded-t{{ Str::replace('rounded-', '', settings('rounded')) }} xl:h-80 group">
+						<div class="fill-parent"><img src="{{ $img }}"
+								class="object-cover w-full h-full transition duration-300 transform group-hover:scale-110"
+								alt="{{ $card->imageAltText('flexible') }}">
+						</div>
+					</a>
+					@else
+					<div
+						class="block w-full h-56 sm:h-auto sm:w-1/3 overflow-hidden rounded-t{{ Str::replace('rounded-', '', settings('rounded')) }}">
+						<div class="fill-parent"><img src="{{ $img }}" class="object-cover w-full h-full"
+								alt="{{ $card->imageAltText('flexible') }}">
+						</div>
+					</div>
+					@endif
+					<div class="flex flex-col flex-1 px-5 py-4 sm:p-6 md:p-8">
+						<div class="w-full h-full">
+							@if (!empty($card->input('title_text')))
+							<div class="pt-2">
+								@if ($card->input('url'))
+								<a href="{{ $card->input('url') }}" @if ($card->input('external'))
+									target="_blank"
+									@endif
+									>@include('site.blocks.defaults.title', ['block' => $card])
+									<span></span>
+								</a>
+								@else
+								@include('site.blocks.defaults.title', ['block' => $card])
+								@endif
+								<div></div>
+							</div>
+							@endif
+							<div class="mb-4 -mt-2 md:-mt-4">
+								<p class="leading-6 show-rhythm opacity-80">{!! $card->input('card_content') !!}</p>
+							</div>
+						</div>
+						<div>
+							@include('site.blocks.defaults.buttons', ['buttons' =>
+							$card->children()->orderBy('position')->get(), 'align' =>
+							$card->input('align_buttons')])
+						</div>
+					</div>
+				</div>
+			</x-col>
+			@endif
 			@endforeach
 		</x-cols>
 		@endforeach
+		@endif
+
 	</x-container>
 </x-section>
 @else

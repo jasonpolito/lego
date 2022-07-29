@@ -844,6 +844,10 @@ margin: 0 (var(--line) * -1.5); */
   height: 3rem;
 }
 
+.h-80 {
+  height: 20rem;
+}
+
 .max-h-0 {
   max-height: 0px;
 }
@@ -908,12 +912,28 @@ margin: 0 (var(--line) * -1.5); */
   width: 6rem;
 }
 
+.w-36 {
+  width: 9rem;
+}
+
 .max-w-6xl {
   max-width: 72rem;
 }
 
 .max-w-lg {
   max-width: 32rem;
+}
+
+.max-w-xl {
+  max-width: 36rem;
+}
+
+.max-w-2xl {
+  max-width: 42rem;
+}
+
+.max-w-3xl {
+  max-width: 48rem;
 }
 
 .flex-1 {
@@ -1844,6 +1864,10 @@ margin: 0 (var(--line) * -1.5); */
 
   .sm\:h-full {
     height: 100%;
+  }
+
+  .sm\:h-auto {
+    height: auto;
   }
 
   .sm\:w-1\/2 {

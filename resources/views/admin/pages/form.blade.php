@@ -1,7 +1,9 @@
 @php
 use App\Models\Taxonomy;
-$taxonomy_opts = Taxonomy::all()->pluck('title', 'id');
 $taxonomy_count = Taxonomy::count();
+$meta_title_placeholder = 'A meta title refers to the text that is displayed on search engine result pages.';
+$meta_description_placeholder = 'A meta description generally informs and interests users with a short summary of what a particular page is about. ';
+$excerpt_placeholder = 'A short, relevant summary of what this particular page is about. ';
 
 $tabs = [
     ['name' => 'content', 'label' => 'Content' ],
@@ -20,9 +22,6 @@ if (count($page->taxonomyInputs())) {
     ];
 }
 
-$meta_title_placeholder = 'A meta title refers to the text that is displayed on search engine result pages.';
-$meta_description_placeholder = 'A meta description generally informs and interests users with a short summary of what a particular page is about. ';
-$excerpt_placeholder = 'A short, relevant summary of what this particular page is about. ';
 @endphp
 @extends('twill::layouts.form', [
 'disableContentFieldset' => true
