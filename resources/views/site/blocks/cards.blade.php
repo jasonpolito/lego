@@ -8,22 +8,26 @@ $limit = $block->input('limit') !== 'all' ? $block->input('limit') : -1;
 $current_page = get_post();
 
 $exclude = $current_page ? [$current_page->id] : [];
+
 $pages = Page::withTag($block->input('tags'))->orderBy('position',
 'asc')->published()->whereNotIn('id', $exclude)->limit($limit)->get();
+
 $id = $block->input('block_id') ?? uniqid();
 @endphp
 @if (View::exists("themes.$theme_name.cards"))
 @include("themes.$theme_name.cards", ['block' => $block])
 @else
-@if ($sections->count())
+@if ($block->children()->count() || count($pages))
 <x-section id="{{ $id }}">
 	<div class="fill-parent bg-canvas opacity-5"></div>
 	<x-container>
 		@if ($block->input('use_pages'))
+		@if (!empty($block->input('title_text')))
 		<div class="text-center lg:text-left">
 			@include('site.blocks.defaults.title', ['block' => $block])
 			<div></div>
 		</div>
+		@endif
 		<x-cols class="justify-center md:-mx-4">
 			@foreach ($pages as $page)
 			@php
@@ -31,8 +35,8 @@ $id = $block->input('block_id') ?? uniqid();
 			@endphp
 
 			@if (
-			$block->input('card_style') == 'basic' ||
-			empty($block->input('card_style'))
+			$block->input('variant') == 'default' ||
+			empty($block->input('variant'))
 			)
 			<x-col class="flex justify-center w-full md:px-4 lg:w-1/2">
 				<div class="flex flex-col w-full bg-white max-w-lg my-4 {{ settings('rounded') }} lg:max-w-none">
@@ -66,11 +70,12 @@ $id = $block->input('block_id') ?? uniqid();
 			</x-col>
 			@endif
 			@if (
-			$block->input('card_style') == 'stacked' ||
-			$block->input('card_style') == 'stacked_reversed'
+			$block->input('variant') == 'stacked' ||
+			$block->input('variant') == 'stacked_reversed'
 			)
 			<x-col class="flex justify-center w-full max-w-3xl md:px-4">
-				<div class="flex flex-wrap w-full bg-white max-w-lg my-4 {{ settings('rounded') }} lg:max-w-none">
+				<div
+					class="flex flex-wrap w-full {{ $block->input('variant') == 'stacked_reversed' ? 'flex-row-reverse' : '' }} bg-white max-w-lg my-4 {{ settings('rounded') }} lg:max-w-none">
 					<a href="{{ route('page.show', ['slug' => $page->nestedSlug]) }}" class="block h-56 w-full sm:w-1/3 sm:h-auto overflow-hidden
 							rounded-t{{ Str::replace('rounded-', '', settings('rounded')) }} group">
 						<div class="fill-parent"><img src="{{ $img }}"
@@ -108,10 +113,12 @@ $id = $block->input('block_id') ?? uniqid();
 		<div class="py-8"></div>
 
 		@endif
+		@if (!empty($section->input('title_text')))
 		<div class="text-center lg:text-left">
 			@include('site.blocks.defaults.title', ['block' => $section])
 			<div></div>
 		</div>
+		@endif
 		<x-cols class="justify-center md:-mx-4">
 			@php
 			$cards = get_block_children($section->children, 'card');
@@ -120,7 +127,7 @@ $id = $block->input('block_id') ?? uniqid();
 			@php
 			$img = $card->image('flexible', 'flexible');
 			@endphp
-			@if ($block->input('card_style') == 'basic' || empty($block->input('card_style')))
+			@if ($block->input('variant') == 'default' || empty($block->input('variant')))
 			<x-col class="flex justify-center w-full md:px-4 lg:w-1/2">
 				@if ($card->input('is_img_card'))
 				<a class="flex flex-col text-white py-8 md:py-16 justify-center items-center w-full shadow hover:shadow-2xl my-4 transition-all px-6 text-center bg-cover bg-center group {{ settings('rounded') }}"
@@ -193,12 +200,12 @@ $id = $block->input('block_id') ?? uniqid();
 			</x-col>
 			@endif
 			@if (
-			$block->input('card_style') == 'stacked' ||
-			$block->input('card_style') == 'stacked_reversed'
+			$block->input('variant') == 'stacked' ||
+			$block->input('variant') == 'stacked_reversed'
 			)
 			<x-col class="w-full max-w-3xl md:px-4">
 				<div
-					class="flex flex-wrap w-full {{ $block->input('card_style') == 'stacked_reversed' ? 'flex-row-reverse' : '' }} {{ $card->input('card_cover') ? 'text-white' : '' }} bg-white my-4 {{ settings('rounded') }}">
+					class="flex flex-wrap w-full {{ $block->input('variant') == 'stacked_reversed' ? 'flex-row-reverse' : '' }} {{ $card->input('card_cover') ? 'text-white' : '' }} bg-white my-4 {{ settings('rounded') }}">
 					@if ($card->input('url'))
 					<a href="{{ link_url($card) }}" @if ($card->input('external'))
 						target="_blank"

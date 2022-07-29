@@ -1,16 +1,3 @@
-@formField('checkbox', [
-'name' => 'has_buttons',
-'label' => 'Has buttons',
-'default' => false
-])
-
-@formConnectedFields([
-'keepAlive'=> true,
-'fieldName' => 'has_buttons',
-'fieldValues' => true,
-'renderForBlocks' => true
-])
-
 @include('admin.components.title', ['text' => 'Buttons'])
 
 @formField('repeater', [
@@ -36,5 +23,3 @@
 ],
 ]
 ])
-
-@endformConnectedFields

@@ -11,9 +11,9 @@ return [
 @endphp
 
 @formField('select', [
-'name' => 'card_style',
+'name' => 'variant',
 'default' => 'default',
-'label' => 'Style',
+'label' => 'Variant',
 'options' => [
 [
 'label' => 'Default',
@@ -34,10 +34,12 @@ return [
     @formField('checkbox', [
     'name' => 'use_pages',
     'default' => true,
+    'border' => true,
     'label' => 'Use CMS pages'
     ])
 </div>
 
+<div style="margin-top: -24px">@include('admin.blocks.defaults.title')</div>
 
 @formConnectedFields(['keepAlive'=> true,
 'fieldName' => 'use_pages',
@@ -45,7 +47,7 @@ return [
 'renderForBlocks' => true
 ])
 
-<div style="margin: -12px 0">
+<div style="margin-top: -12px; margin-bottom: 29px">
     @formField('multi_select', [
     'name' => 'tags',
     'unpack' => false,
@@ -55,8 +57,6 @@ return [
     ])
 </div>
 
-@include('admin.blocks.defaults.title')
-
 @endformConnectedFields
 
 @formConnectedFields(['keepAlive'=> true,
@@ -65,9 +65,13 @@ return [
 'renderForBlocks' => true
 ])
 
+<label style="margin-top: 24px; display: block">Cards</label>
+
+@formField('repeater', ['type' => 'card'])
+{{-- 
 <label style="margin-top: 35px; display: block">Card Sections</label>
 
-@formField('repeater', ['type' => 'card_section'])
+@formField('repeater', ['type' => 'card_section']) --}}
 
 @endformConnectedFields
 

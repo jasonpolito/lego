@@ -57,7 +57,7 @@ return [
     'btns' => [
         'default' => 'block my-2 px-6 py-4 text-center sm:inline-block text-white
         bg-primary hover:bg-primary-600 transition',
-        'white' => 'block my-2 px-6 py-4 text-center sm:inline-block text-primary-600
+        'white' => 'block my-2 px-6 py-4 text-center sm:inline-block text-canvas
         bg-white hover:opacity-90 transition',
         'outlined' => 'block my-2 px-6 py-4 text-center sm:inline-block text-white',
         'underline' => 'hover:text-primary-600 transition text-primary font-bold my-2 sm:my-0 inline-block py-2',
